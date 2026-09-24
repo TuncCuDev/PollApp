@@ -1,5 +1,7 @@
+@use '../../styles/fonts';
 @use '../../styles/colors' as colors;
 @use '../../styles/layout' as mx;
+
 
 main {
     background-color: colors.$purple;
@@ -18,15 +20,28 @@ header {
 }
 
 .hero {
-    @include mx.flex-center();
+    @include mx.flex-space();
 
-    &_title {
-        color: colors.$orange;
-        font-size: 100px;
+    &_content {
+        width: 700px;
     }
 
+   &_title {
+        font-family: 'NerkoOne';
+        font-weight: 400;
+        color: colors.$orange;
+        font-size: 100px;
+        width: 710px;
+        margin-block-end: 0px;
+        margin-bottom: -10px;
+    }       
+
     &_description {
+        font-family: 'Mulish';
+        font-size: 24px;
         color: colors.$white;
+        width: 650px;
+        margin-block-start: 0px;
     }
 
     &_button {
@@ -35,6 +50,46 @@ header {
         border-radius: 10px;
         border: none;
         background-color: colors.$s-orange;
+
+    }
+
+    &_image {
+        height: 420px;
+        width: 420px;
+        position: relative;
+        overflow: hidden;
+
+        &_first,
+        &_second {
+            height: 420px;
+            width: 420px;
+            cursor: pointer;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+          &_first {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        &_second {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transform: translateY(15px);
+        }
+
+        &:hover {
+            .hero_image_first {
+                opacity: 0;
+            }
+
+            .hero_image_second {
+                opacity: 1;
+                transform: translateY(0);
+
+            }
+        }
     }
 }
-
