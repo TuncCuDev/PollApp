@@ -1,0 +1,40 @@
+@use '../../styles/colors' as colors;
+@use '../../styles/layout' as mx;
+
+main {
+    background-color: colors.$purple;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+}
+
+.mainpage {
+    padding: 50px 100px;
+}
+
+header {
+    @include mx.flex-left();
+}
+
+.hero {
+    @include mx.flex-center();
+
+    &_title {
+        color: colors.$orange;
+        font-size: 100px;
+    }
+
+    &_description {
+        color: colors.$white;
+    }
+
+    &_button {
+        height: 50px;
+        width: 140px;
+        border-radius: 10px;
+        border: none;
+        background-color: colors.$s-orange;
+    }
+}
+
