@@ -199,3 +199,67 @@ header {
         }
     }
 }
+
+.surveylist {
+    padding: 25px 100px;
+    width: 100%;
+
+    &_header {
+        @include mx.flex-space;
+    }
+
+    &_tabs {
+        display: flex;
+        gap: 15px;
+    }
+
+    &_active,
+    &_past {
+        font-family: 'Nokora';
+        font-weight: 400;
+        font-size: 16px;
+        padding: 10px 20px;
+        border-radius: 25px;
+    }
+
+    &_active {
+        background-color: colors.$orange;
+    }
+
+    &_past {
+        background-color: colors.$w-orange;
+    }
+
+    &_categories {
+        font-family: 'Mulish';
+        font-weight: 700;
+        font-size: 18px;
+        color: colors.$white;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+     &_arrow_default {
+        display: block;
+    }
+
+    &_arrow_hover {
+        display: none;
+        cursor: pointer;
+    }
+
+    &:hover {
+        .surveylist_categories_arrow_default {
+            display: none;
+        }
+
+        .surveylist_categories_arrow_hover {
+            display: block;
+        }
+    }
+    }
+
+   
+
+    
+}
