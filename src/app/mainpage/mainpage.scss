@@ -82,6 +82,7 @@ header {
 
         &:hover {
             width: 170px;
+            background-color: colors.$orange;
 
             &::after {
                 opacity: 1;
@@ -93,7 +94,6 @@ header {
         height: 420px;
         width: 420px;
         position: relative;
-        overflow: hidden;
         margin-top: 70px;
 
         &_first,
@@ -125,6 +125,76 @@ header {
             .hero_image_second {
                 opacity: 1;
                 transform: translateY(0);
+            }
+        }
+    }
+}
+
+.survey {
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-top: 75px;
+   
+
+    &_header {
+        @include mx.flex-center;; 
+    }
+
+    &_title {
+        font-family: 'NerkoOne';
+        font-weight: 400;
+        font-size: 72px;
+        color: colors.$orange;
+       
+    }
+
+    &_description {
+        font-family: 'Mulish';
+        font-weight: 500;
+        color: colors.$white;
+        font-size: 32px;
+    }
+
+    &_line {
+        @include mx.flex-evenly;
+        gap: 25px;
+    }
+
+    &_box {
+        background-color: white;
+        border-top-right-radius: 30%;
+        flex: 0 0 320px;
+        height: 310px;
+
+        &-inside {
+            padding-top: 40px;
+            padding-left: 45px;
+            padding-right: 45px;
+            
+            span {
+                font-family: 'Mulish';
+                font-weight: 600;
+                font-size: 14px;
+            }
+
+            h3 {
+                font-family: 'Mulish';
+                font-weight: 700;
+                font-size: 26px;
+                margin-block-start: 10px;
+            }
+
+            footer {
+                padding-top: 20px;
+            }
+
+            time {
+                font-family: 'Mulish';
+                font-weight: 500;
+                font-size: 14px;
+                background-color: colors.$s-orange;
+                border-top-right-radius: 20px;
+                padding: 2px 7px;
             }
         }
     }
