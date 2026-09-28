@@ -12,7 +12,7 @@ main {
 }
 
 .mainpage {
-    padding: 50px 100px;
+    padding: 75px 100px;
 }
 
 header {
@@ -201,11 +201,15 @@ header {
 }
 
 .surveylist {
-    padding: 25px 100px;
     width: 100%;
+    padding-top: 35px;
 
     &_header {
-        @include mx.flex-space;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 35px;
+        padding-right: 80px;
     }
 
     &_tabs {
@@ -218,7 +222,7 @@ header {
         font-family: 'Nokora';
         font-weight: 400;
         font-size: 16px;
-        padding: 10px 20px;
+        padding: 0px 5px;
         border-radius: 25px;
     }
 
@@ -239,24 +243,90 @@ header {
         align-items: center;
         gap: 10px;
 
-     &_arrow_default {
-        display: block;
-    }
-
-    &_arrow_hover {
-        display: none;
-        cursor: pointer;
-    }
-
-    &:hover {
-        .surveylist_categories_arrow_default {
-            display: none;
-        }
-
-        .surveylist_categories_arrow_hover {
+        &_arrow_default {
             display: block;
         }
+
+        &_arrow_hover {
+            display: none;
+            cursor: pointer;
+        }
+
+        &:hover {
+            .surveylist_categories_arrow_default {
+                display: none;
+            }
+
+            .surveylist_categories_arrow_hover {
+                display: block;
+            }
+        }
     }
+
+    &_grid {
+        width: 1042px;
+        height: 422px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 130px;
+        column-gap: 15px;
+        row-gap: 15px;
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+            width: 28px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: colors.$orange;
+            border-radius: 18px;
+            border: 10px solid transparent;
+            background-clip: padding-box;
+        }
+
+        &_card {
+            background-color: colors.$grey;
+            border-top-right-radius: 50px;
+            padding: 5px 25px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+
+            header {
+                font-family: 'Mulish';
+                font-weight: 500;
+                font-size: 16px;
+                color: colors.$s-orange;
+                padding-top: 10px;
+            }
+
+            h3 {
+                font-family: 'Mulish';
+                font-weight: 700;
+                font-size: 24px;
+                color: colors.$white;
+                margin-block-start: 5px;
+            }
+
+            footer {
+                margin-top: auto;
+                text-align: right;
+                padding-bottom: 5px;
+            }
+
+            time {
+                font-family: 'Mulish';
+                font-weight: 500;
+                font-size: 14px;
+                background-color: colors.$s-orange;
+                border-top-right-radius: 15px;
+                padding: 2px 5px;
+            }
+        }
     }
 
    
