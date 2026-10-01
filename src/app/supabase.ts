@@ -21,10 +21,7 @@ export class Supabase {
     const { data: survey, error } = await this.supabase
     .from('surveys')
     .select('*')
-
-    console.log('Survey', survey)
-    console.log('Error', error)
-
+    
     if (!survey) return
     this.surveys.set(survey)
   }
@@ -34,11 +31,8 @@ export class Supabase {
     .from('questions')
     .select('*')
 
-    console.log('Questions', questions)
-    console.log('Error', error)
-
     if (!questions) return
-    this.surveys.set(questions)
+    this.questions.set(questions)
   }
 
 }
