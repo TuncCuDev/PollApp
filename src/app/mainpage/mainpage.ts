@@ -16,7 +16,6 @@ export class Mainpage {
 
   async ngOnInit() {
     await this.supabaseService.getSurveys();
-    await this.supabaseService.getQuestions();
   }
 
   get surveys(){

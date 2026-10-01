@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Supabase } from '../supabase';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-survey',
@@ -11,7 +11,8 @@ import { ActivatedRoute } from '@angular/router';
 export class Survey {
   constructor(
     private supabaseService: Supabase,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   get questions() {
@@ -23,5 +24,9 @@ export class Survey {
     if (!surveyId) return;
 
     await this.supabaseService.getQuestionsBySurvey(surveyId);
+  }
+
+  goToHome() {
+    this.router.navigate(['/'])
   }
 }
