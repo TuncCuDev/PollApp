@@ -26,13 +26,15 @@ export class Supabase {
     this.surveys.set(survey)
   }
 
-    async getQuestions() {
+  async getQuestionsBySurvey(surveyId: string) {
     const { data: questions, error } = await this.supabase
-    .from('questions')
-    .select('*')
+      .from('questions')
+      .select('*')
+      .eq('survey_id', surveyId);
 
-    if (!questions) return
-    this.questions.set(questions)
-  }
+    if (!questions) return;
+
+    this.questions.set(questions);
+}
 
 }

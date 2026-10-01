@@ -1,4 +1,3 @@
-
 <main>
     <section class="mainpage">
         <header>
@@ -89,7 +88,7 @@
             </header>
             <div class="surveylist_grid">
             @for (survey of filteredSurveys; track survey.id) {
-                <article class="surveylist_grid_card">
+                <article class="surveylist_grid_card" (click)="openSurvey(survey.id)">
                     <header>
                         <span>{{ survey.category }}</span>
                     </header>

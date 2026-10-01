@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Supabase } from '../supabase';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mainpage',
@@ -9,7 +10,9 @@ import { Supabase } from '../supabase';
 })
 export class Mainpage {
 
-  constructor(private supabaseService: Supabase) {}
+  constructor(
+    private supabaseService: Supabase,
+    private router: Router) {}
 
   async ngOnInit() {
     await this.supabaseService.getSurveys();
@@ -29,6 +32,8 @@ export class Mainpage {
   }
 
   activeTab: 'active' | 'past' = 'active';
+  dropdownOpen = false;
+  selectedCategory = 'All';
 
   get filteredSurveys() {
     const today = new Date();
@@ -41,6 +46,26 @@ export class Mainpage {
       }
       return endDate < today;
     });
+  }
+
+  get categories(): string[] {
+    return [...new Set(
+      this.surveys().map(survey => survey.category)
+    )];
+  }
+
+  toggleDropdown() {
+    this.dropdownOpen = !this.dropdownOpen;
+  }
+
+  selectCategory(category: string) {
+    this.selectedCategory = category;
+    this.dropdownOpen = false;
+  }
+
+  openSurvey(id: string) {
+    console.log('funktioniert')
+    this.router.navigate(['survey', id])
   }
 
 }
