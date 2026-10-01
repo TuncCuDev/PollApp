@@ -68,14 +68,24 @@
         <section class="surveylist">
             <header class="surveylist_header">
                 <div class="surveylist_tabs">
-                    <span class="surveylist_active" (click)="activeTab = 'active'">Active survey</span>
-                    <span class="surveylist_past" (click)="activeTab = 'past'">Past survey</span>
+                    <span class="surveylist_acitve" [class.surveylist_active]="activeTab === 'active'" [class.surveylist_past]="activeTab === 'past'" (click)="activeTab = 'active'">Active survey</span>
+                    <span class="surveylist_past" [class.surveylist_active]="activeTab === 'past'" [class.surveylist_past]="activeTab === 'active'" (click)="activeTab = 'past'">Past survey</span>
                 </div>
-                <div class="surveylist_categories">
+                <div class="surveylist_categories" (click)="toggleDropdown()">
                     <span>Sort by categories</span>
                     <img class="surveylist_categories_arrow_default" src="./assets/img/arrow_drop_down.svg" alt="Arrow-Drop-Down">
                     <img class="surveylist_categories_arrow_hover" src="./assets/img/arrow_drop_down_o.svg" alt="Arrow-Drop-Down">
                 </div>
+                @if (dropdownOpen) {
+                    <div class="surveylist_categories_dropdown">
+                        <div (click)="selectCategory('All')">
+                            All
+                        </div>
+                        @for (category of categories; track category) {
+                            <div (click)="selectCategory(category)"> {{ category }}</div>
+                        }
+                    </div>
+                }
             </header>
             <div class="surveylist_grid">
             @for (survey of filteredSurveys; track survey.id) {
