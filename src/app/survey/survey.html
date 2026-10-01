@@ -1,0 +1,57 @@
+<main>
+    <section class="survey">
+        <header class="survey_header">
+            <img src="./assets/img/logo header dark.svg" alt="Header-Logo">
+            <button class="survey_button">Create Survey</button>
+        </header>
+    </section>
+
+    <section class="survey_content">
+        <div class="survey_left">
+            <div class="survey_card">
+                <header>
+                   <div class="survey_status">
+                    <span>Published</span>
+                    </div>
+                   <div class="survey_info">
+                    <span>End on 01.01.2026</span>
+                    <span>Category: Team activities</span>
+                   </div>
+                </header>
+                <h3 class="survey_title">Let´s plan the next team event together</h3>
+                <span class="survey_description">We want to create team activites that everyone will enjoy - share your preferences and ideas in our survey to help us plan better.....</span>
+                <section class="survey_questions">
+                @for (question of questions(); track question.id) {
+                  <article class="survey_question">
+                    <h3>{{ question.question_number }}. {{ question.question }}</h3>
+                      <label>
+                        <input type="checkbox">
+                        <span>{{ question.answer_a }}</span>
+                      </label>
+                      <label>
+                        <input type="checkbox">
+                        <span>{{ question.answer_b }}</span>
+                      </label>
+                      <label>
+                        <input type="checkbox">
+                        <span>{{ question.answer_c }}</span>
+                      </label>
+                      <label>
+                        <input type="checkbox">
+                        <span>{{ question.answer_d }}</span>
+                      </label>
+                      <label>
+                        <input type="checkbox">
+                        <span>{{ question.answer_e }}</span>
+                      </label>
+                    </article>
+                }
+                </section>
+              </div>
+          </div>
+
+          <div class="survey_right">
+
+          </div>
+    </section>
+</main>
