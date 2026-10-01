@@ -76,30 +76,21 @@
                     <img class="surveylist_categories_arrow_default" src="./assets/img/arrow_drop_down.svg" alt="Arrow-Drop-Down">
                     <img class="surveylist_categories_arrow_hover" src="./assets/img/arrow_drop_down_o.svg" alt="Arrow-Drop-Down">
                 </div>
-                </header>
-                <div class="surveylist_grid">
-
+            </header>
+            <div class="surveylist_grid">
             @for (survey of surveys(); track survey.id) {
-
                 <article class="surveylist_grid_card">
-
-                <header>
-                    <span>{{ survey.category }}</span>
-                </header>
-
-                <h3>{{ survey.title }}</h3>
-
-                <footer>
-                    <time>Ends in {{ getDaysLeft(survey.end_date) }} Days</time>
-                </footer>
-
+                    <header>
+                        <span>{{ survey.category }}</span>
+                    </header>
+                    <h3>{{ survey.title }}</h3>
+                    <footer>
+                        <time>Ends in {{ getDaysLeft(survey.end_date) }} Days</time>
+                    </footer>
                 </article>
-
-            }
-
+                }
             </div>
         </section>
-
     </section>
 </section>
 </main>
