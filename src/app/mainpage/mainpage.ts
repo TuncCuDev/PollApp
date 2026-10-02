@@ -63,7 +63,6 @@ export class Mainpage {
   }
 
   openSurvey(id: string) {
-    console.log('funktioniert')
     this.router.navigate(['survey', id])
   }
 

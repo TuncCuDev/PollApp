@@ -10,7 +10,22 @@
     }
 
     &_card {
-        padding: 50px 50px;
+        margin: 50px 50px;
+
+        &_button {
+            padding-top: 20px;
+            @include mx.flex-right;
+
+            &_survey {
+                background-color: colors.$orange-button;
+                border: none;
+                font-family: 'Nokora';
+                font-weight: 700;
+                font-size: 16px;
+                padding: 5px 5px;
+                border-radius: 5px;
+            }
+        }
     }
    
     &_header {
@@ -24,9 +39,41 @@
         background-color: colors.$s-orange;
         border: none;
         height: 35px;
-        width: 120px;
+        width: 125px;
         font-size: 16px;
+        position: relative;
         border-radius: 8px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: width 0.25s ease;
+        @include mx.flex-center;
+
+        &::after {
+            content: "+";
+            position: absolute;
+            color: black;
+            width: 15px;
+            height: 15px;
+            right: 20px;
+            top: 50%;
+            opacity: 0;
+            border-radius: 50%;
+            border: 2px solid black;
+            transform: translateY(-50%);
+            transition: opacity 0.2s ease, margin-left 0.25s ease;
+          
+        }
+
+        &:hover {
+            width: 155px;
+
+
+            &::after {
+                opacity: 1;
+                transform: translateY(-50%) scale(1.15);
+                @include mx.flex-evenly;
+            }
+        }
     }
 
     &_content {
@@ -36,7 +83,7 @@
 
     &_left {
         background-color: colors.$violet;
-        height: 850px;
+        height: 700px;
         width: 700px;
         border-top-right-radius: 15%;
     }
@@ -106,7 +153,36 @@
         cursor: pointer;
     }
 
-    
+    &_results {
+        flex-direction: column;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 500px;
+        height: 500px;
+        padding: 25px 25px;
+
+        &_top {
+            font-family: 'NerkoOne';
+            font-weight: 400;
+            font-size: 32px;
+
+            span {
+                color: colors.$orange;
+            }
+        }
+
+        &_middle,
+        &_bottom {
+            font-family: 'MUlish';
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        &_bottom {
+            padding-top: 100px;
+        }
+    }
 
 }
     
