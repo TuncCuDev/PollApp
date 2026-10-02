@@ -32,18 +32,24 @@
                         <input type="checkbox">
                         <span>{{ question.answer_b }}</span>
                       </label>
-                      <label>
-                        <input type="checkbox">
-                        <span>{{ question.answer_c }}</span>
-                      </label>
-                      <label>
-                        <input type="checkbox">
-                        <span>{{ question.answer_d }}</span>
-                      </label>
-                      <label>
-                        <input type="checkbox">
-                        <span>{{ question.answer_e }}</span>
-                      </label>
+                      @if (question.answer_c) {
+                        <label>
+                          <input type="checkbox">
+                          <span>{{ question.answer_c }}</span>
+                        </label>
+                      }
+                      @if (question.answer_d) {
+                        <label>
+                          <input type="checkbox">
+                          <span>{{ question.answer_d }}</span>
+                        </label>
+                      }
+                      @if (question.answer_e) {
+                        <label>
+                          <input type="checkbox">
+                          <span>{{ question.answer_e }}</span>
+                        </label>
+                      }
                     </article>
                 }
                 </section>
