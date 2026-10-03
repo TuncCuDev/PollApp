@@ -8,99 +8,200 @@
             <div class="hero_content">
                 <h1 class="hero_title">Collect Feedback, <br> Unlock Ideas</h1>
                 <p class="hero_description">Create and share surveys in minutes – from team events to workplace culture. Collect opinions, engage your audience, and turn feedback into action.</p>
-                <button class="hero_button">
+                <button class="hero_button" (click)="openCreateSurvey()">
                     <span>New Survey</span>
                 </button>
             </div>
-
             <div class="hero_image">
                 <img class="hero_image_first" src="/assets/img/mainlogo.svg" alt="Mainlogo">
                 <img class="hero_image_second" src="/assets/img/mainlogo-hover.svg" alt="Mainlogo">
             </div>
         </section>
+        
+           @if (createSurveyOpen()) {
+            <div class="overlay">
+                <div class="create_survey">
+                <header class="create_survey_header">
+                    <div class="create_survey_header_left">
+                        <span class="create_survey_status">Draft</span>
+                        <h2>Create new survey</h2>
+                    </div>
+                    <div class="create_survey_header_right">
+                        <button class="create_survey_cancel" (click)="closeCreateSurvey()">Cancel</button>
+                        <button class="create_survey_close" (click)="closeCreateSurvey()"></button>
+                    </div>
+                </header>
+                <section class="create_survey_content">
+                    <div class="create_survey_left">
+                    <div class="create_survey_field">
+                        <label for="surveyName">Survey name</label>
+                        <input id="surveyName" type="text" placeholder="Enter survey name">
+                        <button class="delete_button">
+                            <img src="./assets/img/delete.svg" alt="">
+                        </button>
+                    </div>
+                    <div class="create_survey_bottom">
+                        <div class="create_survey_field">
+                            <label for="endDate">Set end date 
+                                <span>(optional)</span>
+                            </label>
+                            <input class="create_survey_date_input" id="endDate" type="date">
+                            <button class="delete_button">
+                                <img src="./assets/img/delete.svg" alt="">
+                            </button>
+                        </div>
+                        <div class="create_survey_category">
+                           <div class="create_survey_category_button" (click)="toggleCategoryDropdown()"> 
+                                <span>{{newSurveyCategory || 'Choose Category'}}</span>
+                           </div>
+                            @if (categoryDropdownOpen) {
+                                <div class="create_survey_category_dropdown"> 
+                                    <span (click)="selectCategory('Team')">Team</span>
+                                    <span (click)="selectCategory('Work')">Work</span>
+                                    <span (click)="selectCategory('Events')">Events</span>
+                                    <span (click)="selectCategory('General')">General</span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="create_survey_question">
+                        <div class="create_survey_question_header">
+                        <h3>1. Question</h3>
+                        <button class="delete_button">
+                            <img src="./assets/img/delete.svg" alt="Delete question" >
+                        </button>
+                        </div>
+                        <input class="create_survey_question_input" type="text" value="Which date would work best for you?">
+                        <div class="create_survey_answers">
+                        <div class="create_survey_answers_header">
+                            <h4>Answers</h4>
+                            <label class="create_survey_checkbox">
+                                <input type="checkbox">
+                                <span>Allow multiple answers</span>
+                            </label>
+                        </div>
+                        <div class="create_survey_answer">
+                            <span class="create_survey_answer_letter">A.</span>
+                            <input type="text" placeholder="Enter answer">
+                            <button class="delete_button">
+                            <img src="./assets/img/delete.svg" alt="Delete answer"></button>
+                        </div>
+                        <div class="create_survey_answer">
+                            <span class="create_survey_answer_letter">B.</span>
+                            <input type="text" placeholder="Enter answer">
+                            <button class="delete_button">
+                            <img src="./assets/img/delete.svg" alt="Delete answer"></button>
+                        </div>
+                        <button class="create_survey_add_answer">
+                            <span>+</span> Add answer</button>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="create_survey_right">
+                    <div class="create_survey_field">
+                        <label for="description"> Describing text 
+                            <span>(optional)</span> 
+                        </label>
+                        <div class="create_survey_description">
+                        <textarea id="description" placeholder="Add some context about your survey..."></textarea>
+                        <button class="delete_button">
+                            <img src="./assets/img/trash.svg" alt="Delete description"></button>
+                        </div>
+                    </div>
+                    <button class="create_survey_next_question">
+                        <span>+</span>Add next question
+                    </button>
+                    </div>
+                </section>
+                <footer class="create_survey_footer">
+                    <button class="create_survey_publish">Publish</button>
+                </footer>
+                </div>
+            </div>
+            }
 
         <section class="survey">
             <header class="survey_header">
                 <h1 class="survey_title">Your Surveys</h1>
-            </header>
-        <section>
-            <h2 class="survey_description">Ending soon surveys</h2>
-            <div class="survey_line">
-                <article class="survey_box">
-                    <div class="survey_box-inside">
-                        <header>
-                            <span>Team activities</span>
-                        </header>
-                        <h3>Let's plan the next team event together</h3>
-                        <footer>
-                            <time datetime="P1D">Ends in 1 Days</time>
-                        </footer>
-                    </div>
-                </article>
-
-                <article class="survey_box">
-                    <div class="survey_box-inside">
-                        <header>
-                            <span>Team activities</span>
-                        </header>
-                        <h3>Let's plan the next team event together</h3>
-                        <footer>
-                            <time datetime="P1D">Ends in 1 Days</time>
-                        </footer>
-                    </div>
-                </article>
-
-                <article class="survey_box">
-                    <div class="survey_box-inside">
-                        <header>
-                            <span>Team activities</span>
-                        </header>
-                        <h3>Let's plan the next team event together</h3>
-                        <footer>
-                            <time datetime="P1D">Ends in 1 Days</time>
-                        </footer>
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <section class="surveylist">
-            <header class="surveylist_header">
-                <div class="surveylist_tabs">
-                    <span class="surveylist_acitve" [class.surveylist_active]="activeTab === 'active'" [class.surveylist_past]="activeTab === 'past'" (click)="activeTab = 'active'">Active survey</span>
-                    <span class="surveylist_past" [class.surveylist_active]="activeTab === 'past'" [class.surveylist_past]="activeTab === 'active'" (click)="activeTab = 'past'">Past survey</span>
-                </div>
-                <div class="surveylist_categories" (click)="toggleDropdown()">
-                    <span>Sort by categories</span>
-                    <img class="surveylist_categories_arrow_default" src="./assets/img/arrow_drop_down.svg" alt="Arrow-Drop-Down">
-                    <img class="surveylist_categories_arrow_hover" src="./assets/img/arrow_drop_down_o.svg" alt="Arrow-Drop-Down">
-                </div>
-                @if (dropdownOpen) {
-                    <div class="surveylist_categories_dropdown">
-                        <div (click)="selectCategory('All')">
-                            All
+            </header> 
+            <section>
+                <h2 class="survey_description">Ending soon surveys</h2>
+                <div class="survey_line">
+                    <article class="survey_box">
+                        <div class="survey_box-inside">
+                            <header>
+                                <span>Team activities</span>
+                            </header>
+                            <h3>Let's plan the next team event together</h3>
+                            <footer>
+                                <time datetime="P1D">Ends in 1 Days</time>
+                            </footer>
                         </div>
-                        @for (category of categories; track category) {
-                            <div (click)="selectCategory(category)"> {{ category }}</div>
-                        }
+                    </article>
+
+                    <article class="survey_box">
+                        <div class="survey_box-inside">
+                            <header>
+                                <span>Team activities</span>
+                            </header>
+                            <h3>Let's plan the next team event together</h3>
+                            <footer>
+                                <time datetime="P1D">Ends in 1 Days</time>
+                            </footer>
+                        </div>
+                    </article>
+
+                    <article class="survey_box">
+                        <div class="survey_box-inside">
+                            <header>
+                                <span>Team activities</span>
+                            </header>
+                            <h3>Let's plan the next team event together</h3>
+                            <footer>
+                                <time datetime="P1D">Ends in 1 Days</time>
+                            </footer>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="surveylist">
+                <header class="surveylist_header">
+                    <div class="surveylist_tabs">
+                        <span class="surveylist_acitve" [class.surveylist_active]="activeTab === 'active'" [class.surveylist_past]="activeTab === 'past'" (click)="activeTab = 'active'">Active survey</span>
+                        <span class="surveylist_past" [class.surveylist_active]="activeTab === 'past'" [class.surveylist_past]="activeTab === 'active'" (click)="activeTab = 'past'">Past survey</span>
                     </div>
-                }
-            </header>
-            <div class="surveylist_grid">
-            @for (survey of filteredSurveys; track survey.id) {
-                <article class="surveylist_grid_card" (click)="openSurvey(survey.id)">
-                    <header>
-                        <span>{{ survey.category }}</span>
-                    </header>
-                    <h3>{{ survey.title }}</h3>
-                    <footer>
-                        <time>Ends in {{ getDaysLeft(survey.end_date) }} Days</time>
-                    </footer>
-                </article>
-                }
-            </div>
+                    <div class="surveylist_categories" (click)="toggleDropdown()">
+                        <span>Sort by categories</span>
+                        <img class="surveylist_categories_arrow_default" src="./assets/img/arrow_drop_down.svg" alt="Arrow-Drop-Down">
+                        <img class="surveylist_categories_arrow_hover" src="./assets/img/arrow_drop_down_o.svg" alt="Arrow-Drop-Down">
+                    </div>
+                    @if (dropdownOpen) {
+                        <div class="surveylist_categories_dropdown">
+                            <div (click)="selectCategory('All')">
+                                All
+                            </div>
+                            @for (category of categories; track category) {
+                                <div (click)="selectCategory(category)"> {{ category }}</div>
+                            }
+                        </div>
+                    }
+                </header>
+                <div class="surveylist_grid">
+                @for (survey of filteredSurveys; track survey.id) {
+                    <article class="surveylist_grid_card" (click)="openSurvey(survey.id)">
+                        <header>
+                            <span>{{ survey.category }}</span>
+                        </header>
+                        <h3>{{ survey.title }}</h3>
+                        <footer>
+                            <time>Ends in {{ getDaysLeft(survey.end_date) }} Days</time>
+                        </footer>
+                    </article>
+                    }
+                </div>
+            </section>
         </section>
     </section>
-</section>
 </main>
 

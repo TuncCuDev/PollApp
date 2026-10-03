@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { Supabase } from '../supabase';
 import { Router } from '@angular/router';
 
@@ -9,6 +9,11 @@ import { Router } from '@angular/router';
   styleUrl: './mainpage.scss',
 })
 export class Mainpage {
+  activeTab: 'active' | 'past' = 'active';
+  dropdownOpen = false;
+  selectedCategory = 'All';
+  categoryDropdownOpen = false;
+  newSurveyCategory = '';
 
   constructor(
     private supabaseService: Supabase,
@@ -29,10 +34,6 @@ export class Mainpage {
 
     return Math.ceil(difference / (1000 * 60 * 60 * 24));
   }
-
-  activeTab: 'active' | 'past' = 'active';
-  dropdownOpen = false;
-  selectedCategory = 'All';
 
   get filteredSurveys() {
     const today = new Date();
@@ -65,5 +66,22 @@ export class Mainpage {
   openSurvey(id: string) {
     this.router.navigate(['survey', id])
   }
+
+  createSurveyOpen = signal(false)
+
+  openCreateSurvey() {
+    this.createSurveyOpen.set(true)
+  }
+
+  closeCreateSurvey() {
+    this.createSurveyOpen.set(false)
+  }
+
+  toggleCategoryDropdown() {
+    this.categoryDropdownOpen = !this.categoryDropdownOpen;
+}
+
+
+
 
 }
