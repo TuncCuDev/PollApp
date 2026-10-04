@@ -35,18 +35,16 @@ export class Mainpage {
     return Math.ceil(difference / (1000 * 60 * 60 * 24));
   }
 
-  get filteredSurveys() {
-    const today = new Date();
+ get filteredSurveys() {
+  const today = new Date();
+  return this.surveys().filter(survey => {
+    const endDate = new Date(survey.end_date);
+    const matchesTab = this.activeTab === 'active' ? endDate >= today : endDate < today;
+    const matchesCategory = this.selectedCategory === 'All' || survey.category === this.selectedCategory;
 
-    return this.surveys().filter(survey => {
-      const endDate = new Date(survey.end_date);
-
-      if (this.activeTab === 'active') {
-        return endDate >= today;
-      }
-      return endDate < today;
-    });
-  }
+    return matchesTab && matchesCategory;
+  });
+}
 
   get categories(): string[] {
     return [...new Set(
@@ -58,7 +56,8 @@ export class Mainpage {
     this.dropdownOpen = !this.dropdownOpen;
   }
 
-  selectCategory(category: string) {
+  selectCategory(category: string, event: Event) {
+    event.stopPropagation();
     this.selectedCategory = category;
     this.dropdownOpen = false;
   }

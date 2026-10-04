@@ -56,10 +56,10 @@
                            </div>
                             @if (categoryDropdownOpen) {
                                 <div class="create_survey_category_dropdown"> 
-                                    <span (click)="selectCategory('Team')">Team</span>
-                                    <span (click)="selectCategory('Work')">Work</span>
-                                    <span (click)="selectCategory('Events')">Events</span>
-                                    <span (click)="selectCategory('General')">General</span>
+                                    <span (click)="selectCategory('All', $event)">All</span>
+                                    @for (category of categories; track category) {
+                                        <span (click)="selectCategory(category, $event)">{{category}}</span>
+                                    }
                                 </div>
                             }
                         </div>
@@ -150,21 +150,29 @@
                         <span class="surveylist_acitve" [class.surveylist_active]="activeTab === 'active'" [class.surveylist_past]="activeTab === 'past'" (click)="activeTab = 'active'">Active survey</span>
                         <span class="surveylist_past" [class.surveylist_active]="activeTab === 'past'" [class.surveylist_past]="activeTab === 'active'" (click)="activeTab = 'past'">Past survey</span>
                     </div>
-                    <div class="surveylist_categories" (click)="toggleDropdown()">
-                        <span>Sort by categories</span>
-                        <img class="surveylist_categories_arrow_default" src="./assets/img/arrow_drop_down.svg" alt="Arrow-Drop-Down">
-                        <img class="surveylist_categories_arrow_hover" src="./assets/img/arrow_drop_down_o.svg" alt="Arrow-Drop-Down">
-                    </div>
-                    @if (dropdownOpen) {
-                        <div class="surveylist_categories_dropdown">
-                            <div (click)="selectCategory('All')">
-                                All
-                            </div>
-                            @for (category of categories; track category) {
-                                <div (click)="selectCategory(category)"> {{ category }}</div>
-                            }
+                    <div class="surveylist_categories" (click)="toggleDropdown()" [class.surveylist_categories_open]="dropdownOpen">
+                        <div class="surveylist_categories_label">
+                             <span >Sort by categories</span>
+                            <img class="surveylist_categories_arrow_default" src="./assets/img/arrow_drop_down.svg" alt="Arrow-Drop-Down">
+                            <img class="surveylist_categories_arrow_hover" src="./assets/img/arrow_drop_down_o.svg" alt="Arrow-Drop-Down">
+                            <img class="surveylist_categories_arrow_open" src="./assets/img/arrow_drop_up.svg" alt="Arrow-Drow-Up">
                         </div>
-                    }
+                        @if (dropdownOpen) {
+                            <div class="surveylist_categories_dropdown">
+                                <div (click)="selectCategory('All', $event)">All</div>
+                                @for (category of categories; track category) {
+                                    <div (click)="selectCategory(category, $event)"> {{ category }}</div>
+                                }
+                            </div>
+                        }
+                        <div >
+                        @if (selectedCategory !== 'All') {
+                            <span class="surveylist_categories_selected"> {{ selectedCategory }}</span>
+                        }
+                        </div>
+                    </div>
+                     
+                
                 </header>
                 <div class="surveylist_grid">
                 @for (survey of filteredSurveys; track survey.id) {

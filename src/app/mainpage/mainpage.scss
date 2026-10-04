@@ -46,6 +46,7 @@ header {
     &_button {
         font-family: 'Nokora';
         font-size: 17px;
+        font-weight: 700;
         height: 50px;
         width: 140px;
         border-radius: 10px;
@@ -208,7 +209,7 @@ header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding-bottom: 35px;
+        padding-bottom: 30px;
         padding-right: 80px;
     }
 
@@ -239,18 +240,82 @@ header {
         font-family: 'Mulish';
         font-weight: 700;
         font-size: 18px;
-        color: colors.$white;
+        color: white;
         display: flex;
-        align-items: center;
-        gap: 10px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+        height: 24px;
+        line-height: 24px;
+        position: relative;
+        padding: 5px 10px;
 
+        &_open {
+            background-color: rgba(217, 217, 217, 0.12);
+            border-radius: 4px;
+
+            .surveylist_categories_arrow_default {
+                display: none !important;
+            }
+
+            .surveylist_categories_arrow_hover {
+                display: none !important;
+            }
+
+            .surveylist_categories_arrow_open {
+                display: block !important;
+            }
+        }
+       
         &_arrow_default {
             display: block;
         }
 
         &_arrow_hover {
             display: none;
+        }
+
+        &_arrow_open {
+            display: none;
+        }
+        
+        &_dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 225px;
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            z-index: 100;
+            color: rgba(53, 39, 58, 1);
+            border-radius: 4px 8px 4px 4px;
+            margin-top: 5px;
+        }
+
+        &_label {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        &_selected {
+            font-family: 'Mulish';
+            font-size: 14px;
+            font-weight: 400;
+            color: colors.$orange;
+        }
+
+        &_dropdown div {
+            font-family: 'Mulish';
+            font-weight: 400;
+            font-size: 14px;
+            padding: 2px  10px;
             cursor: pointer;
+        }
+
+        &_dropdown div:hover {
+            background-color: green;
         }
 
         &:hover {
@@ -262,6 +327,7 @@ header {
                 display: block;
             }
         }
+
     }
 
     &_grid {
@@ -460,6 +526,19 @@ header {
     margin-top: 10px;
 }
 
+.surveylist_categories_dropdown {
+    background-color: white;
+    width: 200px;
+}
+
+.surveylist_categories_dropdown div {
+    cursor: pointer;
+}
+
+.surveylist_categories_dropdown div:hover {
+    background-color: rgba(5, 12, 5, 0.062);
+}
+
 .create_survey_category_dropdown {
     display: flex;
     flex-direction: column;
@@ -470,7 +549,6 @@ header {
 
 .create_survey_category_dropdown span {
     padding: 1px 5px;
-
 }
 
 .create_survey_field {
