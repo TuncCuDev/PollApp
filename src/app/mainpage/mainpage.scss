@@ -265,6 +265,20 @@ header {
             .surveylist_categories_arrow_open {
                 display: block !important;
             }
+
+            &:hover {
+                .surveylist_categories_arrow_open {
+                    display: none !important;
+                }
+
+                .surveylist_categories_arrow_open_hover {
+                    display: block !important;
+                }
+            }
+        }
+
+        &_arrow_open_hover {
+            display: none;
         }
        
         &_arrow_default {
