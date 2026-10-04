@@ -128,41 +128,19 @@
             <section>
                 <h2 class="survey_description">Ending soon surveys</h2>
                 <div class="survey_line">
-                    <article class="survey_box">
-                        <div class="survey_box-inside">
-                            <header>
-                                <span>Team activities</span>
-                            </header>
-                            <h3>Let's plan the next team event together</h3>
-                            <footer>
-                                <time datetime="P1D">Ends in 1 Days</time>
-                            </footer>
-                        </div>
-                    </article>
-
-                    <article class="survey_box">
-                        <div class="survey_box-inside">
-                            <header>
-                                <span>Team activities</span>
-                            </header>
-                            <h3>Let's plan the next team event together</h3>
-                            <footer>
-                                <time datetime="P1D">Ends in 1 Days</time>
-                            </footer>
-                        </div>
-                    </article>
-
-                    <article class="survey_box">
-                        <div class="survey_box-inside">
-                            <header>
-                                <span>Team activities</span>
-                            </header>
-                            <h3>Let's plan the next team event together</h3>
-                            <footer>
-                                <time datetime="P1D">Ends in 1 Days</time>
-                            </footer>
-                        </div>
-                    </article>
+                    @for (survey of endingSoonSurveys; track survey.id) {
+                        <article class="survey_box">
+                            <div class="survey_box-inside">
+                                <header>
+                                    <span>{{ survey.category }}</span>
+                                </header>
+                                <h3>{{ survey.title }}</h3>
+                                <footer>
+                                    <time datetime="P1D">Ends in {{ getDaysLeft (survey.end_date)}} Days</time>
+                                </footer>
+                            </div>
+                        </article>
+                    }
                 </div>
             </section>
 

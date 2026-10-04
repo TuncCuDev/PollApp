@@ -81,7 +81,16 @@ export class Mainpage {
     this.categoryDropdownOpen = !this.categoryDropdownOpen;
 }
 
+  get endingSoonSurveys() {
+    const today = new Date();
 
-
-
+    return this.surveys()
+      .filter(survey => new Date(survey.end_date) >= today)
+      .sort(
+        (a, b) =>
+          new Date(a.end_date).getTime() -
+          new Date(b.end_date).getTime()
+      )
+      .slice(0, 3);
+  }
 }
