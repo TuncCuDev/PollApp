@@ -168,9 +168,11 @@ header {
         height: 310px;
 
         &-inside {
-            padding-top: 40px;
-            padding-left: 45px;
-            padding-right: 45px;
+            height: 100%;
+            box-sizing: border-box;
+            padding: 50px 45px;
+            display: flex;
+            flex-direction: column;
             
             span {
                 font-family: 'Mulish';
@@ -183,10 +185,11 @@ header {
                 font-weight: 700;
                 font-size: 26px;
                 margin-block-start: 10px;
+                min-height: 60px;
             }
 
             footer {
-                padding-top: 110px;
+                margin-top: auto;
             }
 
             time {
