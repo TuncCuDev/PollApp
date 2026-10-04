@@ -176,20 +176,26 @@
                 
                 </header>
                 <div class="surveylist_grid">
-                @for (survey of filteredSurveys; track survey.id) {
-                    <article class="surveylist_grid_card" (click)="openSurvey(survey.id)">
-                        <header>
-                            <span>{{ survey.category }}</span>
-                        </header>
-                        <h3>{{ survey.title }}</h3>
-                        <footer>
-                            <time>Ends in {{ getDaysLeft(survey.end_date) }} Days</time>
-                        </footer>
-                    </article>
+                @if (filteredSurveys.length > 0) {
+                    @for (survey of filteredSurveys; track survey.id) {
+                        <article class="surveylist_grid_card" (click)="openSurvey(survey.id)">
+                            <header>
+                                <span>{{ survey.category }}</span>
+                            </header>
+                            <h3>{{ survey.title }}</h3>
+                            <footer>
+                                <time>Ends in {{ getDaysLeft(survey.end_date) }} Days</time>
+                            </footer>
+                        </article>
+                    }
+                    } @else {
+                        <div class="surveylist_empty">
+                            <h3>No surveys found</h3>
+                            <p>There are currently no {{ activeTab === 'active' ? 'active' : 'past' }} surveys in "{{ selectedCategory }}"</p>
+                        </div>
                     }
                 </div>
             </section>
         </section>
     </section>
 </main>
-

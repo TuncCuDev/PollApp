@@ -236,6 +236,37 @@ header {
         background-color: colors.$w-orange;
     }
 
+    &_empty {
+        grid-column: 1 / -1;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        background-color: rgba(128, 128, 128, 0.21);
+        border-radius: 4px 50px 4px 4px;
+        padding-top: 15px;
+        padding-bottom: 45px;
+      
+
+        & h3 {
+            color: colors.$s-orange;
+            font-family: 'NerkoOne';
+            font-weight: 500;
+            font-size: 36px;
+            margin-block-end: 0px;
+        }
+
+        & p {
+            font-family: 'Mulish';
+            font-weight: 500;
+            font-size: 16px;
+            color: #e2dfe5;
+            margin-bottom: 50px;
+        }
+    }
+
     &_categories {
         font-family: 'Mulish';
         font-weight: 700;
