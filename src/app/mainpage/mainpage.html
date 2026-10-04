@@ -136,7 +136,11 @@
                                 </header>
                                 <h3>{{ survey.title }}</h3>
                                 <footer>
-                                    <time datetime="P1D">Ends in {{ getDaysLeft (survey.end_date)}} Days</time>
+                                    @if (getDaysLeft(survey.end_date) < 0) {
+                                        <time>Ended</time>
+                                    } @else {
+                                        <time>Ends in {{ getDaysLeft(survey.end_date) }} Days</time>
+                                    }
                                 </footer>
                             </div>
                         </article>
@@ -184,7 +188,11 @@
                             </header>
                             <h3>{{ survey.title }}</h3>
                             <footer>
-                                <time>Ends in {{ getDaysLeft(survey.end_date) }} Days</time>
+                                @if (getDaysLeft(survey.end_date) < 0) {
+                                    <time>Ended</time>
+                                } @else {
+                                    <time>Ends in {{ getDaysLeft(survey.end_date) }} Days</time>
+                                }
                             </footer>
                         </article>
                     }
