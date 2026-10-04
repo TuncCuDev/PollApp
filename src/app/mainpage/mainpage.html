@@ -130,7 +130,7 @@
                 <div class="survey_line">
                     @for (survey of endingSoonSurveys; track survey.id) {
                         <article class="survey_box">
-                            <div class="survey_box-inside">
+                            <div class="survey_box-inside" (click)="openSurvey(survey.id)">
                                 <header>
                                     <span>{{ survey.category }}</span>
                                 </header>
