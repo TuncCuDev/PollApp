@@ -335,9 +335,9 @@ header {
 .overlay {
     position: fixed;
     inset: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(12, 7, 20, 0.88);
+    width: 100%;
+    height: 100%;
+    background: white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -348,18 +348,18 @@ header {
 
 .create_survey {
     width: min(1200px, 95vw);
-    max-height: 90vh;
+    max-height: 95vh;
     background-color: rgba(53, 39, 58, 1);  
     border-radius: 0px 75px 0px 0px;
     box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5);
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    padding: 25px 50px;
 }
 
 .create_survey_header {
     min-height: 120px;
-    padding: 25px 35px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -396,6 +396,10 @@ header {
     background-color:rgba(255, 183, 112, 0.3);
     border-radius: 10px;
     padding: 5px 4px;
+
+    &:hover {
+         background: rgba(255, 183, 112, 0.588);
+    }
 }
 
 .create_survey_cancel {
@@ -442,7 +446,7 @@ header {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 45px;
-    border-top-right-radius: 15%;
+    border-radius: 4px 70px 4px 4px;
 }
 
 .create_survey_left {
@@ -453,7 +457,7 @@ header {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
-    margin-top: 25px;
+    margin-top: 10px;
 }
 
 .create_survey_category_dropdown {
@@ -484,7 +488,7 @@ header {
 .create_survey_field input,
 .create_survey_field select {
     width: 100%;
-    height: 44px;
+    height: 35px;
     box-sizing: border-box;
 }
 
@@ -495,9 +499,9 @@ header {
 .create_survey_field label,
 .create_survey_question_header h3,
 .create_survey_answers_header h4 {
-    margin: 0;
     color: #f5eff8;
     font-family: 'Mulish';
+    font-weight: 700;
     font-size: 14px;
 }
 
@@ -510,11 +514,11 @@ header {
 .create_survey_field input,
 .create_survey_field select {
     width: 450px;
-    height: 40px;
+    height: 35px;
     box-sizing: border-box;
     padding: 0 14px;
     border: none;
-    border-radius: 8px;
+    border-radius: 3px 20px 3px 3px;
     background-color: rgba(254, 253, 255, 1);
     color: #29202f;
     font-family: 'Mulish';
@@ -532,41 +536,39 @@ header {
 
 .create_survey_question {
     margin-top: 35px;
+    padding-right: 45px;
 }
 
 .create_survey_question_header {
+    font-family: 'Mulish';
+    font-size: 16x;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 10px;
 }
 
 .create_survey_question_header h3 {
     font-size: 17px;
+    margin-block-end: 5px;
 }
 
 .create_survey_question_input {
     width: 100%;
-    height: 48px;
+    height: 35px;
     box-sizing: border-box;
     padding: 0 14px;
     border: none;
-    border-radius: 8px;
+    border-radius: 3px 20px 3px 3px;
     color: #29202f;
     font-family: 'Mulish';
     font-size: 14px;
     outline: none;
 }
 
-.create_survey_answers {
-    margin-top: 28px;
-}
-
 .create_survey_answers_header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 14px;
 }
 
 .create_survey_answers_header h4 {
@@ -577,8 +579,8 @@ header {
     display: flex;
     align-items: center;
     gap: 7px;
-    color: #ddd3e5;
-    font-family: 'Mulish';
+    color: rgba(255, 255, 255, 1);
+    font-family: "Mulish";
     font-size: 12px;
     cursor: pointer;
 }
@@ -604,10 +606,10 @@ header {
 
 .create_survey_answer input {
     flex: 1;
-    height: 42px;
+    height: 35px;
     padding: 0 12px;
     border: none;
-    border-radius: 8px;
+    border-radius: 3px 20px 3px 3px;
     color: #29202f;
     font-family: 'Mulish';
     font-size: 14px;
@@ -678,6 +680,7 @@ header {
 .create_survey_right {
     display: flex;
     flex-direction: column;
+    gap: 20px;
 }
 
 .create_survey_description {
@@ -690,7 +693,7 @@ header {
     box-sizing: border-box;
     padding: 15px;
     border: none;
-    border-radius: 4px 10px 4px 4px;
+    border-radius: 3px 20px 3px 3px;
     background-color: rgba(254, 253, 255, 1);
     color: #29202f;
     font-family: 'Mulish';
@@ -709,10 +712,11 @@ header {
 .create_survey_next_question {
     width: fit-content;
     margin-top: 20px;
-    padding: 11px 17px;
+    padding: 5px 8px;
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 8px;
-    background: transparent;
+    border: none;
+    background: rgba(255, 183, 112, 0.3);
     color: #f5eff8;
     font-family: 'Mulish';
     font-size: 13px;
@@ -725,25 +729,32 @@ header {
 }
 
 .create_survey_next_question span {
-    color: colors.$orange;
-    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    border: 1px solid white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-size: 16px;
+    line-height: 1;
 }
 
 
 .create_survey_next_question:hover {
-    background-color: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 183, 112, 0.588);
 }
 
 .create_survey_footer {
-    padding: 20px 35px;
+    padding-bottom: 5px;
+    padding-top: 35px;
     display: flex;
     justify-content: flex-end;
-    background-color: #21142f;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .create_survey_publish {
-    min-width: 125px;
+    min-width: 100px;
     height: 45px;
     padding: 0 25px;
     border: none;

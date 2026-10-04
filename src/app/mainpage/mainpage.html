@@ -35,7 +35,7 @@
                     <div class="create_survey_left">
                     <div class="create_survey_field">
                         <label for="surveyName">Survey name</label>
-                        <input id="surveyName" type="text" placeholder="Enter survey name">
+                        <input id="surveyName" type="text">
                         <button class="delete_button">
                             <img src="./assets/img/delete.svg" alt="">
                         </button>
@@ -45,7 +45,7 @@
                             <label for="endDate">Set end date 
                                 <span>(optional)</span>
                             </label>
-                            <input class="create_survey_date_input" id="endDate" type="date">
+                            <input class="create_survey_date_input" id="endDate">
                             <button class="delete_button">
                                 <img src="./assets/img/delete.svg" alt="">
                             </button>
@@ -77,18 +77,18 @@
                             <h4>Answers</h4>
                             <label class="create_survey_checkbox">
                                 <input type="checkbox">
-                                <span>Allow multiple answers</span>
+                                <span>Allow multiple answers.</span>
                             </label>
                         </div>
                         <div class="create_survey_answer">
                             <span class="create_survey_answer_letter">A.</span>
-                            <input type="text" placeholder="Enter answer">
+                            <input type="text">
                             <button class="delete_button">
                             <img src="./assets/img/delete.svg" alt="Delete answer"></button>
                         </div>
                         <div class="create_survey_answer">
                             <span class="create_survey_answer_letter">B.</span>
-                            <input type="text" placeholder="Enter answer">
+                            <input type="text">
                             <button class="delete_button">
                             <img src="./assets/img/delete.svg" alt="Delete answer"></button>
                         </div>
@@ -98,18 +98,19 @@
                     </div>
                     </div>
                     <div class="create_survey_right">
-                    <div class="create_survey_field">
-                        <label for="description"> Describing text 
-                            <span>(optional)</span> 
-                        </label>
-                        <div class="create_survey_description">
-                        <textarea id="description" placeholder="Add some context about your survey..."></textarea>
-                        <button class="delete_button">
-                            <img src="./assets/img/trash.svg" alt="Delete description"></button>
+                        <div class="create_survey_field">
+                            <label for="description"> Describing text 
+                                <span>(optional)</span> 
+                            </label>
+                            <div class="create_survey_description">
+                            <textarea id="description"></textarea>
                         </div>
+                        <button class="delete_button">
+                                <img src="./assets/img/delete.svg" alt="Delete description">
+                        </button>
                     </div>
                     <button class="create_survey_next_question">
-                        <span>+</span>Add next question
+                        Add next question<span>+</span>
                     </button>
                     </div>
                 </section>
