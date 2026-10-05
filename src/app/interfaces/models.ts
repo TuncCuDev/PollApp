@@ -17,4 +17,5 @@ export interface Question {
     answer_c: string;
     answer_d: string;
     answer_e: string;
+    multiple_answers: boolean;
 }
