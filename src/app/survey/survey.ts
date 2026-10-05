@@ -9,6 +9,9 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './survey.scss',
 })
 export class Survey {
+  selectedAnswers: Record<string, string[]> = {};
+  votes: any[] = [];
+
   constructor(
     private supabaseService: Supabase,
     private route: ActivatedRoute,
@@ -22,11 +25,74 @@ export class Survey {
   async ngOnInit() {
     const surveyId = this.route.snapshot.paramMap.get('id');
     if (!surveyId) return;
-
     await this.supabaseService.getQuestionsBySurvey(surveyId);
+    this.votes = await this.supabaseService.getVotesBySurvey(surveyId);
   }
 
   goToHome() {
     this.router.navigate(['/'])
   }
+
+  selectAnswer(questionId: string, answer: string) {
+    const question = this.questions().find(q => q.id === questionId);
+    if (!question) return;
+
+  const selected = this.selectedAnswers[questionId] ?? [];
+    if (selected.includes(answer)) {
+      this.selectedAnswers[questionId] = selected.filter(a => a !== answer);
+      return;
+    }
+
+    if (question.multiple_answers) {
+      this.selectedAnswers[questionId] = [...selected,answer];
+    } else {
+      this.selectedAnswers[questionId] = [answer];
+    }
+  }
+
+  isSelected(questionId: string, answer: string): boolean {
+    return this.selectedAnswers[questionId]?.includes(answer) ?? false;
+  }
+
+  getVoteCount(questionId: string, answer: string): number {
+    return this.votes.filter(
+      vote =>
+        vote.question_id === questionId &&
+        vote.answer === answer
+    ).length;
+  }
+
+  async completeSurvey() {
+    const surveyId = this.route.snapshot.paramMap.get('id');
+
+    if (!surveyId) return;
+
+    try {await this.supabaseService.saveVotes(surveyId, this.selectedAnswers);
+
+      this.router.navigate(['/']);
+    } catch (error) {
+      console.error('Survey konnte nicht gespeichert werden:', error);
+    }
+  }
+
+  getPercentage(questionId: string, answer: string): number {
+    const questionVotes = this.votes.filter(vote => vote.question_id === questionId);
+    const selected = this.selectedAnswers[questionId] ?? [];
+    const answerVotes = questionVotes.filter(vote => vote.answer === answer);
+
+    const currentAnswerCount = answerVotes.length + (selected.includes(answer) ? 1 : 0);
+    const totalVotes = questionVotes.length + (selected.length > 0 ? 1 : 0);
+
+    if (totalVotes === 0) {return 0;}
+
+    return Math.round((currentAnswerCount / totalVotes) * 100);
+  }
+
+  isSurveyComplete(): boolean {
+    return this.questions().every(question => {
+      const selected = this.selectedAnswers[question.id] ?? [];
+      return selected.length > 0;
+    });
+  }
 }
+

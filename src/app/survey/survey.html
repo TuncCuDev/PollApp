@@ -7,127 +7,120 @@
     </section>
 
     <section class="survey_content">
-        <div class="survey_left">
-            <div class="survey_card">
-                <header>
-                   <div class="survey_status">
-                    <span>Published</span>
-                    </div>
-                   <div class="survey_info">
-                    <span>End on 01.01.2026</span>
-                    <span class="survey_info_category">Category: Team activities</span>
-                   </div>
-                </header>
-                <h3 class="survey_title">Let´s plan the next team event together</h3>
-                <span class="survey_description">We want to create team activites that everyone will enjoy - share your preferences and ideas in our survey to help us plan better.....</span>
-                <section class="survey_questions">
-                @for (question of questions(); track question.id) {
-                  <article class="survey_question">
-                    <h3>{{ question.question_number }}. {{ question.question }}</h3>
-                      <label>
-                        <input type="checkbox">
-                        <span>{{ question.answer_a }}</span>
-                      </label>
-                      <label>
-                        <input type="checkbox">
-                        <span>{{ question.answer_b }}</span>
-                      </label>
-                      @if (question.answer_c) {
-                        <label>
-                          <input type="checkbox">
-                          <span>{{ question.answer_c }}</span>
-                        </label>
-                      }
-                      @if (question.answer_d) {
-                        <label>
-                          <input type="checkbox">
-                          <span>{{ question.answer_d }}</span>
-                        </label>
-                      }
-                      @if (question.answer_e) {
-                        <label>
-                          <input type="checkbox">
-                          <span>{{ question.answer_e }}</span>
-                        </label>
-                      }
-                    </article>
-                    }
-                </section>
-
-                <div class="survey_card_button">
-                  <button class="survey_card_button_survey">Complete Survey</button>
+      <div class="survey_left">
+        <div class="survey_card">
+          <header>
+            <div class="survey_status">
+              <span>Published</span>
+            </div>
+            <div class="survey_info">
+              <span>End on 01.01.2026</span>
+              <span class="survey_info_category">Category: Team activities</span>
+            </div>
+          </header>
+          <h3 class="survey_title">Let´s plan the next team event together</h3>
+          <span class="survey_description">We want to create team activites that everyone will enjoy - share your preferences and ideas in our survey to help us plan better...</span>
+          <section class="survey_questions">
+            @for (question of questions(); track question.id) {
+              <article class="survey_question">
+                <h3>{{ question.question_number }}. {{ question.question }}</h3>
+                @if (question.multiple_answers) {
+                  <p class="survey_question_description">{{ question.description }} </p>
+                }
+                <div class="survey_question_answers">
+                  <label>
+                    <input type="checkbox" [name]="'question-' + question.id" [checked]="isSelected(question.id, 'a')" (change)="selectAnswer(question.id, 'a')">
+                    <span>{{ question.answer_a }}</span>
+                  </label>
+                  <label>
+                    <input type="checkbox" [name]="'question-' + question.id" [checked]="isSelected(question.id, 'b')" (change)="selectAnswer(question.id, 'b')">
+                    <span>{{ question.answer_b }}</span>
+                  </label>
+                  @if (question.answer_c) {
+                    <label>
+                      <input type="checkbox" [name]="'question-' + question.id" [checked]="isSelected(question.id, 'c')" (change)="selectAnswer(question.id, 'c')">
+                      <span>{{ question.answer_c }}</span>
+                    </label>
+                  }
+                  @if (question.answer_d) {
+                    <label>
+                      <input type="checkbox" [name]="'question-' + question.id" [checked]="isSelected(question.id, 'd')" (change)="selectAnswer(question.id, 'd')">
+                      <span>{{ question.answer_d }}</span>
+                    </label>
+                  }
+                  @if (question.answer_e) {
+                    <label>
+                      <input
+                      type="checkbox" [name]="'question-' + question.id" [checked]="isSelected(question.id, 'e')" (change)="selectAnswer(question.id, 'e')">
+                      <span>{{ question.answer_e }}</span>
+                    </label>
+                  }
                 </div>
+              </article>
+              }
+              </section>
+              <div class="survey_card_button">
+                <button class="survey_card_button_survey" [disabled]="!isSurveyComplete()" (click)="completeSurvey()">Complete Survey</button>
               </div>
+            </div>
           </div>
+
           <div class="survey_right">
             <div class="survey_results">
-                <h3 class="survey_results_top"> Survey results <span>LIVE</span></h3>
-                <div class="survey_results_questions">
-                    @for (question of questions(); track question.id) {
-                        <article class="survey_result_question">
-                            <div class="survey_result_question_title">
-                              <span class="survey_result_question_number">
-                                  {{ question.question_number }}.
-                              </span>
-
-                              <h4>
-                                  {{ question.question }}
-                              </h4>
+              <h3 class="survey_results_top"> Survey results <span>LIVE</span></h3>
+              <div class="survey_results_questions">
+                @for (question of questions(); track question.id) {
+                  <article class="survey_result_question">
+                    <div class="survey_result_question_title">
+                      <span class="survey_result_question_number"> {{ question.question_number }}. </span>
+                        <h4>{{ question.question }} </h4>
+                    </div>
+                    <div class="survey_result_answer">
+                      <span class="survey_result_letter">A</span>
+                      <div class="survey_result_bar">
+                        <div class="survey_result_bar_fill" [style.width.%]="getPercentage(question.id, 'a')"></div>
+                      </div>
+                      <span class="survey_result_percent">{{ getPercentage(question.id, 'a') }} %</span>
+                    </div>
+                    <div class="survey_result_answer">
+                      <span class="survey_result_letter">B</span>
+                      <div class="survey_result_bar">
+                        <div class="survey_result_bar_fill yellow" [style.width.%]="getPercentage(question.id, 'b')"></div>
+                      </div>
+                      <span class="survey_result_percent">{{ getPercentage(question.id, 'b') }} %</span>
+                    </div>
+                    @if (question.answer_c) {
+                      <div class="survey_result_answer">
+                          <span class="survey_result_letter">C</span>
+                          <div class="survey_result_bar">
+                              <div class="survey_result_bar_fill gray" [style.width.%]="getPercentage(question.id, 'c')"></div>
                           </div>
-                            <div class="survey_result_answer">
-                                <span class="survey_result_letter">A</span>
-                        
-                                <div class="survey_result_bar">
-                                    <div class="survey_result_bar_fill"
-                                        style="width: 27%;">
-                                    </div>
-                                </div>
-                                <span class="survey_result_percent">27 %</span>
-                            </div>
-                            <div class="survey_result_answer">
-                                <span class="survey_result_letter">B</span>
-                                <div class="survey_result_bar">
-                                    <div class="survey_result_bar_fill yellow"
-                                        style="width: 44%;">
-                                    </div>
-                                </div>
-                                <span class="survey_result_percent">44 %</span>
-                            </div>
-                            @if (question.answer_c) {
-                                <div class="survey_result_answer">
-                                    <span class="survey_result_letter">C</span>
-                                    <div class="survey_result_bar">
-                                        <div class="survey_result_bar_fill gray" style="width: 0%;"></div>
-                                    </div>
-                                    <span class="survey_result_percent">0 %</span>
-                                </div>
-                            }
-                            @if (question.answer_d) {
-                                <div class="survey_result_answer">
-                                    <span class="survey_result_letter">D</span>
-                                    <div class="survey_result_bar">
-                                        <div class="survey_result_bar_fill"
-                                            style="width: 29%;">
-                                        </div>
-                                    </div>
-                                    <span class="survey_result_percent">29 %</span>
-                                </div>
-                            }
-                            @if (question.answer_e) {
-                                <div class="survey_result_answer">
-                                    <span class="survey_result_letter">E</span>
-                                    <div class="survey_result_bar">
-                                        <div class="survey_result_bar_fill yellow"
-                                            style="width: 20%;">
-                                        </div>
-                                    </div>
-                                    <span class="survey_result_percent">20 %</span>
-                                </div>
-                            }
-                        </article>
+                          <span class="survey_result_percent">{{ getPercentage(question.id, 'c') }} %</span>
+                      </div>
                     }
+                    @if (question.answer_d) {
+                      <div class="survey_result_answer">
+                          <span class="survey_result_letter">D</span>
+                          <div class="survey_result_bar">
+                              <div class="survey_result_bar_fill" [style.width.%]="getPercentage(question.id, 'd')"></div>
+                          </div>
+                          <span class="survey_result_percent">{{ getPercentage(question.id, 'd') }} %</span>
+                      </div>
+                    }
+                    @if (question.answer_e) {
+                      <div class="survey_result_answer">
+                          <span class="survey_result_letter">E</span>
+                          <div class="survey_result_bar">
+                              <div class="survey_result_bar_fill yellow" [style.width.%]="getPercentage(question.id, 'e')">
+                              </div>
+                          </div>
+                          <span class="survey_result_percent">{{ getPercentage(question.id, 'e') }} %</span>
+                      </div>
+                    }
+                  </article>
+                  }
                 </div>
             </div>
-      </div>
+        </div>
     </section>
 </main>
