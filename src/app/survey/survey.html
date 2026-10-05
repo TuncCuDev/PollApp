@@ -59,15 +59,75 @@
                 </div>
               </div>
           </div>
-
           <div class="survey_right">
             <div class="survey_results">
-              <h3 class="survey_results_top">Survey results 
-                <span>LIVE</span></h3>
-              <span class="survey_results_middle">Results will be shown here after participants complete the survey</span>
-              <br>
-              <span class="survey_results_bottom">There are no answears yet</span>
+                <h3 class="survey_results_top"> Survey results <span>LIVE</span></h3>
+                <div class="survey_results_questions">
+                    @for (question of questions(); track question.id) {
+                        <article class="survey_result_question">
+                            <div class="survey_result_question_title">
+                              <span class="survey_result_question_number">
+                                  {{ question.question_number }}.
+                              </span>
+
+                              <h4>
+                                  {{ question.question }}
+                              </h4>
+                          </div>
+                            <div class="survey_result_answer">
+                                <span class="survey_result_letter">A</span>
+                        
+                                <div class="survey_result_bar">
+                                    <div class="survey_result_bar_fill"
+                                        style="width: 27%;">
+                                    </div>
+                                </div>
+                                <span class="survey_result_percent">27 %</span>
+                            </div>
+                            <div class="survey_result_answer">
+                                <span class="survey_result_letter">B</span>
+                                <div class="survey_result_bar">
+                                    <div class="survey_result_bar_fill yellow"
+                                        style="width: 44%;">
+                                    </div>
+                                </div>
+                                <span class="survey_result_percent">44 %</span>
+                            </div>
+                            @if (question.answer_c) {
+                                <div class="survey_result_answer">
+                                    <span class="survey_result_letter">C</span>
+                                    <div class="survey_result_bar">
+                                        <div class="survey_result_bar_fill gray" style="width: 0%;"></div>
+                                    </div>
+                                    <span class="survey_result_percent">0 %</span>
+                                </div>
+                            }
+                            @if (question.answer_d) {
+                                <div class="survey_result_answer">
+                                    <span class="survey_result_letter">D</span>
+                                    <div class="survey_result_bar">
+                                        <div class="survey_result_bar_fill"
+                                            style="width: 29%;">
+                                        </div>
+                                    </div>
+                                    <span class="survey_result_percent">29 %</span>
+                                </div>
+                            }
+                            @if (question.answer_e) {
+                                <div class="survey_result_answer">
+                                    <span class="survey_result_letter">E</span>
+                                    <div class="survey_result_bar">
+                                        <div class="survey_result_bar_fill yellow"
+                                            style="width: 20%;">
+                                        </div>
+                                    </div>
+                                    <span class="survey_result_percent">20 %</span>
+                                </div>
+                            }
+                        </article>
+                    }
+                </div>
             </div>
-          </div>
+      </div>
     </section>
 </main>
