@@ -289,7 +289,6 @@
 .create_survey_answer {
     display: flex;
     align-items: center;
-    gap: 10px;
     margin-bottom: 12px;
 }
 
@@ -297,7 +296,7 @@
     width: 22px;
     color: #f5eff8;
     font-family: 'Mulish';
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 700;
 }
 
@@ -363,7 +362,7 @@
 
 .create_survey_add_answer {
     margin-top: 5px;
-    padding: 0;
+    padding: 10px 5px;
     border: none;
     background: transparent;
     color: colors.$white;
@@ -374,6 +373,11 @@
     display: flex;
     align-items: center;
     gap: 7px;
+    margin-left: 30px;
+
+    &:hover {
+        background-color: rgba(250, 245, 254, 0.2);
+    }
 }
 
 .create_survey_add_answer span {
@@ -508,4 +512,33 @@
     font-size: 14px;
     font-weight: 400;
     color: rgb(255, 183, 112);
+}
+
+.create_survey_checkbox input {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 3px;
+    cursor: pointer;
+    position: relative;
+    margin: 0;
+}
+
+.create_survey_checkbox input:checked {
+    background-color: rgba(255, 183, 112, 1);
+    border-color: rgba(255, 183, 112, 1);
+}
+
+.create_survey_checkbox input:checked::after {
+    content: '';
+    position: absolute;
+    left: 3px;
+    width: 5px;
+    height: 9px;
+    border: solid #000;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
 }
