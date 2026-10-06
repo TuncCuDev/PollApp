@@ -78,7 +78,7 @@ export class Mainpage {
 
   toggleCategoryDropdown() {
     this.categoryDropdownOpen = !this.categoryDropdownOpen;
-}
+  }
 
   get endingSoonSurveys() {
     const today = new Date();

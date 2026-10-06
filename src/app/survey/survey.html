@@ -2,7 +2,109 @@
     <section class="survey">
         <header class="survey_header">
             <img class="survey_logo" src="./assets/img/logo header dark.svg" alt="Header-Logo" (click)="goToHome()">
-            <button class="survey_button">Create Survey</button>
+            <button class="survey_button" (click)="openCreateSurvey()">Create Survey</button>
+             @if (createSurveyOpen()) {
+            <div class="overlay">
+                <div class="create_survey">
+                <header class="create_survey_header">
+                    <div class="create_survey_header_left">
+                        <span class="create_survey_status">Draft</span>
+                        <h2>Create new survey</h2>
+                    </div>
+                    <div class="create_survey_header_right">
+                        <button class="create_survey_cancel" (click)="closeCreateSurvey()">Cancel</button>
+                        <button class="create_survey_close" (click)="closeCreateSurvey()"></button>
+                    </div>
+                </header>
+                <section class="create_survey_content">
+                    <div class="create_survey_left">
+                    <div class="create_survey_field">
+                        <label for="surveyName">Survey name</label>
+                        <input id="surveyName" type="text">
+                        <button class="delete_button">
+                            <img src="./assets/img/delete.svg" alt="">
+                        </button>
+                    </div>
+                    <div class="create_survey_bottom">
+                        <div class="create_survey_field">
+                            <label for="endDate">Set end date 
+                                <span>(optional)</span>
+                            </label>
+                            <input class="create_survey_date_input" id="endDate">
+                            <button class="delete_button">
+                                <img src="./assets/img/delete.svg" alt="">
+                            </button>
+                        </div>
+                        <div class="create_survey_category">
+                           <div class="create_survey_category_button" (click)="toggleCategoryDropdown()"> 
+                                <span>{{newSurveyCategory || 'Choose Category'}}</span>
+                           </div>
+                            @if (categoryDropdownOpen) {
+                                <div class="create_survey_category_dropdown"> 
+                                    <span (click)="selectCategory('All', $event)">All</span>
+                                    @for (category of categories; track category) {
+                                        <span (click)="selectCategory(category, $event)">{{category}}</span>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="create_survey_question">
+                        <div class="create_survey_question_header">
+                        <h3>1. Question</h3>
+                        <button class="delete_button">
+                            <img src="./assets/img/delete.svg" alt="Delete question" >
+                        </button>
+                        </div>
+                        <input class="create_survey_question_input" type="text" value="Which date would work best for you?">
+                        <div class="create_survey_answers">
+                        <div class="create_survey_answers_header">
+                            <h4>Answers</h4>
+                            <label class="create_survey_checkbox">
+                                <input type="checkbox">
+                                <span>Allow multiple answers.</span>
+                            </label>
+                        </div>
+                        <div class="create_survey_answer">
+                            <span class="create_survey_answer_letter">A.</span>
+                            <input type="text">
+                            <button class="delete_button">
+                            <img src="./assets/img/delete.svg" alt="Delete answer"></button>
+                        </div>
+                        <div class="create_survey_answer">
+                            <span class="create_survey_answer_letter">B.</span>
+                            <input type="text">
+                            <button class="delete_button">
+                            <img src="./assets/img/delete.svg" alt="Delete answer"></button>
+                        </div>
+                        <button class="create_survey_add_answer">
+                            <span>+</span> Add answer</button>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="create_survey_right">
+                        <div class="create_survey_field">
+                            <label for="description"> Describing text 
+                                <span>(optional)</span> 
+                            </label>
+                            <div class="create_survey_description">
+                            <textarea id="description"></textarea>
+                        </div>
+                        <button class="delete_button">
+                                <img src="./assets/img/delete.svg" alt="Delete description">
+                        </button>
+                    </div>
+                    <button class="create_survey_next_question">
+                        Add next question<span>+</span>
+                    </button>
+                    </div>
+                </section>
+                <footer class="create_survey_footer">
+                    <button class="create_survey_publish">Publish</button>
+                </footer>
+                </div>
+            </div>
+            }
         </header>
     </section>
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { Supabase } from '../supabase';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -18,6 +18,11 @@ export class Survey {
     private router: Router
   ) {}
 
+  dropdownOpen = false;
+  categoryDropdownOpen = false;
+  newSurveyCategory = '';
+  selectedCategory = 'All';
+
   get questions() {
     return this.supabaseService.questions;
   }
@@ -27,6 +32,40 @@ export class Survey {
     if (!surveyId) return;
     await this.supabaseService.getQuestionsBySurvey(surveyId);
     this.votes = await this.supabaseService.getVotesBySurvey(surveyId);
+  }
+
+   createSurveyOpen = signal(false)
+
+  openCreateSurvey() {
+    this.createSurveyOpen.set(true)
+  }
+
+  closeCreateSurvey() {
+    this.createSurveyOpen.set(false)
+  }
+
+   toggleDropdown() {
+    this.dropdownOpen = !this.dropdownOpen;
+  }
+
+   toggleCategoryDropdown() {
+    this.categoryDropdownOpen = !this.categoryDropdownOpen;
+  }
+
+   selectCategory(category: string, event: Event) {
+    event.stopPropagation();
+    this.selectedCategory = category;
+    this.dropdownOpen = false;
+  }
+
+   get surveys(){
+    return this.supabaseService.surveys;
+  }
+
+   get categories(): string[] {
+    return [...new Set(
+      this.surveys().map(survey => survey.category)
+    )];
   }
 
   goToHome() {
