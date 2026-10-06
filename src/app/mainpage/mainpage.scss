@@ -175,6 +175,11 @@ header {
             display: flex;
             flex-direction: column;
             cursor: pointer;
+
+            &:hover {
+                background-color: rgba(244, 233, 251, 1);
+                border-top-right-radius: 30%;
+            }
             
             span {
                 font-family: 'Mulish';
@@ -413,6 +418,10 @@ header {
             display: flex;
             flex-direction: column;
             cursor: pointer;
+
+            &:hover{
+               background-color: rgba(217, 217, 217, 0.16);
+            }
 
             header {
                 font-family: 'Mulish';
