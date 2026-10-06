@@ -25,12 +25,90 @@
     flex-direction: column;
     padding: 25px 50px;
 
+    &_header {
+        min-height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &_header_left {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    &_status {
+        width: fit-content;
+        padding: 5px 12px;
+        border-top-right-radius: 15px;
+        background-color: colors.$s-orange;
+        font-family: 'Mulish';
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+    &_header h2 {
+        margin: 0;
+        color: colors.$orangec;
+        font-family: 'NerkoOne';
+        font-size: 48px;
+        font-weight: 400;
+        line-height: 1;
+    }
+
+    &_header_right {
+        display: flex;
+        align-items: center;
+        background-color:rgba(255, 183, 112, 0.3);
+        border-radius: 10px;
+        padding: 5px 4px;
+
+        &:hover {
+            background: rgba(255, 183, 112, 0.588);
+        }
+    }
+
+    &_cancel {
+        border: none;
+        background: transparent;
+        color: colors.$white;
+        font-family: 'Nokora';
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    &_close {
+        position: relative;
+        width: 32px;
+        height: 32px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+    }
+
+    &_close::before,
+    &_close::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 18px;
+        height: 1px;
+        background-color: white;
+        transform-origin: center;
+    }
+
     &_category{
+        position: relative;
+        
 
         &_button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
 
-        
-        
             & span{
                 color: white;
             }
@@ -38,79 +116,6 @@
     }
 }
 
-.create_survey_header {
-    min-height: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.create_survey_header_left {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.create_survey_status {
-    width: fit-content;
-    padding: 5px 12px;
-    border-top-right-radius: 15px;
-    background-color: colors.$s-orange;
-    font-family: 'Mulish';
-    font-size: 12px;
-    font-weight: 700;
-}
-
-.create_survey_header h2 {
-    margin: 0;
-    color: colors.$orangec;
-    font-family: 'NerkoOne';
-    font-size: 48px;
-    font-weight: 400;
-    line-height: 1;
-}
-
-.create_survey_header_right {
-    display: flex;
-    align-items: center;
-    background-color:rgba(255, 183, 112, 0.3);
-    border-radius: 10px;
-    padding: 5px 4px;
-
-    &:hover {
-        background: rgba(255, 183, 112, 0.588);
-    }
-}
-
-.create_survey_cancel {
-    border: none;
-    background: transparent;
-    color: colors.$white;
-    font-family: 'Nokora';
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.create_survey_close {
-    position: relative;
-    width: 32px;
-    height: 32px;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-}
-
-.create_survey_close::before,
-.create_survey_close::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 18px;
-    height: 1px;
-    background-color: white;
-    transform-origin: center;
-}
 
 .create_survey_close::before {
     transform: translate(-50%, -50%) rotate(45deg);
@@ -338,6 +343,13 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+
+    &:hover {
+        background-color: rgb(255, 207, 161);
+        border-radius: 4px;
+        height: 26px;
+        width: 26px;
+    }
 }
 
 .delete_button img {
@@ -354,7 +366,7 @@
     padding: 0;
     border: none;
     background: transparent;
-    color: colors.$orange;
+    color: colors.$white;
     font-family: 'Mulish';
     font-size: 13px;
     font-weight: 700;
@@ -365,8 +377,18 @@
 }
 
 .create_survey_add_answer span {
-    font-size: 20px;
-    line-height: 1;
+    font-size: 18px;
+    line-height: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    padding-bottom: 2px;
+    box-sizing: border-box;
+
 }
 
 .create_survey_right {
@@ -404,7 +426,7 @@
 .create_survey_next_question {
     width: fit-content;
     margin-top: 20px;
-    padding: 5px 8px;
+    padding: 10px 8px;
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 8px;
     border: none;
@@ -421,15 +443,18 @@
 }
 
 .create_survey_next_question span {
-    width: 20px;
-    height: 20px;
-    border: 1px solid white;
+    width: 18px;
+    height: 18px;
+    border: 2px solid white;
     border-radius: 50%;
     display: flex;
     justify-content: center;
+    align-items: center;
     color: white;
-    font-size: 16px;
+    font-size: 18px;
     line-height: 1;
+    box-sizing: border-box;
+    padding-bottom: 2px;
 }
 
 
@@ -463,4 +488,24 @@
 .create_survey_publish:hover {
     transform: translateY(-2px);
     box-shadow:0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.create_survey_category_dropdown {
+    position: absolute;
+    z-index: 9999;
+    pointer-events: auto;
+}
+
+.create_survey_category_dropdown span {
+    position: relative;
+    z-index: 10000;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+.create_survey_category_selected {
+    font-family: "Mulish";
+    font-size: 14px;
+    font-weight: 400;
+    color: rgb(255, 183, 112);
 }

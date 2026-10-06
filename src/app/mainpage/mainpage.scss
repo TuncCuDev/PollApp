@@ -351,7 +351,8 @@ header {
         &_label {
             display: flex;
             align-items: center;
-            gap: 2px;
+            gap: 10px;
+            cursor: pointer;
         }
 
         &_selected {
@@ -370,7 +371,7 @@ header {
         }
 
         &_dropdown div:hover {
-            background-color: green;
+            background-color: rgba(244, 233, 251, 1);
         }
 
         &:hover {

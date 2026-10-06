@@ -62,6 +62,13 @@ export class Mainpage {
     this.dropdownOpen = false;
   }
 
+  selectCreateSurveyCategory(category: string, event: Event) {
+    event.stopPropagation();
+
+    this.newSurveyCategory = category;
+    this.categoryDropdownOpen = false;
+  }
+
   openSurvey(id: string) {
     this.router.navigate(['survey', id])
   }
