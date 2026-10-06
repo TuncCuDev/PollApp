@@ -41,7 +41,6 @@
                            </div>
                             @if (categoryDropdownOpen) {
                                 <div class="create_survey_category_dropdown"> 
-                                    <span (click)="selectCategory('All', $event)">All</span>
                                     @for (category of categories; track category) {
                                         <span (click)="selectCategory(category, $event)">{{category}}</span>
                                     }

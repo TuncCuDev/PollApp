@@ -24,6 +24,18 @@
     display: flex;
     flex-direction: column;
     padding: 25px 50px;
+
+    &_category{
+
+        &_button {
+
+        
+        
+            & span{
+                color: white;
+            }
+        }
+    }
 }
 
 .create_survey_header {
@@ -66,7 +78,7 @@
     padding: 5px 4px;
 
     &:hover {
-         background: rgba(255, 183, 112, 0.588);
+        background: rgba(255, 183, 112, 0.588);
     }
 }
 
