@@ -14,6 +14,8 @@ export class Mainpage {
   selectedCategory = 'All';
   categoryDropdownOpen = false;
   newSurveyCategory = '';
+  answerCount = 2;
+
 
   constructor(
     private supabaseService: Supabase,
@@ -25,6 +27,12 @@ export class Mainpage {
 
   get surveys(){
     return this.supabaseService.surveys;
+  }
+
+   addAnswer() {
+    if (this.answerCount < 5) {
+      this.answerCount++;
+    }
   }
 
   getDaysLeft(endDate: string): number {

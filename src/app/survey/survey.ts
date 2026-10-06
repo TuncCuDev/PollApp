@@ -22,6 +22,14 @@ export class Survey {
   categoryDropdownOpen = false;
   newSurveyCategory = '';
   selectedCategory = 'All';
+  answerCount = 2;
+
+
+  addAnswer() {
+    if (this.answerCount < 5) {
+      this.answerCount++;
+    }
+  }
 
   get questions() {
     return this.supabaseService.questions;
@@ -81,7 +89,7 @@ export class Survey {
       this.selectedAnswers[questionId] = selected.filter(a => a !== answer);
       return;
     }
-
+    
     if (question.multiple_answers) {
       this.selectedAnswers[questionId] = [...selected,answer];
     } else {
@@ -103,13 +111,11 @@ export class Survey {
 
   async completeSurvey() {
     const surveyId = this.route.snapshot.paramMap.get('id');
-
     if (!surveyId) return;
 
     try {await this.supabaseService.saveVotes(surveyId, this.selectedAnswers);
-
       this.router.navigate(['/']);
-    } catch (error) {
+      } catch (error) {
       console.error('Survey konnte nicht gespeichert werden:', error);
     }
   }
