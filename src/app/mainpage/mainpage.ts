@@ -15,6 +15,7 @@ export class Mainpage {
   categoryDropdownOpen = false;
   newSurveyCategory = '';
   answerCount = 2;
+  questionCount = 1;
 
 
   constructor(
@@ -32,6 +33,12 @@ export class Mainpage {
    addAnswer() {
     if (this.answerCount < 5) {
       this.answerCount++;
+    }
+  }
+
+ addQuestion() {
+    if (this.questionCount < 5) {
+      this.questionCount++;
     }
   }
 

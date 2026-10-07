@@ -49,13 +49,13 @@
                                 <img src="./assets/img/delete.svg" alt="">
                             </button>
                         </div>
-                        <div class="create_survey_category">
-                           <div class="create_survey_category_button" (click)="toggleCategoryDropdown()"> 
+                        <div class="create_survey_category" (click)="toggleCategoryDropdown()" [class.create_survey_category_open]="categoryDropdownOpen">
+                           <div class="create_survey_category_button"> 
                                 <span>Choose Category</span>
-                                <img class="surveylist_categories_arrow_default" src="./assets/img/arrow_drop_down.svg" alt="Arrow-Drop-Down">
-                                <img class="surveylist_categories_arrow_hover" src="./assets/img/arrow_drop_down_o.svg" alt="Arrow-Drop-Down">
-                                <img class="surveylist_categories_arrow_open" src="./assets/img/arrow_drop_up.svg" alt="Arrow-Drow-Up">
-                                <img class="surveylist_categories_arrow_open_hover" src="./assets/img/arrow_drop_up_o.svg" alt="Arrow-Drow-Up">
+                                <img class="create_survey_category_arrow_default" src="./assets/img/arrow_drop_down.svg" alt="Arrow-Drop-Down">
+                                <img class="create_survey_category_arrow_hover" src="./assets/img/arrow_drop_down_o.svg" alt="Arrow-Drop-Down">
+                                <img class="create_survey_category_arrow_open" src="./assets/img/arrow_drop_up.svg" alt="Arrow-Drow-Up">
+                                <img class="create_survey_category_arrow_open_hover" src="./assets/img/arrow_drop_up_o.svg" alt="Arrow-Drow-Up">
                            </div>
                             @if (categoryDropdownOpen) {
                                 <div class="create_survey_category_dropdown" (click)="$event.stopPropagation()"> 
@@ -110,7 +110,7 @@
                                 <img src="./assets/img/delete.svg" alt="Delete description">
                         </button>
                     </div>
-                    <button class="create_survey_next_question">
+                    <button type="button" class="create_survey_next_question" (click)="addQuestion()">
                         Add next question<span>+</span>
                     </button>
                     </div>

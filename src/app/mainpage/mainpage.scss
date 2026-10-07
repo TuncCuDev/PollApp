@@ -277,7 +277,9 @@ header {
         }
     }
 
-    &_categories {
+    
+    &_categories,
+    &_category {
         font-family: 'Mulish';
         font-weight: 700;
         font-size: 18px;
