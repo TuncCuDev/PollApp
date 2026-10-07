@@ -20,7 +20,7 @@
                     <div class="create_survey_left">
                     <div class="create_survey_field">
                         <label for="surveyName">Survey name</label>
-                        <input #inputField1 id="surveyName" type="text">
+                        <input #inputField1 id="surveyName" type="text" [(ngModel)]="supabaseName">
                         <button class="delete_button" (click)="clearInput(inputField1)">
                             <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
                             <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
@@ -31,7 +31,7 @@
                             <label for="endDate">Set end date 
                                 <span>(optional)</span>
                             </label>
-                            <input type="date" #inputField2 class="create_survey_date_input" id="endDate">
+                            <input type="date" #inputField2 class="create_survey_date_input" id="endDate" [(ngModel)]="supabaseEndDate">
                             <button class="delete_button" (click)="clearInput(inputField2)">
                                 <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
                                 <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
@@ -39,7 +39,7 @@
                         </div>
                         <div class="create_survey_category" (click)="toggleCategoryDropdown()" [class.create_survey_category_open]="categoryDropdownOpen">
                            <div class="create_survey_category_button" > 
-                                <span>Choose Category</span>
+                                <span>{{ supabaseCategory || 'Choose Category' }}</span>
                                 <img class="create_survey_category_arrow_default" src="./assets/img/arrow_drop_down.svg" alt="Arrow-Drop-Down">
                                 <img class="create_survey_category_arrow_hover" src="./assets/img/arrow_drop_down_o.svg" alt="Arrow-Drop-Down">
                                 <img class="create_survey_category_arrow_open" src="./assets/img/arrow_drop_up.svg" alt="Arrow-Drow-Up">
@@ -96,7 +96,7 @@
                                 <span>(optional)</span> 
                             </label>
                             <div class="create_survey_description">
-                            <textarea #inputField5 id="description"></textarea>
+                            <textarea #inputField5 id="description" [(ngModel)]="supabaseDescription"></textarea>
                         </div>
                         <button class="delete_button" (click)="clearInput(inputField5)">
                             <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">

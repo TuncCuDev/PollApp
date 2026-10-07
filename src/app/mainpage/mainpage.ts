@@ -1,10 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { Supabase } from '../supabase';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-mainpage',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './mainpage.html',
   styleUrl: './mainpage.scss',
 })
@@ -16,6 +17,10 @@ export class Mainpage {
   newSurveyCategory = '';
   answerCount = 2;
   questionCount = 1;
+  supabaseName = '';
+  supabaseDescription = '';
+  supabaseEndDate = '';
+  supabaseCategory = '';
 
 
   constructor(
@@ -39,6 +44,13 @@ export class Mainpage {
   clearInput(input: HTMLInputElement | HTMLTextAreaElement) {
   input.value = '';
 }
+
+selectCreateSurveyCategory(category: string, event: Event) {
+    event.stopPropagation();
+
+    this.supabaseCategory = category;
+    this.categoryDropdownOpen = false;
+  }
 
 addQuestion() {}
 
@@ -75,13 +87,6 @@ addQuestion() {}
     event.stopPropagation();
     this.selectedCategory = category;
     this.dropdownOpen = false;
-  }
-
-  selectCreateSurveyCategory(category: string, event: Event) {
-    event.stopPropagation();
-
-    this.newSurveyCategory = category;
-    this.categoryDropdownOpen = false;
   }
 
   openSurvey(id: string) {

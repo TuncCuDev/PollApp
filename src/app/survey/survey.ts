@@ -1,10 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { Supabase } from '../supabase';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-survey',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './survey.html',
   styleUrl: './survey.scss',
 })
@@ -24,6 +25,10 @@ export class Survey {
   selectedCategory = '';
   answerCount = 2;
   questionCount = 1;
+  supabaseName = '';
+  supabaseDescription = '';
+  supabaseEndDate = '';
+  supabaseCategory = '';
 
 
   addAnswer() {
@@ -70,17 +75,17 @@ export class Survey {
     input.value = '';
   }
 
+  selectCreateSurveyCategory(category: string, event: Event) {
+    event.stopPropagation();
+
+    this.supabaseCategory = category;
+    this.categoryDropdownOpen = false;
+  }
+
    selectCategory(category: string, event: Event) {
     event.stopPropagation();
     this.selectedCategory = category;
     this.dropdownOpen = false;
-  }
-
-   selectCreateSurveyCategory(category: string, event: Event) {
-    event.stopPropagation();
-
-    this.newSurveyCategory = category;
-    this.categoryDropdownOpen = false;
   }
 
    get surveys(){
