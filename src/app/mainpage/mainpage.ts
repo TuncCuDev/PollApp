@@ -36,11 +36,11 @@ export class Mainpage {
     }
   }
 
- addQuestion() {
-    if (this.questionCount < 5) {
-      this.questionCount++;
-    }
-  }
+  clearInput(input: HTMLInputElement | HTMLTextAreaElement) {
+  input.value = '';
+}
+
+addQuestion() {}
 
   getDaysLeft(endDate: string): number {
     const today = new Date();

@@ -20,8 +20,8 @@
                     <div class="create_survey_left">
                     <div class="create_survey_field">
                         <label for="surveyName">Survey name</label>
-                        <input id="surveyName" type="text">
-                        <button class="delete_button">
+                        <input #inputField1 id="surveyName" type="text">
+                        <button class="delete_button" (click)="clearInput(inputField1)">
                             <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
                             <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
                         </button>
@@ -31,8 +31,8 @@
                             <label for="endDate">Set end date 
                                 <span>(optional)</span>
                             </label>
-                            <input class="create_survey_date_input" id="endDate">
-                            <button class="delete_button">
+                            <input #inputField2 class="create_survey_date_input" id="endDate">
+                            <button class="delete_button" (click)="clearInput(inputField2)">
                                 <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
                                 <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
                             </button>
@@ -62,12 +62,12 @@
                     <div class="create_survey_question">
                         <div class="create_survey_question_header">
                         <h3>1. Question</h3>
-                        <button class="delete_button">
+                        <button class="delete_button" (click)="clearInput(inputField3)">
                             <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
                             <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
                         </button>
                         </div>
-                        <input class="create_survey_question_input" type="text" value="Which date would work best for you?">
+                        <input #inputField3 class="create_survey_question_input" type="text" value="Which date would work best for you?">
                         <div class="create_survey_answers">
                         <div class="create_survey_answers_header">
                             <h4>Answers</h4>
@@ -79,8 +79,8 @@
                         @for (answer of [0, 1, 2, 3, 4].slice(0, answerCount); track answer) {
                           <div class="create_survey_answer">
                             <span class="create_survey_answer_letter"> {{ ['A', 'B', 'C', 'D', 'E'][answer] }}. </span>
-                            <input type="text">
-                            <button class="delete_button">
+                            <input #inputField4 type="text">
+                            <button class="delete_button" (click)="clearInput(inputField4)">
                               <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
                               <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
                             </button>
@@ -96,9 +96,9 @@
                                 <span>(optional)</span> 
                             </label>
                             <div class="create_survey_description">
-                            <textarea id="description"></textarea>
+                            <textarea #inputField5 id="description"></textarea>
                         </div>
-                        <button class="delete_button">
+                        <button class="delete_button" (click)="clearInput(inputField5)">
                             <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
                             <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
                         </button>

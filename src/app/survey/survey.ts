@@ -51,13 +51,11 @@ export class Survey {
 
   closeCreateSurvey() {
     this.createSurveyOpen.set(false);
-
     this.selectedCategory = '';
     this.newSurveyCategory = '';
     this.categoryDropdownOpen = false;
     this.questionCount = 1;
     this.answerCount = 2;
-
   }
 
    toggleDropdown() {
@@ -66,6 +64,10 @@ export class Survey {
 
    toggleCategoryDropdown() {
     this.categoryDropdownOpen = !this.categoryDropdownOpen;
+  }
+
+  clearInput(input: HTMLInputElement | HTMLTextAreaElement) {
+    input.value = '';
   }
 
    selectCategory(category: string, event: Event) {
