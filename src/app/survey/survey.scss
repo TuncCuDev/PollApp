@@ -150,7 +150,7 @@
         grid-template-columns: 1fr 1fr;
         gap: 10px;
         border-radius: 40px;
-        padding-top: 20px;
+        padding-top: 30px;
     }
 
     &_question label {
@@ -249,7 +249,7 @@
 
     &_result_answer {
         display: grid;
-        grid-template-columns: 30px 200px 1fr 10px;
+        grid-template-columns: 25px 200px 1fr 10px;
         align-items: center;
     }
 
@@ -299,9 +299,9 @@
 
     &_result_percent {
         font-family: 'Mulish';
-        font-weight: 600;
+        font-weight: 800;
         font-size: 13px;
-        color: #35273a;
+        color: rgba(215, 148, 81, 1);
         text-align: right;
     }
 

@@ -155,15 +155,8 @@
         margin-bottom: 8px;
     }
 
-    &_field input,
-    &_field select {
-        width: 100%;
-        height: 35px;
-        box-sizing: border-box;
-    }
-
     &_date_input {
-        width: 180px !important;
+        width: 220px !important;
     }
 
     &_field label,
@@ -433,24 +426,13 @@
         outline: none;
         }
 
-    &_field {
-        display: grid;
-        grid-template-columns: 1fr auto;
-        align-items: end;
-        column-gap: 10px;
-    }
-
-    &_field label {
-        grid-column: 1 / -1;
-    }
-
     &_field input {
         width: 100%;
         box-sizing: border-box;
     }
 
     &_date_input {
-        width: 180px !important;
+        width: 220px !important;
     }
 
     &_field label span {
@@ -494,6 +476,7 @@
 
             & span {
                 color: white;
+                font-size: 18px;
             }
         }
 
@@ -552,23 +535,45 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        width: 26px;
+        height: 26px;
+        border-radius: 4px;
+        background-color: rgb(255, 207, 161);
+        display: none;
+    }
+
+    &:hover::before {
+        display: block;
+    }
+
+    .delete_default,
+    .delete_hover {
+        position: absolute;
+        z-index: 1;
+    }
+
+    .delete_default {
+        display: block;
+    }
+
+    .delete_hover {
+        display: none;
+    }
 
     &:hover {
-        background-color: rgb(255, 207, 161);
-        border-radius: 4px;
-        height: 26px;
-        width: 26px;
+        .delete_default {
+            display: none;
+        }
+
+        .delete_hover {
+            display: block;
+        }
     }
-}
-
-.delete_button img {
-    width: 18px;
-    height: 18px;
-}
-
-.delete_button:hover img {
-    opacity: 1;
 }
 
 .create_survey_description 
@@ -577,4 +582,3 @@
     top: 10px;
     right: 10px;
 }
-

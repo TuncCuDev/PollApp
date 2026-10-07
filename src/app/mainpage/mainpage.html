@@ -36,7 +36,8 @@
                         <label for="surveyName">Survey name</label>
                         <input id="surveyName" type="text">
                         <button class="delete_button">
-                            <img src="./assets/img/delete.svg" alt="">
+                            <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
+                            <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
                         </button>
                     </div>
                     <div class="create_survey_bottom">
@@ -45,8 +46,9 @@
                                 <span>(optional)</span>
                             </label>
                             <input class="create_survey_date_input" id="endDate">
-                            <button class="delete_button">
-                                <img src="./assets/img/delete.svg" alt="">
+                           <button class="delete_button">
+                              <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
+                              <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
                             </button>
                         </div>
                         <div class="create_survey_category" (click)="toggleCategoryDropdown()" [class.create_survey_category_open]="categoryDropdownOpen">
@@ -73,7 +75,8 @@
                         <div class="create_survey_question_header">
                         <h3>1. Question</h3>
                         <button class="delete_button">
-                            <img src="./assets/img/delete.svg" alt="Delete question" >
+                              <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
+                              <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
                         </button>
                         </div>
                         <input class="create_survey_question_input" type="text" value="Which date would work best for you?">
@@ -90,7 +93,8 @@
                             <span class="create_survey_answer_letter"> {{ ['A', 'B', 'C', 'D', 'E'][answer] }}. </span>
                             <input type="text">
                             <button class="delete_button">
-                              <img src="./assets/img/delete.svg" alt="Delete answer">
+                              <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
+                              <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
                             </button>
                           </div>
                         }
@@ -107,7 +111,8 @@
                             <textarea id="description"></textarea>
                         </div>
                         <button class="delete_button">
-                                <img src="./assets/img/delete.svg" alt="Delete description">
+                            <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
+                            <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
                         </button>
                     </div>
                     <button type="button" class="create_survey_next_question" (click)="addQuestion()">
