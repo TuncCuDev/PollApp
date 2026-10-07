@@ -21,7 +21,7 @@ export class Survey {
   dropdownOpen = false;
   categoryDropdownOpen = false;
   newSurveyCategory = '';
-  selectedCategory = 'All';
+  selectedCategory = '';
   answerCount = 2;
   questionCount = 1;
 
