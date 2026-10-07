@@ -172,6 +172,11 @@
                             </div>
                         }
                         <div>
+                            @if (selectedCategory == '') {
+                            <span class="surveylist_categories_selected"> {{ selectedCategory }}</span>
+                        }
+                        </div>
+                        <div>
                         @if (selectedCategory !== 'All') {
                             <span class="surveylist_categories_selected"> {{ selectedCategory }}</span>
                         }

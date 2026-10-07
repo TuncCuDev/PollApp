@@ -190,19 +190,6 @@
     margin-top: 10px;
 }
 
-.surveylist_categories_dropdown {
-    background-color: white;
-    width: 200px;
-}
-
-.surveylist_categories_dropdown div {
-    cursor: pointer;
-}
-
-.surveylist_categories_dropdown div:hover {
-    background-color: rgba(5, 12, 5, 0.062);
-}
-
 .create_survey_category_dropdown {
     display: flex;
     flex-direction: column;
@@ -213,6 +200,10 @@
 
 .create_survey_category_dropdown span {
     padding: 1px 5px;
+
+    &:hover {
+        color: red;
+    }
 }
 
 .create_survey_field {
@@ -557,6 +548,7 @@
     font-size: 14px;
     font-weight: 400;
     color: rgb(255, 183, 112);
+    text-align: center;
 }
 
 .create_survey_checkbox input {

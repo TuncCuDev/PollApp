@@ -96,6 +96,12 @@ export class Mainpage {
 
   closeCreateSurvey() {
     this.createSurveyOpen.set(false)
+
+    this.selectedCategory = '';
+    this.newSurveyCategory = '';
+    this.categoryDropdownOpen = false;
+    this.questionCount = 1;
+    this.answerCount = 2;
   }
 
   toggleCategoryDropdown() {

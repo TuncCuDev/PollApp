@@ -23,6 +23,7 @@ export class Survey {
   newSurveyCategory = '';
   selectedCategory = 'All';
   answerCount = 2;
+  questionCount = 1;
 
 
   addAnswer() {
@@ -49,7 +50,14 @@ export class Survey {
   }
 
   closeCreateSurvey() {
-    this.createSurveyOpen.set(false)
+    this.createSurveyOpen.set(false);
+
+    this.selectedCategory = '';
+    this.newSurveyCategory = '';
+    this.categoryDropdownOpen = false;
+    this.questionCount = 1;
+    this.answerCount = 2;
+
   }
 
    toggleDropdown() {
@@ -64,6 +72,13 @@ export class Survey {
     event.stopPropagation();
     this.selectedCategory = category;
     this.dropdownOpen = false;
+  }
+
+   selectCreateSurveyCategory(category: string, event: Event) {
+    event.stopPropagation();
+
+    this.newSurveyCategory = category;
+    this.categoryDropdownOpen = false;
   }
 
    get surveys(){
