@@ -88,7 +88,7 @@
                         @for (question of [0, 1, 2, 3, 4].slice(0, questionCount); track question) {
                             <div class="create_survey_question">
                                 <div class="create_survey_question_header">
-                                    <h3>1. Question {{question + 1}}</h3>
+                                    <h3>{{question + 1}} Question </h3>
                                     <button class="delete_button" (click)="clearInput(inputField3)">
                                         <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
                                         <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
@@ -103,7 +103,7 @@
                                                 <span>Allow multiple answers.</span>
                                             </label>
                                         </div>
-                                        @for (answer of [0, 1, 2, 3, 4].slice(0, answerCount); track answer) {
+                                         @for (answer of [0, 1, 2, 3, 4].slice(0, surveyQuestions[question].answerCount); track answer) {
                                             <div class="create_survey_answer">
                                                 <span class="create_survey_answer_letter"> {{ ['A', 'B', 'C', 'D', 'E'][answer] }}. </span>
                                                 <input #inputField4 type="text" [(ngModel)]="surveyQuestions[question].answers[answer]">
@@ -113,7 +113,7 @@
                                                 </button>
                                             </div>
                                         }
-                                        <button type="button" class="create_survey_add_answer" (click)="addAnswer()" [disabled]="answerCount >= 5">Add answer <span>+</span></button>
+                                        <button type="button" class="create_survey_add_answer" (click)="addAnswer(question)" [disabled]="surveyQuestions[question].answerCount >= 5">Add answer <span>+</span></button>
                                     </div>
                             </div>
                             @if (question === questionCount - 1) {

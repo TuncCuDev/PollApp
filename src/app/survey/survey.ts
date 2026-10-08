@@ -31,11 +31,11 @@ export class Survey {
   supabaseCategory = '';
 
 
-  addAnswer() {
-    if (this.answerCount < 5) {
-      this.answerCount++;
-    }
+  addAnswer(questionIndex: number) {
+  if (this.surveyQuestions[questionIndex].answerCount < 5) {
+    this.surveyQuestions[questionIndex].answerCount++;
   }
+}
 
   get questions() {
     return this.supabaseService.questions;
@@ -156,7 +156,7 @@ export class Survey {
   }
   
   addQuestion() {
-    if (this.questionCount < 5) {
+    if (this.questionCount < 4) {
       this.questionCount++;
 
       this.surveyQuestions = [
@@ -170,14 +170,15 @@ export class Survey {
     this.emptyQuestion()
   ];
 
-  emptyQuestion() {
-    return {
-      question: '',
-      description: '',
-      answers: ['', '', '', '', ''],
-      multiple_answers: false
-    };
-  }
+ emptyQuestion() {
+  return {
+    question: '',
+    description: '',
+    answers: ['', '', '', '', ''],
+    multiple_answers: false,
+    answerCount: 2
+  };
+}
 
   async saveSurvey() {
   const survey = await this.supabaseService.createSurvey(

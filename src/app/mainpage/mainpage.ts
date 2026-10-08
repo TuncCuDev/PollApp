@@ -35,11 +35,11 @@ export class Mainpage {
     return this.supabaseService.surveys;
   }
 
-   addAnswer() {
-    if (this.answerCount < 5) {
-      this.answerCount++;
-    }
+  addAnswer(questionIndex: number) {
+  if (this.surveyQuestions[questionIndex].answerCount < 5) {
+    this.surveyQuestions[questionIndex].answerCount++;
   }
+}
 
   clearInput(input: HTMLInputElement | HTMLTextAreaElement) {
   input.value = '';
@@ -53,7 +53,7 @@ selectCreateSurveyCategory(category: string, event: Event) {
   }
 
   addQuestion() {
-    if (this.questionCount < 5) {
+    if (this.questionCount < 4) {
       this.questionCount++;
 
       this.surveyQuestions = [
@@ -140,13 +140,14 @@ selectCreateSurveyCategory(category: string, event: Event) {
   ];
 
   emptyQuestion() {
-    return {
-      question: '',
-      description: '',
-      answers: ['', '', '', '', ''],
-      multiple_answers: false
-    };
-  }
+  return {
+    question: '',
+    description: '',
+    answers: ['', '', '', '', ''],
+    multiple_answers: false,
+    answerCount: 2
+  };
+}
 
   async saveSurvey() {
   const survey = await this.supabaseService.createSurvey(

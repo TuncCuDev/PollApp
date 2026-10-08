@@ -90,7 +90,7 @@
                                                 <span>Allow multiple answers.</span>
                                             </label>
                                         </div>
-                                        @for (answer of [0, 1, 2, 3, 4].slice(0, answerCount); track answer) {
+                                        @for (answer of [0, 1, 2, 3, 4].slice(0, surveyQuestions[question].answerCount); track answer) {
                                             <div class="create_survey_answer">
                                                 <span class="create_survey_answer_letter"> {{ ['A', 'B', 'C', 'D', 'E'][answer] }}. </span>
                                                 <input #inputField4 type="text" [(ngModel)]="surveyQuestions[question].answers[answer]">
@@ -100,7 +100,7 @@
                                                 </button>
                                             </div>
                                         }
-                                        <button type="button" class="create_survey_add_answer" (click)="addAnswer()" [disabled]="answerCount >= 5">Add answer <span>+</span></button>
+                                        <button type="button" class="create_survey_add_answer" (click)="addAnswer(question)" [disabled]="surveyQuestions[question].answerCount >= 5">Add answer <span>+</span></button>
                                     </div>
                             </div>
                             @if (question === questionCount - 1) {
