@@ -264,7 +264,6 @@
         font-size: 14px;
         font-weight: 400;
         color: rgb(255, 183, 112);
-        text-align: center;
     }
 
     &_checkbox input {
@@ -469,11 +468,10 @@
     }
 
     &_field input:focus,
-    &_field select:focus,
-    &_answer input:focus,
     &_question_input:focus,
+    &_answer input:focus,
     &_description textarea:focus {
-        box-shadow: 0 0 0 2px colors.$orange;
+        background-color: rgba(254, 233, 212, 1);
     }
 
     &_category {
@@ -598,4 +596,48 @@
 .create_survey_field #surveyName + .delete_button {
     transform: translateX(-10px);
     transform: translateY(3px);
+}
+
+.success_message {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    width: 300px;
+    height: 75px;
+    border-radius: 5px 50px 5px 5px;
+    background: rgba(254, 233, 212, 1);
+    color: rgba(53, 39, 58, 1);
+    display: flex;
+    align-items: center;
+    padding: 10px 25px;
+    box-sizing: border-box;
+    font-family: 'NerkoOne';
+    font-size: 16px;
+    font-weight: 400;
+    font-size: 24px;
+    z-index: 10000;
+    animation: successSlide 4s ease-in-out forwards;
+
+}
+
+@keyframes successSlide {
+    0% {
+        transform: translateX(120%);
+        opacity: 0;
+    }
+
+    10% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    85% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(120%);
+        opacity: 0;
+    }
 }

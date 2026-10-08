@@ -39,7 +39,7 @@
                                 </div>
                                 <div class="create_survey_category" (click)="toggleCategoryDropdown()" [class.create_survey_category_open]="categoryDropdownOpen">
                                     <div class="create_survey_category_button"> 
-                                        <span>{{ supabaseCategory || 'Choose Category' }}</span>
+                                        <span>Choose Category</span>
                                         <img class="create_survey_category_arrow_default" src="./assets/img/arrow_drop_down.svg" alt="Arrow-Drop-Down">
                                         <img class="create_survey_category_arrow_hover" src="./assets/img/arrow_drop_down_o.svg" alt="Arrow-Drop-Down">
                                         <img class="create_survey_category_arrow_open" src="./assets/img/arrow_drop_up.svg" alt="Arrow-Drow-Up">
@@ -52,7 +52,7 @@
                                             }
                                         </div>
                                     }
-                                    @if (newSurveyCategory) {
+                                    @if (newSurveyCategory !== '') {
                                         <div class="create_survey_category_selected">{{newSurveyCategory}}</div>
                                     }
                                     </div>
@@ -115,6 +115,9 @@
                     </footer>
                 </div>
             </div>
+        }
+        @if (successMessage()) {
+            <div class="success_message">Your survey is <br> published.</div>
         }
         </header>
     </section>

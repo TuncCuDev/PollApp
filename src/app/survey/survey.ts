@@ -29,6 +29,7 @@ export class Survey {
   supabaseDescription = '';
   supabaseEndDate = '';
   supabaseCategory = '';
+  successMessage = signal(false);
 
 
   addAnswer(questionIndex: number) {
@@ -76,11 +77,12 @@ export class Survey {
   }
 
   selectCreateSurveyCategory(category: string, event: Event) {
-    event.stopPropagation();
+  event.stopPropagation();
 
-    this.supabaseCategory = category;
-    this.categoryDropdownOpen = false;
-  }
+  this.supabaseCategory = category;
+  this.newSurveyCategory = category;
+  this.categoryDropdownOpen = false;
+}
 
    selectCategory(category: string, event: Event) {
     event.stopPropagation();
@@ -180,13 +182,19 @@ export class Survey {
   };
 }
 
-  async saveSurvey() {
+   async saveSurvey() {
   const survey = await this.supabaseService.createSurvey(
     this.supabaseName,
     this.supabaseCategory,
     this.supabaseDescription,
     this.supabaseEndDate
   );
+  this.successMessage.set(true);
+
+  setTimeout(() => {
+    this.successMessage.set(false);
+    this.createSurveyOpen.set(false);
+  }, 8000);
 
   if (!survey) {
     return;

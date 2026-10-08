@@ -21,6 +21,7 @@ export class Mainpage {
   supabaseDescription = '';
   supabaseEndDate = '';
   supabaseCategory = '';
+  successMessage = signal(false);
 
 
   constructor(
@@ -46,11 +47,12 @@ export class Mainpage {
 }
 
 selectCreateSurveyCategory(category: string, event: Event) {
-    event.stopPropagation();
+  event.stopPropagation();
 
-    this.supabaseCategory = category;
-    this.categoryDropdownOpen = false;
-  }
+  this.supabaseCategory = category;
+  this.newSurveyCategory = category;
+  this.categoryDropdownOpen = false;
+}
 
   addQuestion() {
     if (this.questionCount < 4) {
@@ -156,6 +158,12 @@ selectCreateSurveyCategory(category: string, event: Event) {
     this.supabaseDescription,
     this.supabaseEndDate
   );
+  this.successMessage.set(true);
+
+  setTimeout(() => {
+    this.successMessage.set(false);
+    this.createSurveyOpen.set(false);
+  }, 8000);
 
   if (!survey) {
     return;
@@ -195,8 +203,6 @@ selectCreateSurveyCategory(category: string, event: Event) {
 
   this.categoryDropdownOpen = false;
   this.createSurveyOpen.set(false);
-
-  console.log('Survey erfolgreich gespeichert!');
 }
 
 isSurveyComplete(): boolean {

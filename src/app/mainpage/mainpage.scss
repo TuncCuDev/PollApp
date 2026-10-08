@@ -236,6 +236,10 @@ header {
         padding: 0px 5px;
         border-radius: 25px;
         cursor: pointer;
+
+         &:hover {
+            background-color: rgba(255, 207, 161, 1);
+        }
     }
 
     &_active {
@@ -370,6 +374,7 @@ header {
             font-size: 14px;
             padding: 2px  10px;
             cursor: pointer;
+            width: fit-content;
         }
 
         &_dropdown div:hover {
@@ -460,26 +465,5 @@ header {
     }
 }
 
-
-
-
-
-
-
-
-.surveylist_categories_dropdown {
-    background-color: white;
-    width: 200px;
-}
-
-.surveylist_categories_dropdown div {
-    cursor: pointer;
-}
-
-.surveylist_categories_dropdown div:hover {
-    background-color: rgba(15, 211, 15, 0.062);
-}
-
-   
 
     

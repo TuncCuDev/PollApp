@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="create_survey_category" (click)="toggleCategoryDropdown()" [class.create_survey_category_open]="categoryDropdownOpen">
                                     <div class="create_survey_category_button"> 
-                                        <span>{{ supabaseCategory || 'Choose Category' }}</span>
+                                        <span>Choose Category</span>
                                         <img class="create_survey_category_arrow_default" src="./assets/img/arrow_drop_down.svg" alt="Arrow-Drop-Down">
                                         <img class="create_survey_category_arrow_hover" src="./assets/img/arrow_drop_down_o.svg" alt="Arrow-Drop-Down">
                                         <img class="create_survey_category_arrow_open" src="./assets/img/arrow_drop_up.svg" alt="Arrow-Drow-Up">
@@ -65,7 +65,7 @@
                                             }
                                         </div>
                                     }
-                                    @if (newSurveyCategory) {
+                                    @if (newSurveyCategory !== '') {
                                         <div class="create_survey_category_selected">{{newSurveyCategory}}</div>
                                     }
                                     </div>
@@ -129,6 +129,9 @@
                 </div>
             </div>
         }
+        @if (successMessage()) {
+            <div class="success_message">Your survey is <br> published.</div>
+        }
         <section class="survey">
             <header class="survey_header">
                 <h1 class="survey_title">Your Surveys</h1>
@@ -171,7 +174,7 @@
                         </div>
                         @if (dropdownOpen) {
                             <div class="surveylist_categories_dropdown">
-                                <div (click)="selectCategory('All', $event)">All</div>
+                                <div (click)="selectCategory('All', $event)">All Surveys</div>
                                 @for (category of categories; track category) {
                                     <div (click)="selectCategory(category, $event)"> {{ category }}</div>
                                 }
