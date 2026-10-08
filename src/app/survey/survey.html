@@ -3,232 +3,230 @@
         <header class="survey_header">
             <img class="survey_logo" src="./assets/img/logo header dark.svg" alt="Header-Logo" (click)="goToHome()">
             <button class="survey_button" (click)="openCreateSurvey()">Create Survey</button>
-             @if (createSurveyOpen()) {
+            @if (createSurveyOpen()) {
             <div class="overlay">
                 <div class="create_survey">
-                <header class="create_survey_header">
-                    <div class="create_survey_header_left">
-                        <span class="create_survey_status">Draft</span>
-                        <h2>Create new survey</h2>
-                    </div>
-                    <div class="create_survey_header_right">
-                        <button class="create_survey_cancel" (click)="closeCreateSurvey()">Cancel</button>
-                        <button class="create_survey_close" (click)="closeCreateSurvey()"></button>
-                    </div>
-                </header>
-                <section class="create_survey_content">
-                    <div class="create_survey_left">
-                    <div class="create_survey_field">
-                        <label for="surveyName">Survey name</label>
-                        <input #inputField1 id="surveyName" type="text" [(ngModel)]="supabaseName">
-                        <button class="delete_button" (click)="clearInput(inputField1)">
-                            <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
-                            <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
-                        </button>
-                    </div>
-                    <div class="create_survey_bottom">
-                        <div class="create_survey_field">
-                            <label for="endDate">Set end date 
-                                <span>(optional)</span>
-                            </label>
-                            <input type="date" #inputField2 class="create_survey_date_input" id="endDate" [(ngModel)]="supabaseEndDate">
-                            <button class="delete_button" (click)="clearInput(inputField2)">
-                                <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
-                                <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
-                            </button>
+                    <header class="create_survey_header">
+                        <div class="create_survey_header_left">
+                            <span class="create_survey_status">Draft</span>
+                            <h2>Create new survey</h2>
                         </div>
-                        <div class="create_survey_category" (click)="toggleCategoryDropdown()" [class.create_survey_category_open]="categoryDropdownOpen">
-                           <div class="create_survey_category_button" > 
-                                <span>{{ supabaseCategory || 'Choose Category' }}</span>
-                                <img class="create_survey_category_arrow_default" src="./assets/img/arrow_drop_down.svg" alt="Arrow-Drop-Down">
-                                <img class="create_survey_category_arrow_hover" src="./assets/img/arrow_drop_down_o.svg" alt="Arrow-Drop-Down">
-                                <img class="create_survey_category_arrow_open" src="./assets/img/arrow_drop_up.svg" alt="Arrow-Drow-Up">
-                                <img class="create_survey_category_arrow_open_hover" src="./assets/img/arrow_drop_up_o.svg" alt="Arrow-Drow-Up">
-                           </div>
-                            @if (categoryDropdownOpen) {
-                                <div class="create_survey_category_dropdown" (click)="$event.stopPropagation()"> 
-                                    @for (category of categories; track category) {
-                                        <span (click)="selectCreateSurveyCategory(category, $event)">{{category}}</span>
-                                    }
+                        <div class="create_survey_header_right">
+                            <button class="create_survey_cancel" (click)="closeCreateSurvey()">Cancel</button>
+                            <button class="create_survey_close" (click)="closeCreateSurvey()"></button>
+                        </div>
+                    </header>
+                    <section class="create_survey_content">
+                        <div class="create_survey_left">
+                            <div class="create_survey_field">
+                                <label for="surveyName">Survey name</label>
+                                <input #inputField1 id="surveyName" type="text" [(ngModel)]="supabaseName">
+                                <button class="delete_button" (click)="clearInput(inputField1)">
+                                    <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
+                                    <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
+                                </button>
+                            </div>
+                            <div class="create_survey_bottom">
+                                <div class="create_survey_field">
+                                    <label for="endDate">Set end date 
+                                        <span>(optional)</span>
+                                    </label>
+                                    <input type="date" #inputField2 class="create_survey_date_input" id="endDate" [(ngModel)]="supabaseEndDate">
+                                    <button class="delete_button" (click)="clearInput(inputField2)">
+                                        <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
+                                        <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
+                                    </button>
                                 </div>
+                                <div class="create_survey_category" (click)="toggleCategoryDropdown()" [class.create_survey_category_open]="categoryDropdownOpen">
+                                    <div class="create_survey_category_button"> 
+                                        <span>{{ supabaseCategory || 'Choose Category' }}</span>
+                                        <img class="create_survey_category_arrow_default" src="./assets/img/arrow_drop_down.svg" alt="Arrow-Drop-Down">
+                                        <img class="create_survey_category_arrow_hover" src="./assets/img/arrow_drop_down_o.svg" alt="Arrow-Drop-Down">
+                                        <img class="create_survey_category_arrow_open" src="./assets/img/arrow_drop_up.svg" alt="Arrow-Drow-Up">
+                                        <img class="create_survey_category_arrow_open_hover" src="./assets/img/arrow_drop_up_o.svg" alt="Arrow-Drow-Up">
+                                    </div>
+                                    @if (categoryDropdownOpen) {
+                                        <div class="create_survey_category_dropdown" (click)="$event.stopPropagation()"> 
+                                            @for (category of categories; track category) {
+                                                <span (click)="selectCreateSurveyCategory(category, $event)">{{category}}</span>
+                                            }
+                                        </div>
+                                    }
+                                    @if (newSurveyCategory) {
+                                        <div class="create_survey_category_selected">{{newSurveyCategory}}</div>
+                                    }
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="create_survey_right">
+                                <div class="create_survey_field">
+                                    <label for="description"> Describing text 
+                                        <span>(optional)</span> 
+                                    </label>
+                                    <div class="create_survey_description">
+                                    <textarea #inputField5 id="description" [(ngModel)]="supabaseDescription"></textarea>
+                                </div>
+                                <button class="delete_button" (click)="clearInput(inputField5)">
+                                    <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
+                                    <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
+                                </button>
+                            </div>
+                        </div>
+                        @for (question of [0, 1, 2, 3, 4].slice(0, questionCount); track question) {
+                            <div class="create_survey_question">
+                                <div class="create_survey_question_header">
+                                    <h3>1. Question {{question + 1}}</h3>
+                                    <button class="delete_button" (click)="clearInput(inputField3)">
+                                        <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
+                                        <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
+                                    </button>
+                                </div>
+                                <input #inputField3 id="text" class="create_survey_question_input" type="text" value="Which date would work best for you?" [(ngModel)]="surveyQuestions[question].question">
+                                    <div class="create_survey_answers">
+                                        <div class="create_survey_answers_header">
+                                            <h4>Answers</h4>
+                                            <label class="create_survey_checkbox">
+                                                <input type="checkbox" [(ngModel)]="surveyQuestions[question].multiple_answers">
+                                                <span>Allow multiple answers.</span>
+                                            </label>
+                                        </div>
+                                        @for (answer of [0, 1, 2, 3, 4].slice(0, answerCount); track answer) {
+                                            <div class="create_survey_answer">
+                                                <span class="create_survey_answer_letter"> {{ ['A', 'B', 'C', 'D', 'E'][answer] }}. </span>
+                                                <input #inputField4 type="text" [(ngModel)]="surveyQuestions[question].answers[answer]">
+                                                <button class="delete_button" (click)="clearInput(inputField4)">
+                                                    <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
+                                                    <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
+                                                </button>
+                                            </div>
+                                        }
+                                        <button type="button" class="create_survey_add_answer" (click)="addAnswer()" [disabled]="answerCount >= 5">Add answer <span>+</span></button>
+                                    </div>
+                            </div>
+                            @if (question === questionCount - 1) {
+                                <button type="button" class="create_survey_next_question" (click)="addQuestion()">Add next question
+                                    <span>+</span>
+                                </button>
                             }
-                            <div>
-                             @if (newSurveyCategory) {
-                                <div class="create_survey_category_selected">{{newSurveyCategory}}</div>
-                            }
-                        </div>
-                        </div>
-                    </div>
-                    <div class="create_survey_question">
-                        <div class="create_survey_question_header">
-                        <h3>1. Question</h3>
-                        <button class="delete_button" (click)="clearInput(inputField3)">
-                            <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
-                            <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
-                        </button>
-                        </div>
-                        <input #inputField3 class="create_survey_question_input" type="text" value="Which date would work best for you?">
-                        <div class="create_survey_answers">
-                        <div class="create_survey_answers_header">
-                            <h4>Answers</h4>
-                            <label class="create_survey_checkbox">
-                                <input type="checkbox">
-                                <span>Allow multiple answers.</span>
-                            </label>
-                        </div>
-                        @for (answer of [0, 1, 2, 3, 4].slice(0, answerCount); track answer) {
-                          <div class="create_survey_answer">
-                            <span class="create_survey_answer_letter"> {{ ['A', 'B', 'C', 'D', 'E'][answer] }}. </span>
-                            <input #inputField4 type="text">
-                            <button class="delete_button" (click)="clearInput(inputField4)">
-                              <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
-                              <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
-                            </button>
-                          </div>
                         }
-                        <button type="button" class="create_survey_add_answer" (click)="addAnswer()" [disabled]="answerCount >= 5">Add answer <span>+</span></button>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="create_survey_right">
-                        <div class="create_survey_field">
-                            <label for="description"> Describing text 
-                                <span>(optional)</span> 
-                            </label>
-                            <div class="create_survey_description">
-                            <textarea #inputField5 id="description" [(ngModel)]="supabaseDescription"></textarea>
-                        </div>
-                        <button class="delete_button" (click)="clearInput(inputField5)">
-                            <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
-                            <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
-                        </button>
-                    </div>
-                    <button class="create_survey_next_question">
-                        Add next question<span>+</span>
-                    </button>
-                    </div>
-                </section>
-                <footer class="create_survey_footer">
-                    <button class="create_survey_publish">Publish</button>
-                </footer>
+                    </section>
+                    <footer class="create_survey_footer">
+                        <button type="button" class="create_survey_publish" (click)="saveSurvey()" [disabled]="!isSurveyComplete()">Publish</button>
+                    </footer>
                 </div>
             </div>
-            }
+        }
         </header>
     </section>
-
     <section class="survey_content">
-      <div class="survey_left">
-        <div class="survey_card">
-          <header>
-            <div class="survey_status">
-              <span>Published</span>
-            </div>
-            <div class="survey_info">
-              <span>End on 01.01.2026</span>
-              <span class="survey_info_category">Category: Team activities</span>
-            </div>
-          </header>
-          <h3 class="survey_title">Let´s plan the next team event together</h3>
-          <span class="survey_description">We want to create team activites that everyone will enjoy - share your preferences and ideas in our survey to help us plan better...</span>
-          <section class="survey_questions">
-            @for (question of questions(); track question.id) {
-              <article class="survey_question">
-                <h3>{{ question.question_number }}. {{ question.question }}</h3>
-                @if (question.multiple_answers) {
-                  <p class="survey_question_description">{{ question.description }} </p>
-                }
-                <div class="survey_question_answers">
-                  <label>
-                    <input type="checkbox" [name]="'question-' + question.id" [checked]="isSelected(question.id, 'a')" (change)="selectAnswer(question.id, 'a')">
-                    <span>{{ question.answer_a }}</span>
-                  </label>
-                  <label>
-                    <input type="checkbox" [name]="'question-' + question.id" [checked]="isSelected(question.id, 'b')" (change)="selectAnswer(question.id, 'b')">
-                    <span>{{ question.answer_b }}</span>
-                  </label>
-                  @if (question.answer_c) {
-                    <label>
-                      <input type="checkbox" [name]="'question-' + question.id" [checked]="isSelected(question.id, 'c')" (change)="selectAnswer(question.id, 'c')">
-                      <span>{{ question.answer_c }}</span>
-                    </label>
-                  }
-                  @if (question.answer_d) {
-                    <label>
-                      <input type="checkbox" [name]="'question-' + question.id" [checked]="isSelected(question.id, 'd')" (change)="selectAnswer(question.id, 'd')">
-                      <span>{{ question.answer_d }}</span>
-                    </label>
-                  }
-                  @if (question.answer_e) {
-                    <label>
-                      <input
-                      type="checkbox" [name]="'question-' + question.id" [checked]="isSelected(question.id, 'e')" (change)="selectAnswer(question.id, 'e')">
-                      <span>{{ question.answer_e }}</span>
-                    </label>
-                  }
-                </div>
-              </article>
-              }
-              </section>
-              <div class="survey_card_button">
-                <button class="survey_card_button_survey" [disabled]="!isSurveyComplete()" (click)="completeSurvey()">Complete Survey</button>
+        <div class="survey_left">
+            <div class="survey_card">
+                <header>
+                  <div class="survey_status">
+                      <span>Published</span>
+                  </div>
+                  <div class="survey_info">
+                      <span>End on 01.01.2026</span>
+                      <span class="survey_info_category">Category: Team activities</span>
+                  </div>
+                </header>
+                <h3 class="survey_title">Let´s plan the next team event together</h3>
+                <span class="survey_description">We want to create team activites that everyone will enjoy - share your preferences and ideas in our survey to help us plan better...</span>
+                    <section class="survey_questions">
+                    @for (question of questions(); track question.id) {
+                        <article class="survey_question">
+                            <h3>{{ question.question_number }}. {{ question.question }}</h3>
+                            @if (question.multiple_answers) {
+                                <p class="survey_question_description">{{ question.description }} </p>
+                            }
+                            <div class="survey_question_answers">
+                                <label>
+                                    <input type="checkbox" [name]="'question-' + question.id" [checked]="isSelected(question.id, 'a')" (change)="selectAnswer(question.id, 'a')">
+                                    <span>{{ question.answer_a }}</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" [name]="'question-' + question.id" [checked]="isSelected(question.id, 'b')" (change)="selectAnswer(question.id, 'b')">
+                                    <span>{{ question.answer_b }}</span>
+                                </label>
+                                @if (question.answer_c) {
+                                    <label>
+                                        <input type="checkbox" [name]="'question-' + question.id" [checked]="isSelected(question.id, 'c')" (change)="selectAnswer(question.id, 'c')">
+                                        <span>{{ question.answer_c }}</span>
+                                    </label>
+                                }
+                                @if (question.answer_d) {
+                                    <label>
+                                          <input type="checkbox" [name]="'question-' + question.id" [checked]="isSelected(question.id, 'd')" (change)="selectAnswer(question.id, 'd')">
+                                          <span>{{ question.answer_d }}</span>
+                                    </label>
+                                }
+                                @if (question.answer_e) {
+                                    <label>
+                                        <input type="checkbox" [name]="'question-' + question.id" [checked]="isSelected(question.id, 'e')" (change)="selectAnswer(question.id, 'e')">
+                                        <span>{{ question.answer_e }}</span>
+                                    </label>
+                                }
+                            </div>
+                        </article>
+                    }
+                </section>
+                <div class="survey_card_button">
+                    <button class="survey_card_button_survey" [disabled]="!isSurveyComplete()" (click)="completeSurvey()">Complete Survey</button>
+                  </div>
               </div>
-            </div>
           </div>
-
           <div class="survey_right">
-            <div class="survey_results">
-              <h3 class="survey_results_top"> Survey results <span>LIVE</span></h3>
-              <div class="survey_results_questions">
-                @for (question of questions(); track question.id) {
-                  <article class="survey_result_question">
-                    <div class="survey_result_question_title">
-                      <span class="survey_result_question_number"> {{ question.question_number }}. </span>
-                        <h4>{{ question.question }} </h4>
-                    </div>
-                    <div class="survey_result_answer">
-                      <span class="survey_result_letter">A</span>
-                      <div class="survey_result_bar">
-                        <div class="survey_result_bar_fill" [style.width.%]="getPercentage(question.id, 'a')"></div>
-                      </div>
-                      <span class="survey_result_percent">{{getPercentage(question.id, 'a')}}%</span>
-                    </div>
-                    <div class="survey_result_answer">
-                      <span class="survey_result_letter">B</span>
-                      <div class="survey_result_bar">
-                        <div class="survey_result_bar_fill yellow" [style.width.%]="getPercentage(question.id, 'b')"></div>
-                      </div>
-                      <span class="survey_result_percent">{{ getPercentage(question.id, 'b') }} %</span>
-                    </div>
-                    @if (question.answer_c) {
-                      <div class="survey_result_answer">
-                          <span class="survey_result_letter">C</span>
-                          <div class="survey_result_bar">
-                              <div class="survey_result_bar_fill gray" [style.width.%]="getPercentage(question.id, 'c')"></div>
+              <div class="survey_results">
+                  <h3 class="survey_results_top"> Survey results <span>LIVE</span></h3>
+                  <div class="survey_results_questions">
+                  @for (question of questions(); track question.id) {
+                      <article class="survey_result_question">
+                          <div class="survey_result_question_title">
+                              <span class="survey_result_question_number"> {{ question.question_number }}. </span>
+                              <h4>{{ question.question }} </h4>
                           </div>
-                          <span class="survey_result_percent">{{ getPercentage(question.id, 'c') }} %</span>
-                      </div>
-                    }
-                    @if (question.answer_d) {
-                      <div class="survey_result_answer">
-                          <span class="survey_result_letter">D</span>
-                          <div class="survey_result_bar">
-                              <div class="survey_result_bar_fill" [style.width.%]="getPercentage(question.id, 'd')"></div>
-                          </div>
-                          <span class="survey_result_percent">{{ getPercentage(question.id, 'd') }} %</span>
-                      </div>
-                    }
-                    @if (question.answer_e) {
-                      <div class="survey_result_answer">
-                          <span class="survey_result_letter">E</span>
-                          <div class="survey_result_bar">
-                              <div class="survey_result_bar_fill yellow" [style.width.%]="getPercentage(question.id, 'e')">
+                          <div class="survey_result_answer">
+                              <span class="survey_result_letter">A</span>
+                              <div class="survey_result_bar">
+                                  <div class="survey_result_bar_fill" [style.width.%]="getPercentage(question.id, 'a')"></div>
                               </div>
+                              <span class="survey_result_percent">{{getPercentage(question.id, 'a')}} %</span>
                           </div>
-                          <span class="survey_result_percent">{{ getPercentage(question.id, 'e') }} %</span>
-                      </div>
-                    }
-                  </article>
+                          <div class="survey_result_answer">
+                              <span class="survey_result_letter">B</span>
+                              <div class="survey_result_bar">
+                                  <div class="survey_result_bar_fill yellow" [style.width.%]="getPercentage(question.id, 'b')"></div>
+                              </div>
+                              <span class="survey_result_percent">{{ getPercentage(question.id, 'b') }} %</span>
+                          </div>
+                          @if (question.answer_c) {
+                              <div class="survey_result_answer">
+                                  <span class="survey_result_letter">C</span>
+                                  <div class="survey_result_bar">
+                                      <div class="survey_result_bar_fill gray" [style.width.%]="getPercentage(question.id, 'c')"></div>
+                                  </div>
+                                  <span class="survey_result_percent">{{ getPercentage(question.id, 'c') }} %</span>
+                              </div>
+                          }
+                          @if (question.answer_d) {
+                              <div class="survey_result_answer">
+                                  <span class="survey_result_letter">D</span>
+                                  <div class="survey_result_bar">
+                                      <div class="survey_result_bar_fill" [style.width.%]="getPercentage(question.id, 'd')"></div>
+                                  </div>
+                                <span class="survey_result_percent">{{ getPercentage(question.id, 'd') }} %</span>
+                              </div>
+                          }
+                          @if (question.answer_e) {
+                              <div class="survey_result_answer">
+                                  <span class="survey_result_letter">E</span>
+                                  <div class="survey_result_bar">
+                                      <div class="survey_result_bar_fill yellow" [style.width.%]="getPercentage(question.id, 'e')"></div>
+                                  </div>
+                                  <span class="survey_result_percent">{{ getPercentage(question.id, 'e') }} %</span>
+                              </div>
+                          }
+                      </article>
                   }
                 </div>
             </div>

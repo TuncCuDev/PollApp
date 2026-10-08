@@ -1,9 +1,8 @@
 <main>
     <section class="mainpage">
         <header>
-        <img src="./assets/img/logo-header.svg" alt="Logo-img">
+            <img src="./assets/img/logo-header.svg" alt="Logo-img">
         </header>
-
         <section class="hero">
             <div class="hero_content">
                 <h1 class="hero_title">Collect Feedback, <br> Unlock Ideas</h1>
@@ -17,122 +16,119 @@
                 <img class="hero_image_second" src="/assets/img/mainlogo-hover.svg" alt="Mainlogo">
             </div>
         </section>
-           @if (createSurveyOpen()) {
+        @if (createSurveyOpen()) {
             <div class="overlay">
                 <div class="create_survey">
-                <header class="create_survey_header">
-                    <div class="create_survey_header_left">
-                        <span class="create_survey_status">Draft</span>
-                        <h2>Create new survey</h2>
-                    </div>
-                    <div class="create_survey_header_right">
-                        <button class="create_survey_cancel" (click)="closeCreateSurvey()">Cancel</button>
-                        <button class="create_survey_close" (click)="closeCreateSurvey()"></button>
-                    </div>
-                </header>
-                <section class="create_survey_content">
-                    <div class="create_survey_left">
-                    <div class="create_survey_field">
-                        <label for="surveyName">Survey name</label>
-                        <input #inputField1 id="surveyName" type="text" [(ngModel)]="supabaseName">
-                        <button class="delete_button" (click)="clearInput(inputField1)">
-                            <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
-                            <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
-                        </button>
-                    </div>
-                    <div class="create_survey_bottom">
-                        <div class="create_survey_field">
-                            <label for="endDate">Set end date 
-                                <span>(optional)</span>
-                            </label>
-                            <input type="date" #inputField2 class="create_survey_date_input" id="endDate" [(ngModel)]="supabaseEndDate">
-                           <button class="delete_button" (click)="clearInput(inputField2)">
-                              <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
-                              <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
-                            </button>
+                    <header class="create_survey_header">
+                        <div class="create_survey_header_left">
+                            <span class="create_survey_status">Draft</span>
+                            <h2>Create new survey</h2>
                         </div>
-                        <div class="create_survey_category" (click)="toggleCategoryDropdown()" [class.create_survey_category_open]="categoryDropdownOpen">
-                           <div class="create_survey_category_button"> 
-                                <span>{{ supabaseCategory || 'Choose Category' }}</span>
-                                <img class="create_survey_category_arrow_default" src="./assets/img/arrow_drop_down.svg" alt="Arrow-Drop-Down">
-                                <img class="create_survey_category_arrow_hover" src="./assets/img/arrow_drop_down_o.svg" alt="Arrow-Drop-Down">
-                                <img class="create_survey_category_arrow_open" src="./assets/img/arrow_drop_up.svg" alt="Arrow-Drow-Up">
-                                <img class="create_survey_category_arrow_open_hover" src="./assets/img/arrow_drop_up_o.svg" alt="Arrow-Drow-Up">
-                           </div>
-                            @if (categoryDropdownOpen) {
-                                <div class="create_survey_category_dropdown" (click)="$event.stopPropagation()"> 
-                                    @for (category of categories; track category) {
-                                        <span (click)="selectCreateSurveyCategory(category, $event)">{{category}}</span>
-                                    }
+                        <div class="create_survey_header_right">
+                            <button class="create_survey_cancel" (click)="closeCreateSurvey()">Cancel</button>
+                            <button class="create_survey_close" (click)="closeCreateSurvey()"></button>
+                        </div>
+                    </header>
+                    <section class="create_survey_content">
+                        <div class="create_survey_left">
+                            <div class="create_survey_field">
+                                <label for="surveyName">Survey name</label>
+                                <input #inputField1 id="surveyName" type="text" [(ngModel)]="supabaseName">
+                                <button class="delete_button" (click)="clearInput(inputField1)">
+                                    <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
+                                    <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
+                                </button>
+                            </div>
+                            <div class="create_survey_bottom">
+                                <div class="create_survey_field">
+                                    <label for="endDate">Set end date 
+                                        <span>(optional)</span>
+                                    </label>
+                                    <input type="date" #inputField2 class="create_survey_date_input" id="endDate" [(ngModel)]="supabaseEndDate">
+                                    <button class="delete_button" (click)="clearInput(inputField2)">
+                                        <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
+                                        <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
+                                    </button>
                                 </div>
+                                <div class="create_survey_category" (click)="toggleCategoryDropdown()" [class.create_survey_category_open]="categoryDropdownOpen">
+                                    <div class="create_survey_category_button"> 
+                                        <span>{{ supabaseCategory || 'Choose Category' }}</span>
+                                        <img class="create_survey_category_arrow_default" src="./assets/img/arrow_drop_down.svg" alt="Arrow-Drop-Down">
+                                        <img class="create_survey_category_arrow_hover" src="./assets/img/arrow_drop_down_o.svg" alt="Arrow-Drop-Down">
+                                        <img class="create_survey_category_arrow_open" src="./assets/img/arrow_drop_up.svg" alt="Arrow-Drow-Up">
+                                        <img class="create_survey_category_arrow_open_hover" src="./assets/img/arrow_drop_up_o.svg" alt="Arrow-Drow-Up">
+                                    </div>
+                                    @if (categoryDropdownOpen) {
+                                        <div class="create_survey_category_dropdown" (click)="$event.stopPropagation()"> 
+                                            @for (category of categories; track category) {
+                                                <span (click)="selectCreateSurveyCategory(category, $event)">{{category}}</span>
+                                            }
+                                        </div>
+                                    }
+                                    @if (newSurveyCategory) {
+                                        <div class="create_survey_category_selected">{{newSurveyCategory}}</div>
+                                    }
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="create_survey_right">
+                                <div class="create_survey_field">
+                                    <label for="description"> Describing text 
+                                        <span>(optional)</span> 
+                                    </label>
+                                    <div class="create_survey_description">
+                                    <textarea #inputField5 id="description" [(ngModel)]="supabaseDescription"></textarea>
+                                </div>
+                                <button class="delete_button" (click)="clearInput(inputField5)">
+                                    <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
+                                    <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
+                                </button>
+                            </div>
+                        </div>
+                        @for (question of [0, 1, 2, 3, 4].slice(0, questionCount); track question) {
+                            <div class="create_survey_question">
+                                <div class="create_survey_question_header">
+                                    <h3>1. Question {{question + 1}}</h3>
+                                    <button class="delete_button" (click)="clearInput(inputField3)">
+                                        <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
+                                        <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
+                                    </button>
+                                </div>
+                                <input #inputField3 id="text" class="create_survey_question_input" type="text" value="Which date would work best for you?" [(ngModel)]="surveyQuestions[question].question">
+                                    <div class="create_survey_answers">
+                                        <div class="create_survey_answers_header">
+                                            <h4>Answers</h4>
+                                            <label class="create_survey_checkbox">
+                                                <input type="checkbox" [(ngModel)]="surveyQuestions[question].multiple_answers">
+                                                <span>Allow multiple answers.</span>
+                                            </label>
+                                        </div>
+                                        @for (answer of [0, 1, 2, 3, 4].slice(0, answerCount); track answer) {
+                                            <div class="create_survey_answer">
+                                                <span class="create_survey_answer_letter"> {{ ['A', 'B', 'C', 'D', 'E'][answer] }}. </span>
+                                                <input #inputField4 type="text" [(ngModel)]="surveyQuestions[question].answers[answer]">
+                                                <button class="delete_button" (click)="clearInput(inputField4)">
+                                                    <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
+                                                    <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
+                                                </button>
+                                            </div>
+                                        }
+                                        <button type="button" class="create_survey_add_answer" (click)="addAnswer()" [disabled]="answerCount >= 5">Add answer <span>+</span></button>
+                                    </div>
+                            </div>
+                            @if (question === questionCount - 1) {
+                                <button type="button" class="create_survey_next_question" (click)="addQuestion()">Add next question
+                                    <span>+</span>
+                                </button>
                             }
-                            @if (newSurveyCategory) {
-                                <div class="create_survey_category_selected">{{newSurveyCategory}}</div>
-                            }
-                        </div>
-                    </div>
-                     @for (question of [0, 1, 2, 3, 4].slice(0, questionCount); track question) {
-
-                    <div class="create_survey_question">
-                        <div class="create_survey_question_header">
-                        <h3>1. Question {{question + 1}}</h3>
-                        <button class="delete_button" (click)="clearInput(inputField3)">
-                              <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
-                              <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
-                        </button>
-                    
-                        </div>
-                        <input #inputField3 id="text" class="create_survey_question_input" type="text" value="Which date would work best for you?" [(ngModel)]="surveyQuestions[question].question">
-                        <div class="create_survey_answers">
-                        <div class="create_survey_answers_header">
-                            <h4>Answers</h4>
-                            <label class="create_survey_checkbox">
-                                <input type="checkbox" [(ngModel)]="surveyQuestions[question].multiple_answers">
-                                <span>Allow multiple answers.</span>
-                            </label>
-                        </div>
-                         @for (answer of [0, 1, 2, 3, 4].slice(0, answerCount); track answer) {
-                          <div class="create_survey_answer">
-                            <span class="create_survey_answer_letter"> {{ ['A', 'B', 'C', 'D', 'E'][answer] }}. </span>
-                            <input #inputField4 type="text" [(ngModel)]="surveyQuestions[question].answers[answer]">
-                            <button class="delete_button" (click)="clearInput(inputField4)">
-                              <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
-                              <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
-                            </button>
-                          </div>
                         }
-                        <button type="button" class="create_survey_add_answer" (click)="addAnswer()" [disabled]="answerCount >= 5">Add answer <span>+</span></button>
-                        </div>
-                    </div>
-                     }
-                    </div>
-                
-
-                    <div class="create_survey_right">
-                        <div class="create_survey_field">
-                            <label for="description"> Describing text 
-                                <span>(optional)</span> 
-                            </label>
-                            <div class="create_survey_description">
-                            <textarea #inputField5 id="description" [(ngModel)]="supabaseDescription"></textarea>
-                        </div>
-                        <button class="delete_button" (click)="clearInput(inputField5)">
-                            <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
-                            <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
-                        </button>
-                    </div>
-                    <button type="button" class="create_survey_next_question" (click)="addQuestion()">
-                        Add next question<span>+</span>
-                    </button>
-                    </div>
-                </section>
-                <footer class="create_survey_footer">
-                    <button type="button" class="create_survey_publish" (click)="saveSurvey()" [disabled]="!isSurveyComplete()">Publish</button>
-                </footer>
+                    </section>
+                    <footer class="create_survey_footer">
+                        <button type="button" class="create_survey_publish" (click)="saveSurvey()" [disabled]="!isSurveyComplete()">Publish</button>
+                    </footer>
                 </div>
             </div>
-            }
-
+        }
         <section class="survey">
             <header class="survey_header">
                 <h1 class="survey_title">Your Surveys</h1>
@@ -159,7 +155,6 @@
                     }
                 </div>
             </section>
-
             <section class="surveylist">
                 <header class="surveylist_header">
                     <div class="surveylist_tabs">
@@ -193,25 +188,24 @@
                         }
                         </div>
                     </div>
-                     
                 </header>
                 <div class="surveylist_grid">
-                @if (filteredSurveys.length > 0) {
-                    @for (survey of filteredSurveys; track survey.id) {
-                        <article class="surveylist_grid_card" (click)="openSurvey(survey.id)">
-                            <header>
-                                <span>{{ survey.category }}</span>
-                            </header>
-                            <h3>{{ survey.title }}</h3>
-                            <footer>
-                                @if (getDaysLeft(survey.end_date) < 0) {
-                                    <time>Ended</time>
-                                } @else {
-                                    <time>Ends in {{ getDaysLeft(survey.end_date) }} Days</time>
-                                }
-                            </footer>
-                        </article>
-                    }
+                    @if (filteredSurveys.length > 0) {
+                        @for (survey of filteredSurveys; track survey.id) {
+                            <article class="surveylist_grid_card" (click)="openSurvey(survey.id)">
+                                <header>
+                                    <span>{{ survey.category }}</span>
+                                </header>
+                                <h3>{{ survey.title }}</h3>
+                                <footer>
+                                    @if (getDaysLeft(survey.end_date) < 0) {
+                                        <time>Ended</time>
+                                    } @else {
+                                        <time>Ends in {{ getDaysLeft(survey.end_date) }} Days</time>
+                                    }
+                                </footer>
+                            </article>
+                        }
                     } @else {
                         <div class="surveylist_empty">
                             <h3>No surveys found</h3>
