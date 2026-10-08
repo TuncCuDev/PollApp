@@ -68,4 +68,41 @@ export class Supabase {
 
     return votes ?? [];
   }
+
+  async createSurvey(
+    title: string,
+    category: string,
+    description: string,
+    endDate: string
+  ) {
+    const { data, error } = await this.supabase
+      .from('surveys')
+      .insert({
+        title: title,
+        category: category,
+        description: description,
+        end_date: endDate
+      })
+      .select()
+      .single();
+
+    if (error) {
+      console.error('Fehler beim Erstellen des Surveys:', error);
+      return null;
+    }
+
+    return data;
+  }
+
+  async createQuestions(questions: any[]) {
+    const { error } = await this.supabase
+      .from('questions')
+      .insert(questions);
+
+    if (error) {
+      console.error('Fehler beim Speichern der Fragen:', error);
+    }
+
+    return error;
+  }
 }

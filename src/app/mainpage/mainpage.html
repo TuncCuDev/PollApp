@@ -71,27 +71,30 @@
                             }
                         </div>
                     </div>
+                     @for (question of [0, 1, 2, 3, 4].slice(0, questionCount); track question) {
+
                     <div class="create_survey_question">
                         <div class="create_survey_question_header">
-                        <h3>1. Question</h3>
+                        <h3>1. Question {{question + 1}}</h3>
                         <button class="delete_button" (click)="clearInput(inputField3)">
                               <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
                               <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
                         </button>
+                    
                         </div>
-                        <input #inputField3 class="create_survey_question_input" type="text" value="Which date would work best for you?">
+                        <input #inputField3 id="text" class="create_survey_question_input" type="text" value="Which date would work best for you?" [(ngModel)]="surveyQuestions[question].question">
                         <div class="create_survey_answers">
                         <div class="create_survey_answers_header">
                             <h4>Answers</h4>
                             <label class="create_survey_checkbox">
-                                <input type="checkbox">
+                                <input type="checkbox" [(ngModel)]="surveyQuestions[question].multiple_answers">
                                 <span>Allow multiple answers.</span>
                             </label>
                         </div>
                          @for (answer of [0, 1, 2, 3, 4].slice(0, answerCount); track answer) {
                           <div class="create_survey_answer">
                             <span class="create_survey_answer_letter"> {{ ['A', 'B', 'C', 'D', 'E'][answer] }}. </span>
-                            <input #inputField4 type="text">
+                            <input #inputField4 type="text" [(ngModel)]="surveyQuestions[question].answers[answer]">
                             <button class="delete_button" (click)="clearInput(inputField4)">
                               <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
                               <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
@@ -101,7 +104,10 @@
                         <button type="button" class="create_survey_add_answer" (click)="addAnswer()" [disabled]="answerCount >= 5">Add answer <span>+</span></button>
                         </div>
                     </div>
+                     }
                     </div>
+                
+
                     <div class="create_survey_right">
                         <div class="create_survey_field">
                             <label for="description"> Describing text 
@@ -121,7 +127,7 @@
                     </div>
                 </section>
                 <footer class="create_survey_footer">
-                    <button class="create_survey_publish">Publish</button>
+                    <button type="button" class="create_survey_publish" (click)="saveSurvey()" [disabled]="!isSurveyComplete()">Publish</button>
                 </footer>
                 </div>
             </div>

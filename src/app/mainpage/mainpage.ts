@@ -52,7 +52,16 @@ selectCreateSurveyCategory(category: string, event: Event) {
     this.categoryDropdownOpen = false;
   }
 
-addQuestion() {}
+  addQuestion() {
+    if (this.questionCount < 5) {
+      this.questionCount++;
+
+      this.surveyQuestions = [
+        ...this.surveyQuestions,
+        this.emptyQuestion()
+      ];
+    }
+  }
 
   getDaysLeft(endDate: string): number {
     const today = new Date();
@@ -125,4 +134,93 @@ addQuestion() {}
       )
       .slice(0, 3);
   }
+
+  surveyQuestions = [
+    this.emptyQuestion()
+  ];
+
+  emptyQuestion() {
+    return {
+      question: '',
+      description: '',
+      answers: ['', '', '', '', ''],
+      multiple_answers: false
+    };
+  }
+
+  async saveSurvey() {
+  const survey = await this.supabaseService.createSurvey(
+    this.supabaseName,
+    this.supabaseCategory,
+    this.supabaseDescription,
+    this.supabaseEndDate
+  );
+
+  if (!survey) {
+    return;
+  }
+
+  const questionsToSave = this.surveyQuestions
+    .slice(0, this.questionCount)
+    .map((question, index) => ({
+      survey_id: survey.id,
+      question_number: index + 1,
+      question: question.question,
+      description: question.description,
+      answer_a: question.answers[0],
+      answer_b: question.answers[1],
+      answer_c: question.answers[2],
+      answer_d: question.answers[3],
+      answer_e: question.answers[4],
+      multiple_answers: question.multiple_answers
+    }));
+
+  const error = await this.supabaseService.createQuestions(
+    questionsToSave
+  );
+
+  if (error) {
+    return;
+  }
+
+  this.supabaseName = '';
+  this.supabaseDescription = '';
+  this.supabaseEndDate = '';
+  this.supabaseCategory = '';
+
+  this.questionCount = 1;
+  this.answerCount = 2;
+  this.surveyQuestions = [this.emptyQuestion()];
+
+  this.categoryDropdownOpen = false;
+  this.createSurveyOpen.set(false);
+
+  console.log('Survey erfolgreich gespeichert!');
+}
+
+isSurveyComplete(): boolean {
+  if (!this.supabaseName.trim()) {
+    return false;
+  }
+
+  if (!this.supabaseCategory.trim()) {
+    return false;
+  }
+
+  const questions = this.surveyQuestions.slice(0, this.questionCount);
+
+  for (const question of questions) {
+    if (!question.question.trim()) {
+      return false;
+    }
+
+    for (let i = 0; i < this.answerCount; i++) {
+      if (!question.answers[i]?.trim()) {
+        return false;
+      }
+    }
+  }
+
+  return true;
+}
 }
