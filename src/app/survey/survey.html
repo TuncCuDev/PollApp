@@ -75,7 +75,7 @@
                         @for (question of [0, 1, 2, 3, 4].slice(0, questionCount); track question) {
                             <div class="create_survey_question">
                                 <div class="create_survey_question_header">
-                                    <h3>1. Question {{question + 1}}</h3>
+                                    <h3>{{question + 1}} Question</h3>
                                     <button class="delete_button" (click)="clearInput(inputField3)">
                                         <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
                                         <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
@@ -129,18 +129,20 @@
                       <span>Published</span>
                   </div>
                   <div class="survey_info">
-                      <span>End on 01.01.2026</span>
-                      <span class="survey_info_category">Category: Team activities</span>
+                        @if (currentSurvey?.end_date) {
+                        <span> End on {{ formatEndDate(currentSurvey.end_date) }}</span>
+                        }
+                        <span class="survey_info_category">{{currentSurvey?.category}}</span>
                   </div>
                 </header>
                 <h3 class="survey_title">Let´s plan the next team event together</h3>
-                <span class="survey_description">We want to create team activites that everyone will enjoy - share your preferences and ideas in our survey to help us plan better...</span>
+                <span class="survey_description">We want to create team activites that everyone will enjoy - share your preferences and ideas in our survey to help us plan better experiences together.</span>
                     <section class="survey_questions">
                     @for (question of questions(); track question.id) {
                         <article class="survey_question">
                             <h3>{{ question.question_number }}. {{ question.question }}</h3>
-                            @if (question.multiple_answers) {
-                                <p class="survey_question_description">{{ question.description }} </p>
+                            @if (question.description) {
+                                <p class="survey_question_description">{{ question.description }}</p>
                             }
                             <div class="survey_question_answers">
                                 <label>

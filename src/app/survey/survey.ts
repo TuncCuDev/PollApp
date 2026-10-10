@@ -31,12 +31,28 @@ export class Survey {
   supabaseCategory = '';
   successMessage = signal(false);
 
+  currentSurvey: {
+    id: string;
+    title: string;
+    category: string;
+    description: string;
+    end_date: string | null;
+  } | null = null;
+
+  formatEndDate(date: string | null): string {
+  if (!date) {
+    return '';
+  }
+
+  const [year, month, day] = date.substring(0, 10).split('-');
+  return `${day}.${month}.${year}`;
+}
 
   addAnswer(questionIndex: number) {
   if (this.surveyQuestions[questionIndex].answerCount < 5) {
     this.surveyQuestions[questionIndex].answerCount++;
   }
-}
+  }
 
   get questions() {
     return this.supabaseService.questions;
@@ -46,6 +62,7 @@ export class Survey {
     const surveyId = this.route.snapshot.paramMap.get('id');
     if (!surveyId) return;
     await this.supabaseService.getQuestionsBySurvey(surveyId);
+    this.currentSurvey = await this.supabaseService.getSurveyById(surveyId);
     this.votes = await this.supabaseService.getVotesBySurvey(surveyId);
   }
 
