@@ -14,6 +14,10 @@ export class Supabase {
   questions = signal<Question[]>([])
 
 
+  /**
+   * Retrieves all surveys from the database and updates the local survey list.
+   * @returns 
+   */
   async getSurveys() {
     const { data: survey, error } = await this.supabase
     .from('surveys')
@@ -22,20 +26,26 @@ export class Supabase {
     this.surveys.set(survey)
   }
 
- async getSurveyById(surveyId: string) {
-  const { data, error } = await this.supabase
-    .from('surveys')
-    .select('id, title, category, description, end_date')
-    .eq('id', surveyId)
-    .single();
-
-  if (error) {
-    return null;
+  /**
+   * Retrieves a specific survey by its ID.
+   * @param surveyId 
+   * @returns 
+   */
+  async getSurveyById(surveyId: string) {
+    const { data, error } = await this.supabase
+      .from('surveys')
+      .select('id, title, category, description, end_date')
+      .eq('id', surveyId)
+      .single();
+    if (error) return null;
+    return data;
   }
 
-  return data;
-}
-
+  /**
+   * Retrieves all questions belonging to a specific survey.
+   * @param surveyId 
+   * @returns 
+   */
   async getQuestionsBySurvey(surveyId: string) {
     const { data: questions, error } = await this.supabase
       .from('questions')
@@ -46,6 +56,12 @@ export class Supabase {
     this.questions.set(questions);
   }
 
+  /**
+   * Saves the selected answers as votes in the database.
+   * @param surveyId 
+   * @param selectedAnswers 
+   * @returns 
+   */
   async saveVotes(
     surveyId: string,
     selectedAnswers: Record<string, string[]>) {
@@ -58,31 +74,36 @@ export class Supabase {
       }))
     );
     if (votes.length === 0) return;
-
     const { error } = await this.supabase
       .from('votes')
       .insert(votes);
 
-    if (error) {
-      console.error('Fehler beim Speichern der Votes:', error);
-      throw error;
+    if (error) throw error;
     }
   }
 
+  /**
+   * Retrieves all votes associated with a specific survey.
+   * @param surveyId 
+   * @returns 
+   */
   async getVotesBySurvey(surveyId: string) {
     const { data: votes, error } = await this.supabase
       .from('votes')
       .select('*')
       .eq('survey_id', surveyId);
-
-    if (error) {
-      console.error('Fehler beim Laden der Votes:', error);
-      return [];
-    }
-
+    if (error) return [];
     return votes ?? [];
   }
 
+  /**Creates a new survey in the database and returns the created record.
+   * 
+   * @param title 
+   * @param category 
+   * @param description 
+   * @param endDate 
+   * @returns 
+   */
   async createSurvey(
     title: string,
     category: string,
@@ -99,24 +120,19 @@ export class Supabase {
       })
       .select()
       .single();
-
-    if (error) {
-      console.error('Fehler beim Erstellen des Surveys:', error);
-      return null;
-    }
-
+    if (error)return null;
     return data;
   }
 
+  /**
+   * Saves multiple questions to the database.
+   * @param questions 
+   * @returns 
+   */
   async createQuestions(questions: any[]) {
     const { error } = await this.supabase
       .from('questions')
       .insert(questions);
-
-    if (error) {
-      console.error('Fehler beim Speichern der Fragen:', error);
-    }
-
-    return error;
+    if (error) return error;
   }
 }
