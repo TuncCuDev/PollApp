@@ -22,6 +22,20 @@ export class Supabase {
     this.surveys.set(survey)
   }
 
+ async getSurveyById(surveyId: string) {
+  const { data, error } = await this.supabase
+    .from('surveys')
+    .select('id, title, category, description, end_date')
+    .eq('id', surveyId)
+    .single();
+
+  if (error) {
+    return null;
+  }
+
+  return data;
+}
+
   async getQuestionsBySurvey(surveyId: string) {
     const { data: questions, error } = await this.supabase
       .from('questions')
