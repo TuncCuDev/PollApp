@@ -245,6 +245,43 @@ export class Mainpage {
   }
 
   /**
+   * Checks whether the survey name, category, questions, and answers are complete.
+   * @returns 
+   */
+  isSurveyComplete(): boolean {
+    return this.hasSurveyDetails() &&
+      this.areQuestionsComplete();
+  }
+
+  /**
+   * Checks whether the survey name and category have been provided.
+   * @returns 
+   */
+  private hasSurveyDetails(): boolean {
+    return !!this.supabaseName.trim() &&
+      !!this.supabaseCategory.trim();
+  }
+
+  /**
+   * Checks whether all questions and their required answers are completed.
+   * @returns 
+   */
+  private areQuestionsComplete(): boolean {
+  const questions = this.surveyQuestions.slice(0, this.questionCount);
+  for (const question of questions) {
+    if (!question.question.trim()) {
+      return false;
+    }
+    for (let i = 0; i < question.answerCount; i++) {
+      if (!question.answers[i]?.trim()) {
+        return false;
+      }
+    }
+  }
+    return true;
+  }
+
+  /**
    * Saves all questions linked to the survey.
    * @param surveyId 
    * @returns 
