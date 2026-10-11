@@ -77,8 +77,9 @@ export class Survey {
   async ngOnInit() {
     const surveyId = this.route.snapshot.paramMap.get('id');
     if (!surveyId) return;
-    await this.supabaseService.getQuestionsBySurvey(surveyId);
+
     this.currentSurvey = await this.supabaseService.getSurveyById(surveyId);
+      await this.supabaseService.getQuestionsBySurvey(surveyId);
     this.votes = await this.supabaseService.getVotesBySurvey(surveyId);
   }
 

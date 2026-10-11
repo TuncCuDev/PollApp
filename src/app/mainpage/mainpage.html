@@ -1,7 +1,7 @@
 <main>
     <section class="mainpage">
         <header>
-            <img src="./assets/img/logo-header.svg" alt="Logo-img">
+            <img src="/assets/img/logo-header.svg" alt="Logo-img">
         </header>
         <section class="hero">
             <div class="hero_content">
@@ -35,8 +35,8 @@
                                 <label for="surveyName">Survey name</label>
                                 <input #inputField1 id="surveyName" type="text" [(ngModel)]="supabaseName">
                                 <button class="delete_button" (click)="clearInput(inputField1)">
-                                    <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
-                                    <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
+                                    <img class="delete_default" src="/assets/img/delete.svg" alt="Delete-Button">
+                                    <img class="delete_hover" src="/assets/img/deletebutton hover.svg" alt="Delete-Button">
                                 </button>
                             </div>
                             <div class="create_survey_bottom">
@@ -46,17 +46,17 @@
                                     </label>
                                     <input type="date" #inputField2 class="create_survey_date_input" id="endDate" [(ngModel)]="supabaseEndDate">
                                     <button class="delete_button" (click)="clearInput(inputField2)">
-                                        <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
-                                        <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
+                                        <img class="delete_default" src="/assets/img/delete.svg" alt="Delete-Button">
+                                        <img class="delete_hover" src="/assets/img/deletebutton hover.svg" alt="Delete-Button">
                                     </button>
                                 </div>
                                 <div class="create_survey_category" (click)="toggleCategoryDropdown()" [class.create_survey_category_open]="categoryDropdownOpen">
                                     <div class="create_survey_category_button"> 
                                         <span>Choose Category</span>
-                                        <img class="create_survey_category_arrow_default" src="./assets/img/arrow_drop_down.svg" alt="Arrow-Drop-Down">
-                                        <img class="create_survey_category_arrow_hover" src="./assets/img/arrow_drop_down_o.svg" alt="Arrow-Drop-Down">
-                                        <img class="create_survey_category_arrow_open" src="./assets/img/arrow_drop_up.svg" alt="Arrow-Drow-Up">
-                                        <img class="create_survey_category_arrow_open_hover" src="./assets/img/arrow_drop_up_o.svg" alt="Arrow-Drow-Up">
+                                        <img class="create_survey_category_arrow_default" src="/assets/img/arrow_drop_down.svg" alt="Arrow-Drop-Down">
+                                        <img class="create_survey_category_arrow_hover" src="/assets/img/arrow_drop_down_o.svg" alt="Arrow-Drop-Down">
+                                        <img class="create_survey_category_arrow_open" src="/assets/img/arrow_drop_up.svg" alt="Arrow-Drow-Up">
+                                        <img class="create_survey_category_arrow_open_hover" src="/assets/img/arrow_drop_up_o.svg" alt="Arrow-Drow-Up">
                                     </div>
                                     @if (categoryDropdownOpen) {
                                         <div class="create_survey_category_dropdown" (click)="$event.stopPropagation()"> 
@@ -80,8 +80,8 @@
                                     <textarea #inputField5 id="description" [(ngModel)]="supabaseDescription"></textarea>
                                 </div>
                                 <button class="delete_button" (click)="clearInput(inputField5)">
-                                    <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
-                                    <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
+                                    <img class="delete_default" src="/assets/img/delete.svg" alt="Delete-Button">
+                                    <img class="delete_hover" src="/assets/img/deletebutton hover.svg" alt="Delete-Button">
                                 </button>
                             </div>
                         </div>
@@ -93,8 +93,8 @@
                                     <span class="survey_multiple_answers"> More than one answers are possible.</span>
                                     }
                                     <button class="delete_button" (click)="clearInput(inputField3)">
-                                        <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
-                                        <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
+                                        <img class="delete_default" src="/assets/img/delete.svg" alt="Delete-Button">
+                                        <img class="delete_hover" src="/assets/img/deletebutton hover.svg" alt="Delete-Button">
                                     </button>
                                 </div>
                                 <input #inputField3 id="text" class="create_survey_question_input" type="text" value="Which date would work best for you?" [(ngModel)]="surveyQuestions[question].question">
@@ -111,8 +111,8 @@
                                                 <span class="create_survey_answer_letter"> {{ ['A', 'B', 'C', 'D', 'E'][answer] }}. </span>
                                                 <input #inputField4 type="text" [(ngModel)]="surveyQuestions[question].answers[answer]">
                                                 <button class="delete_button" (click)="clearInput(inputField4)">
-                                                    <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
-                                                    <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
+                                                    <img class="delete_default" src="/assets/img/delete.svg" alt="Delete-Button">
+                                                    <img class="delete_hover" src="/assets/img/deletebutton hover.svg" alt="Delete-Button">
                                                 </button>
                                             </div>
                                         }
@@ -170,10 +170,10 @@
                     <div class="surveylist_categories" (click)="toggleDropdown()" [class.surveylist_categories_open]="dropdownOpen">
                         <div class="surveylist_categories_label">
                             <span >Sort by categories</span>
-                            <img class="surveylist_categories_arrow_default" src="./assets/img/arrow_drop_down.svg" alt="Arrow-Drop-Down">
-                            <img class="surveylist_categories_arrow_hover" src="./assets/img/arrow_drop_down_o.svg" alt="Arrow-Drop-Down">
-                            <img class="surveylist_categories_arrow_open" src="./assets/img/arrow_drop_up.svg" alt="Arrow-Drow-Up">
-                            <img class="surveylist_categories_arrow_open_hover" src="./assets/img/arrow_drop_up_o.svg" alt="Arrow-Drow-Up">
+                            <img class="surveylist_categories_arrow_default" src="/assets/img/arrow_drop_down.svg" alt="Arrow-Drop-Down">
+                            <img class="surveylist_categories_arrow_hover" src="/assets/img/arrow_drop_down_o.svg" alt="Arrow-Drop-Down">
+                            <img class="surveylist_categories_arrow_open" src="/assets/img/arrow_drop_up.svg" alt="Arrow-Drow-Up">
+                            <img class="surveylist_categories_arrow_open_hover" src="/assets/img/arrow_drop_up_o.svg" alt="Arrow-Drow-Up">
                         </div>
                         @if (dropdownOpen) {
                             <div class="surveylist_categories_dropdown">

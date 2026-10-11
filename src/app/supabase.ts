@@ -79,7 +79,6 @@ export class Supabase {
       .insert(votes);
 
     if (error) throw error;
-    }
   }
 
   /**
@@ -133,6 +132,6 @@ export class Supabase {
     const { error } = await this.supabase
       .from('questions')
       .insert(questions);
-    if (error) return error;
+    return error;
   }
 }
