@@ -249,12 +249,36 @@
         font-size: 15px;
         font-weight: 800;
         cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
 
-    &_publish:hover {
-        transform: translateY(-2px);
-        box-shadow:0 8px 20px rgba(0, 0, 0, 0.25);
+        &::after {
+            content: "✓";
+            display: inline-block;
+            line-height: 1;
+            width: 0;
+            margin-left: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: opacity 0.2s ease, width 0.2s ease, margin-left 0.2s ease;
+        }
+
+        &:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+
+            &::after {
+                width: 14px;
+                margin-left: 7px;
+                opacity: 1;
+            }
+        }
+
+        &:disabled {
+            cursor: not-allowed;
+        }
     }
 
     &_category_dropdown {
