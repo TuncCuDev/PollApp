@@ -150,29 +150,29 @@
                             }
                             <div class="survey_question_answers">
                                 <label>
-                                    <input type="checkbox" [name]="'question-' + question.id" [checked]="isSelected(question.id, 'a')" (change)="selectAnswer(question.id, 'a')">
-                                    <span>{{ question.answer_a }}</span>
+                                    <input type="checkbox" [name]="'question-' + question.id" [checked]="isSelected(question.id, 'a')" (change)="selectAnswer(question.id, 'a')" >
+                                    <span><strong>A. </strong>{{ question.answer_a }}</span>
                                 </label>
                                 <label>
                                     <input type="checkbox" [name]="'question-' + question.id" [checked]="isSelected(question.id, 'b')" (change)="selectAnswer(question.id, 'b')">
-                                    <span>{{ question.answer_b }}</span>
+                                    <span><strong>B. </strong> {{ question.answer_b }}</span>
                                 </label>
                                 @if (question.answer_c) {
                                     <label>
                                         <input type="checkbox" [name]="'question-' + question.id" [checked]="isSelected(question.id, 'c')" (change)="selectAnswer(question.id, 'c')">
-                                        <span>{{ question.answer_c }}</span>
+                                        <span><strong>C. </strong>{{ question.answer_c }}</span>
                                     </label>
                                 }
                                 @if (question.answer_d) {
                                     <label>
                                           <input type="checkbox" [name]="'question-' + question.id" [checked]="isSelected(question.id, 'd')" (change)="selectAnswer(question.id, 'd')">
-                                          <span>{{ question.answer_d }}</span>
+                                          <span><strong>D. </strong> {{ question.answer_d }}</span>
                                     </label>
                                 }
                                 @if (question.answer_e) {
                                     <label>
                                         <input type="checkbox" [name]="'question-' + question.id" [checked]="isSelected(question.id, 'e')" (change)="selectAnswer(question.id, 'e')">
-                                        <span>{{ question.answer_e }}</span>
+                                        <span><strong>E. </strong> {{ question.answer_e }}</span>
                                     </label>
                                 }
                             </div>

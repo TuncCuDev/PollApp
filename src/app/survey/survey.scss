@@ -386,3 +386,16 @@ input[type="checkbox"]:checked::after {
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
 }
+
+.survey_ended {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.survey_ended input[type="checkbox"] {
+  cursor: not-allowed;
+}
+
+.survey_ended label {
+  cursor: not-allowed;
+}

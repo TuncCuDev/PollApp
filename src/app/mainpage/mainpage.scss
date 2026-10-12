@@ -246,6 +246,7 @@ header {
         width: 100%;
         max-width: 1042px;
         box-sizing: border-box;
+        margin-inline: auto;
     }
 
     &_tabs {
@@ -586,10 +587,12 @@ header {
 
     .surveylist_grid {
         grid-template-columns: 1fr;
-        width: clamp(288px, 108.17px + 68.32vw, 1042px);        height: auto;
+        width: clamp(288px, 108.17px + 68.32vw, 1042px);        
+        height: auto;
         min-height: 150px;
         overflow: visible;
         box-sizing: border-box;
+        margin-inline: auto;
     }
 
     .surveylist {
@@ -605,12 +608,6 @@ header {
         font-size: 50px;
     }
 
-    .surveylist_header {
-        flex-direction: column;
-        align-items: start;
-        gap: 50px;
-    }
-
     .survey_description {
         font-size: 24px;
     }
@@ -618,5 +615,12 @@ header {
     .surveylist_grid_card h3 {
         font-size: 20px;
     }
+}
 
+@media (max-width: 500px) {
+    .surveylist_header {
+        flex-direction: column;
+        align-items: start;
+        gap: 50px;
+    }
 }

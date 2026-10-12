@@ -756,12 +756,6 @@
     .create_survey {
         padding: 25px 10px;
     }
-
-    .create_survey_cancel,
-    .create_survey_close,
-    .create_survey_header_right {
-        display: none;
-    }
 }
 
 @media (max-width: 800px) {
@@ -778,7 +772,7 @@
     }
 
     .survey_header {
-        padding: 50px 10px;
+        padding: 50px 0px;
     }
 
     .survey_results {
@@ -797,10 +791,6 @@
         width: 32px;
         padding-left: 5px;
     }
-
-    .button_close {
-        display: block;
-    }
 }
 
 @media (max-width: 525px) {
@@ -808,6 +798,16 @@
         display: flex;
         flex-direction: column;
         gap: 25px;
+    }
+
+    .create_survey_cancel,
+    .create_survey_close,
+    .create_survey_header_right {
+        display: none;
+    }
+
+    .button_close {
+        display: block;
     }
 
     .create_survey_bottom {
