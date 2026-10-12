@@ -2,7 +2,9 @@
     <section class="survey">
         <header class="survey_header">
             <img class="survey_logo" src="/assets/img/logo header dark.svg" alt="Header-Logo" (click)="goToHome()">
-            <button class="survey_button" (click)="openCreateSurvey()">Create Survey</button>
+            <button class="survey_button" (click)="openCreateSurvey()">
+                <span>Create Survey</span>
+            </button>
             @if (createSurveyOpen()) {
             <div class="overlay">
                 <div class="create_survey">

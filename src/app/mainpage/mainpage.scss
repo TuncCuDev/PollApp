@@ -79,9 +79,10 @@ header {
 
         span {
             position: absolute;
-            left: 20px;
+            left: 10px;
             top: 50%;
             transform: translateY(-50%);
+            white-space: nowrap;
         }
 
         &::after {
@@ -102,7 +103,7 @@ header {
         }
 
         &:hover {
-            width: 170px;
+            width: 160px;
             background-color: colors.$orange;
 
             &::after {
