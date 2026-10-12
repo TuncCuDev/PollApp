@@ -63,7 +63,7 @@ header {
         margin-block-start: 0px;
     }
 
-    &_button {
+   &_button {
         font-family: 'Nokora';
         font-size: 17px;
         font-weight: 700;
@@ -79,32 +79,37 @@ header {
 
         span {
             position: absolute;
-            left: 10px;
+            left: 50%;
             top: 50%;
-            transform: translateY(-50%);
+            transform: translate(-50%, -50%);
             white-space: nowrap;
+            transition: left 0.25s ease;
         }
 
         &::after {
             content: "+";
             position: absolute;
             color: black;
-            width: 15px;
-            height: 15px;
-            right: 20px;
+            width: 19px;
+            height: 19px;
+            right: 12px;
             top: 50%;
             opacity: 0;
             border-radius: 50%;
             border: 2px solid black;
+            box-sizing: border-box;
             transform: translateY(-50%);
-            transition: opacity 0.2s ease, margin-left 0.25s ease;
-            
+            transition: opacity 0.2s ease;
             @include mx.flex-center;
         }
 
         &:hover {
             width: 160px;
             background-color: colors.$orange;
+
+            span {
+                left: 42%;
+            }
 
             &::after {
                 opacity: 1;
