@@ -362,14 +362,17 @@ export class Survey {
    * @returns 
    */
   isSurveyComplete(): boolean {
-    if (!this.supabaseName.trim()) {
-      return false;
-    }
-    if (!this.supabaseCategory.trim()) {
-      return false;
-    }
-    return this.areQuestionsComplete();
+  const questions = this.questions();
+
+  if (!questions.length) {
+    return false;
   }
+
+  return questions.every(question => {
+    const selected = this.selectedAnswers[question.id];
+    return Array.isArray(selected) && selected.length > 0;
+  });
+}
 
   /**
    * Checks whether the survey name and category are provided.
