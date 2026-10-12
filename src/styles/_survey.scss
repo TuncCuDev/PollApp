@@ -37,6 +37,7 @@
         display: flex;
         flex-direction: column;
         gap: 8px;
+        padding-right: 20px
     }
 
     &_status {
@@ -112,7 +113,7 @@
         background-color: rgba(142, 112, 153, 0.16);
         padding: 35px;
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         border-radius: 4px 70px 4px 4px;
         flex: 1;
         min-height: 0;
@@ -127,7 +128,10 @@
     }
 
     &_left {
-        width: 450px;
+        max-width: 450px;
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
     }
 
     &_bottom {
@@ -155,8 +159,12 @@
 
     &_field {
         display: grid;
-        grid-template-columns: 1fr auto;
+        grid-template-columns: minmax(0, 1fr) auto;
         column-gap: 10px;
+        width: clamp(220px, 100%, 427px);
+        max-width: 427px;
+        min-width: 0;
+        box-sizing: border-box;
     }
 
     &_field label {
@@ -165,7 +173,10 @@
     }
 
     &_date_input {
-        width: 220px !important;
+        width: 100%;
+        max-width: 220px;
+        min-width: 0;
+        box-sizing: border-box;
     }
 
     &_field label,
@@ -358,7 +369,8 @@
     &_question {
         margin-top: 35px;
         padding-right: 20px;
-        width: 450px;
+        max-width: 450px;
+        width: 100%;
     }
 
     &_question_header {
@@ -393,10 +405,6 @@
         justify-content: space-between;
     }
 
-    &_answers_header h4 {
-        font-size: 16px;
-    }
-
     &_checkbox {
         display: flex;
         align-items: center;
@@ -415,6 +423,7 @@
         display: flex;
         align-items: center;
         margin-bottom: 12px;
+        gap: 10px;
     }
 
     &_answer_letter {
@@ -439,11 +448,9 @@
 
     &_field input {
         width: 100%;
+        min-width: 0;
+        max-width: 100%;
         box-sizing: border-box;
-    }
-
-    &_date_input {
-        width: 220px !important;
     }
 
     &_field label span {
@@ -451,10 +458,12 @@
         opacity: 0.65;
     }
 
-
     &_field input,
     &_field select {
-        width: 425px;
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
         height: 35px;
         box-sizing: border-box;
         padding: 0 14px;
@@ -483,10 +492,12 @@
             align-items: center;
             gap: 25px;
             cursor: pointer;
+            font-family: 'Mulish';
+            font-weight: 400;
 
             & span {
                 color: white;
-                font-size: 18px;
+                font-size: 16px;
             }
         }
 
@@ -546,6 +557,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
+    padding-right: 8px;
 
     &::before {
         content: '';
@@ -626,6 +638,79 @@
     color: rgba(53, 39, 58, 1);
 }
 
+
+
+
+.create_survey_description_field {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: auto auto;
+    column-gap: 10px;
+    row-gap: 5px;
+}
+
+.create_survey_description_field label {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.create_survey_description_field .delete_button {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+}
+
+.create_survey_description_field .create_survey_description {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    width: 100%;
+}
+
+.create_survey_description_field textarea {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+.create_survey_header_left {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+}
+
+.create_survey_status {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.button_close {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+    display: none;
+    display: none; 
+    width: 34px;
+    height: 28px;
+    flex-shrink: 0; 
+    background-color: rgba(255, 183, 112, 0.3); 
+    color: white; 
+    border: none; 
+    border-radius: 6px; 
+    font-family: 'Mulish'; 
+    font-size: 14px; 
+    font-weight: 700; 
+    cursor: pointer; 
+
+    &:hover {
+        color: rgb(255 174 95 / 55%);
+    }
+}
+
+.create_survey_header_left h2 {
+    grid-column: 1 / -1;
+    grid-row: 2;
+}
+
 @keyframes successSlide {
     0% {
         transform: translateX(120%);
@@ -645,5 +730,210 @@
     100% {
         transform: translateX(120%);
         opacity: 0;
+    }
+}
+
+@media (max-width: 1100px ) {
+    .create_survey_content {
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: 25px;
+        padding: 25px 10px;
+    }
+
+    .survey_content {
+        flex-direction: column;
+    }
+
+    .survey_results {
+        width: 100%;
+        max-width: 325px;
+        min-width: 0;
+        height: auto;
+    }
+}
+
+@media (max-width: 775px) {
+    .create_survey {
+        padding: 25px 10px;
+    }
+
+    .create_survey_cancel,
+    .create_survey_close,
+    .create_survey_header_right {
+        display: none;
+    }
+}
+
+@media (max-width: 800px) {
+    .survey_questions {
+        grid-template-columns: 1fr;
+    }
+
+    .survey_card {
+        margin: 50px 10px;
+    }
+
+    .survey_content {
+        padding: 0px 10px;
+    }
+
+    .survey_header {
+        padding: 50px 10px;
+    }
+
+    .survey_results {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 325px;
+        max-width: 100%;
+    }
+
+    .survey_question_answers {
+        line-height: 1.4;
+    }
+
+    .survey_result_percent {
+        width: 32px;
+        padding-left: 5px;
+    }
+
+    .button_close {
+        display: block;
+    }
+}
+
+@media (max-width: 525px) {
+    .create_survey_bottom {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .create_survey_bottom {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .create_survey_field {
+        width: 100%;
+        order: 2;
+        box-sizing: border-box;
+        grid-template-rows: auto auto auto;
+        row-gap: 5px;
+    }
+
+    .create_survey_field label {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .create_survey_field input {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .survey_button {
+        display: none;
+    }
+
+    .survey_title {
+        font-size: 48px;
+    }
+
+    .survey_close { 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+    }
+
+    #display_grid > label {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    #display_grid .delete_button {
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: end;
+        align-self: start;
+    }
+
+    #display_grid .create_survey_description {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        width: 100%;
+    }
+
+    #display_grid textarea {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .create_survey_answer {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-rows: auto auto;
+        column-gap: 0px;
+        row-gap: 0px;
+        align-items: center;
+        margin-bottom: 4px;
+    }
+
+    .create_survey_answers_header {
+        margin-bottom: -15px;
+    }
+
+    .create_survey_answer_letter {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .create_survey_answer .delete_button {
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: end;
+        padding-right: 20px
+    }
+
+    .create_survey_answer input {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+
+     .create_survey_description_field {
+        width: 100%;
+        max-width: 100%;
+        grid-template-columns: minmax(0, 1fr) auto;
+    }
+
+    .create_survey_content {
+        row-gap: 5px;
+    }
+
+    .create_survey_question {
+        margin-top: 0px;
+    }
+
+    .create_survey_next_question {
+        justify-self: center;
+    }
+
+    .create_survey_footer {
+        justify-content: center;
+    }
+
+    .delete_button {
+        padding-right: 20px;
+    }
+
+    .create_survey_add_answer {
+        margin-inline: auto;
     }
 }

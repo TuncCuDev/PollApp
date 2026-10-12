@@ -170,7 +170,6 @@ export class Survey {
     this.router.navigate(['/'])
   }
 
-
   /**
    * Selects or deselects an answer, allowing multiple selections when enabled.
    * @param questionId 
