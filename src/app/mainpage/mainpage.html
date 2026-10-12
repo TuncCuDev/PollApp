@@ -90,7 +90,7 @@
                                 <div class="create_survey_question_header">
                                     <h3>{{question + 1}}. Question </h3>
                                     @if (surveyQuestions[question].multiple_answers) {
-                                    <span class="survey_multiple_answers"> More than one answers are possible.</span>
+                                        <span class="survey_multiple_answers"> More than one answers are possible.</span>
                                     }
                                     <button class="delete_button" (click)="clearInput(inputField3)">
                                         <img class="delete_default" src="/assets/img/delete.svg" alt="Delete-Button">
@@ -150,7 +150,7 @@
                                 </header>
                                 <h3>{{ survey.title }}</h3>
                                 <footer>
-                                    @if (getDaysLeft(survey.end_date) < 0) {
+                                    @if (getDaysLeft(survey.end_date) < 1) {
                                         <time>Ended</time>
                                     } @else {
                                         <time>Ends in {{ getDaysLeft(survey.end_date) }} Days</time>
@@ -204,7 +204,7 @@
                                 </header>
                                 <h3>{{ survey.title }}</h3>
                                 <footer>
-                                    @if (getDaysLeft(survey.end_date) < 0) {
+                                    @if (getDaysLeft(survey.end_date) < 1) {
                                         <time>Ended</time>
                                     } @else {
                                         <time>Ends in {{ getDaysLeft(survey.end_date) }} Days</time>
