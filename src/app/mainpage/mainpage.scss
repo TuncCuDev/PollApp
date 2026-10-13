@@ -61,8 +61,7 @@ header {
         width: 100%;
         max-width: 650px;
         margin-block-start: 0px;
-        margin-inline: auto;
-
+        margin-inline: 0;
     }
 
    &_button {
@@ -180,6 +179,9 @@ header {
         font-weight: 500;
         color: colors.$white;
         font-size: 32px;
+        width: 100%;
+        max-width: 1042px;
+        margin-inline: auto;
     }
 
     &_line {
