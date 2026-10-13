@@ -30,7 +30,8 @@ export class Survey {
   supabaseEndDate = '';
   supabaseCategory = '';
   successMessage = signal(false);
-  createSurveyOpen = signal(false)
+  createSurveyOpen = signal(false);
+  resultsOpen = true;
 
   currentSurvey: {
     id: string;

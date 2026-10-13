@@ -187,59 +187,68 @@
               </div>
           </div>
           <div class="survey_right">
-              <div class="survey_results">
-                  <h3 class="survey_results_top"> Survey results <span>LIVE</span></h3>
-                  <div class="survey_results_questions">
-                  @for (question of questions(); track question.id) {
-                      <article class="survey_result_question">
-                          <div class="survey_result_question_title">
-                              <span class="survey_result_question_number"> {{ question.question_number }}. </span>
-                              <h4>{{ question.question }} </h4>
-                          </div>
-                          <div class="survey_result_answer">
-                              <span class="survey_result_letter">A</span>
-                              <div class="survey_result_bar">
-                                  <div class="survey_result_bar_fill" [style.width.%]="getPercentage(question.id, 'a')"></div>
-                              </div>
-                              <span class="survey_result_percent">{{getPercentage(question.id, 'a')}} %</span>
-                          </div>
-                          <div class="survey_result_answer">
-                              <span class="survey_result_letter">B</span>
-                              <div class="survey_result_bar">
-                                  <div class="survey_result_bar_fill yellow" [style.width.%]="getPercentage(question.id, 'b')"></div>
-                              </div>
-                              <span class="survey_result_percent">{{ getPercentage(question.id, 'b') }} %</span>
-                          </div>
-                          @if (question.answer_c) {
-                              <div class="survey_result_answer">
-                                  <span class="survey_result_letter">C</span>
-                                  <div class="survey_result_bar">
-                                      <div class="survey_result_bar_fill gray" [style.width.%]="getPercentage(question.id, 'c')"></div>
-                                  </div>
-                                  <span class="survey_result_percent">{{ getPercentage(question.id, 'c') }} %</span>
-                              </div>
-                          }
-                          @if (question.answer_d) {
-                              <div class="survey_result_answer">
-                                  <span class="survey_result_letter">D</span>
-                                  <div class="survey_result_bar">
-                                      <div class="survey_result_bar_fill" [style.width.%]="getPercentage(question.id, 'd')"></div>
-                                  </div>
-                                <span class="survey_result_percent">{{ getPercentage(question.id, 'd') }} %</span>
-                              </div>
-                          }
-                          @if (question.answer_e) {
-                              <div class="survey_result_answer">
-                                  <span class="survey_result_letter">E</span>
-                                  <div class="survey_result_bar">
-                                      <div class="survey_result_bar_fill yellow" [style.width.%]="getPercentage(question.id, 'e')"></div>
-                                  </div>
-                                  <span class="survey_result_percent">{{ getPercentage(question.id, 'e') }} %</span>
-                              </div>
-                          }
-                      </article>
-                  }
-                </div>
+              <div class="survey_results" [class.is_closed]="!resultsOpen">
+                <button type="button" class="survey_results_toggle" (click)="resultsOpen = !resultsOpen">
+                    <span>{{resultsOpen ? 'Close results' : 'Open results'}}</span>
+                    <span class="survey_results_arrow">
+                        <img src="./assets/img/arrow_drop_downb.svg" alt="Drop-Down">
+                    </span>
+                </button>
+                @if (resultsOpen) {
+                    <h3 class="survey_results_top"> Survey results <span>LIVE</span></h3>
+                    <div class="survey_results_questions">
+                    @for (question of questions(); track question.id) {
+                        <article class="survey_result_question">
+                            <div class="survey_result_question_title">
+                                <span class="survey_result_question_number"> {{ question.question_number }}. </span>
+                                <h4>{{ question.question }} </h4>
+                            </div>
+                            <div class="survey_result_answer">
+                                <span class="survey_result_letter">A</span>
+                                <div class="survey_result_bar">
+                                    <div class="survey_result_bar_fill" [style.width.%]="getPercentage(question.id, 'a')"></div>
+                                </div>
+                                <span class="survey_result_percent">{{getPercentage(question.id, 'a')}} %</span>
+                            </div>
+                            <div class="survey_result_answer">
+                                <span class="survey_result_letter">B</span>
+                                <div class="survey_result_bar">
+                                    <div class="survey_result_bar_fill yellow" [style.width.%]="getPercentage(question.id, 'b')"></div>
+                                </div>
+                                <span class="survey_result_percent">{{ getPercentage(question.id, 'b') }} %</span>
+                            </div>
+                            @if (question.answer_c) {
+                                <div class="survey_result_answer">
+                                    <span class="survey_result_letter">C</span>
+                                    <div class="survey_result_bar">
+                                        <div class="survey_result_bar_fill gray" [style.width.%]="getPercentage(question.id, 'c')"></div>
+                                    </div>
+                                    <span class="survey_result_percent">{{ getPercentage(question.id, 'c') }} %</span>
+                                </div>
+                            }
+                            @if (question.answer_d) {
+                                <div class="survey_result_answer">
+                                    <span class="survey_result_letter">D</span>
+                                    <div class="survey_result_bar">
+                                        <div class="survey_result_bar_fill" [style.width.%]="getPercentage(question.id, 'd')"></div>
+                                    </div>
+                                    <span class="survey_result_percent">{{ getPercentage(question.id, 'd') }} %</span>
+                                </div>
+                            }
+                            @if (question.answer_e) {
+                                <div class="survey_result_answer">
+                                    <span class="survey_result_letter">E</span>
+                                    <div class="survey_result_bar">
+                                        <div class="survey_result_bar_fill yellow" [style.width.%]="getPercentage(question.id, 'e')"></div>
+                                    </div>
+                                    <span class="survey_result_percent">{{ getPercentage(question.id, 'e') }} %</span>
+                                </div>
+                            }
+                        </article>
+                    }
+                    </div>
+                }
+                
             </div>
         </div>
     </section>

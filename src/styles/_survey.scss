@@ -774,6 +774,11 @@
         min-width: 0;
         height: auto;
     }
+
+    .survey_results.is_closed {
+        height: auto;
+        padding: 10px 25px;
+    }
 }
 
 @media (max-width: 775px) {

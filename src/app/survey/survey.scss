@@ -443,3 +443,43 @@ input[type="checkbox"]:checked::after {
 .survey_ended label {
   cursor: not-allowed;
 }
+
+.survey_results_toggle {
+    display: none;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px 0;
+    border: none;
+    background: transparent;
+    font-family: 'Mulish';
+    font-size: 16px;
+    font-weight: 700;
+    gap: 5px;
+    padding-left: 20px;
+    padding-bottom: 15px;
+    cursor: pointer;
+}
+
+.survey_results_arrow {
+    display: inline-block;
+    font-size: 22px;
+    transition: transform 0.25s ease;
+    align-items: center;
+    justify-content: center;
+}
+
+.survey_results_arrow.is_open {
+    transform: rotate(180deg);
+}
+
+.survey_results_arrow img {
+    height: 8px;
+    width: 15px;
+    display: block;
+}
+@media (max-width: 1100px ) {
+    .survey_results_toggle {
+        display: flex;
+    }
+}
