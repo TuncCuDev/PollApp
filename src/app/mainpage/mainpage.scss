@@ -61,6 +61,8 @@ header {
         width: 100%;
         max-width: 650px;
         margin-block-start: 0px;
+        margin-inline: auto;
+
     }
 
    &_button {
@@ -171,7 +173,6 @@ header {
         font-weight: 400;
         font-size: 72px;
         color: colors.$orange;
-       
     }
 
     &_description {
@@ -182,8 +183,12 @@ header {
     }
 
     &_line {
-        @include mx.flex-evenly;
         gap: 25px;
+        width: 100;
+        max-width: 1042px;
+        margin-inline: auto;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
     &_box {
@@ -191,6 +196,8 @@ header {
         border-top-right-radius: 30%;
         flex: 0 0 320px;
         height: 310px;
+        min-width: 0;
+        width: 100%;
 
         &-inside {
             height: 100%;
@@ -238,8 +245,6 @@ header {
 .surveylist {
     width: 100%;
     padding-top: 35px;
-    min-height: 100vh;
-    height: auto;
     box-sizing: border-box;
     background-color: colors.$purple;
 
@@ -248,9 +253,9 @@ header {
         justify-content: space-between;
         align-items: center;
         padding-bottom: 30px;
-        padding-right: 80px;
         width: 100%;
         max-width: 1042px;
+        margin-inline: auto;
         box-sizing: border-box;
         margin-inline: auto;
     }
@@ -289,13 +294,13 @@ header {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-around;
+        justify-content: center;
         background-color: rgba(128, 128, 128, 0.21);
         border-radius: 4px 50px 4px 4px;
-        padding-top: 15px;
-        padding-bottom: 45px;
+        padding-top: 0;
+        padding-bottom: 0;
+        box-sizing: border-box;
       
-
         & h3 {
             color: colors.$s-orange;
             font-family: 'NerkoOne';
@@ -324,10 +329,11 @@ header {
         flex-direction: column;
         align-items: flex-start;
         gap: 5px;
-        height: 24px;
+        min-height: 24px;
         line-height: 24px;
         position: relative;
         padding: 5px 10px;
+        box-sizing: border-box;
 
         &_open {
             background-color: rgba(217, 217, 217, 0.12);
@@ -375,7 +381,8 @@ header {
         &_dropdown {
             position: absolute;
             top: 100%;
-            left: 0;
+            right: 0;
+            left: auto;
             width: 225px;
             display: flex;
             flex-direction: column;
@@ -391,6 +398,7 @@ header {
             align-items: center;
             gap: 10px;
             cursor: pointer;
+            white-space: nowrap;
         }
 
         &_selected {
@@ -427,13 +435,16 @@ header {
     &_grid {
         width: min(100%, 1042px);
         max-width: 100%;
-        height: auto;
+        height: 420px;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-auto-rows: 130px;
         column-gap: 15px;
         row-gap: 15px;
         box-sizing: border-box;
+        margin-inline: auto;
+        overflow-y: auto;
+        overflow-x: hidden;
 
         &::-webkit-scrollbar {
             width: 28px;
@@ -497,36 +508,17 @@ header {
     }
 }
 
-@media (max-width: 1250px) {
-    .mainpage {
-        padding: 75px 10px;
-    }
+@media (max-width: 1050px) {
     .hero {
-        display: flex;
-        flex-direction: column !important;
 
         &_image {
             height: 250px;
             width: 350px;
-            order: 2;
             padding-bottom: 25px;
         }
 
-        &_content {
-            display: contents;
-        }
-
         &_description {
-            order: 3;
             padding-bottom: 30px;
-        }
-
-        &_button {
-            order: 4;
-        }
-
-        &_title {
-            margin-block-end: -50px;
         }
     }
 
@@ -560,20 +552,24 @@ header {
         }
 
         &_line {
-            width: 100%;
-            max-width: 100%;
-            min-width: 0;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: stretch;
+            margin-inline: 0;
             box-sizing: border-box;
-
             flex-wrap: nowrap;
             overflow-x: auto;
             overflow-y: hidden;
-
             -webkit-overflow-scrolling: touch;
             scrollbar-width: thin;
 
-            > * {
-                flex: 0 0 auto;
+            > .survey_box {
+                flex: 0 0 250px;
+                width: 250px;
+                min-width: 250px;
+                height: 220px;
+                box-sizing: border-box;
             }
 
             &::-webkit-scrollbar {
@@ -602,14 +598,44 @@ header {
     }
 
     .surveylist {
+        background-color: colors.$purple;
         min-height: 100vh;
         height: auto;
-        background-color: colors.$purple;
     }
-
 }
 
 @media (max-width: 750px) {
+    .hero {
+        display: flex;
+        flex-direction: column !important;
+
+           &_image {
+            order: 2;
+            padding-bottom: 25px;
+        }
+
+        &_content {
+            display: contents;
+        }
+
+        &_description {
+            order: 3;
+            padding-bottom: 30px;
+        }
+
+        &_button {
+            order: 4;
+        }
+
+        &_title {
+            margin-block-end: -50px;
+        }
+    }
+
+    .mainpage {
+        padding: 75px 10px;
+    }
+    
     .survey_title {
         font-size: 50px;
     }
