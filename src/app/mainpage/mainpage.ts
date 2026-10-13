@@ -236,6 +236,7 @@ export class Mainpage {
     if (error) return;
 
     this.showPublishSuccess();
+    this.router.navigate(['/']);
   }
 
   /**
@@ -342,7 +343,7 @@ export class Mainpage {
    */
   private showPublishSuccess() {
     this.successMessage.set(true);
-    setTimeout(() => this.finishPublish(), 8000);
+    setTimeout(() => this.finishPublish(), 4000);
   }
 
   /**

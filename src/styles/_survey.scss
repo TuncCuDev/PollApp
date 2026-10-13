@@ -1,4 +1,6 @@
 @use './colors' as colors;
+@use './layout' as mx;
+@use './fonts';
 
 .overlay {
     position: fixed;

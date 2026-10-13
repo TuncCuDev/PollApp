@@ -299,7 +299,7 @@ export class Survey {
     const saved = await this.saveQuestions(questionsToSave);
     if (!saved) return;
     this.successMessage.set(true);
-    setTimeout(() => this.finishPublish(), 8000);
+    setTimeout(() => this.finishPublish(), 4000);
   }
 
   /**
@@ -341,6 +341,7 @@ export class Survey {
     this.successMessage.set(false);
     this.resetSurveyForm();
     this.createSurveyOpen.set(false);
+    this.router.navigate(['/']);
   }
 
   /**
