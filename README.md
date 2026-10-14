@@ -1,39 +1,46 @@
-PollApp
+# PollApp
 
-PollApp is a web application that allows users to create polls, vote on existing polls, and view the results. The application provides a simple and intuitive way to collect opinions and compare preferences.
+PollApp is a web application that allows users to create polls, vote on existing polls, and view the results. It provides a simple and intuitive way to collect opinions and compare preferences.
 
-Features
+---
 
-Create Polls: Create polls with a title, description, category, and multiple answer options.
+## Features
 
-Manage Polls: Organize polls by category and define an end date.
+- **Create Polls:** Create polls with a title, description, category, and multiple answer options.
+- **Manage Polls:** Organize polls by category and define an end date.
+- **Vote:** Select an answer option and submit your vote.
+- **View Results:** See poll results and compare votes.
+- **Browse Categories:** Explore polls in categories such as Health & Welness, Gaming & Entertainment, Education & Learning, Technology & Innovation, Lifestyle & Reference and Team Activites.
 
-Vote: Select an answer option and submit your vote.
+---
 
-View Results: See the results of polls and compare the votes.
+## How It Works
 
-Browse Categories: Explore polls in categories such as Health & Welness, Gaming & Entertainment, Education & Learning, Technology & Innovation, Lifestyle & Reference and Team Activites.
+**1. Create a Poll**  
+Enter the poll details, choose a category, add answer options, and set an end date.
 
-How It Works
+**2. Publish**  
+Save the poll and its questions to the database.
 
-Create a Poll: Enter the poll details, choose a category, add answer options, and set an end date.
+**3. Participate**  
+Open an existing poll and select your preferred answer.
 
-Publish: Save the poll and its questions to the database.
+**4. View Results**  
+Check the voting results to see which options are most popular.
 
-Participate: Open an existing poll and select your preferred answer.
+---
 
-View Results: Check the voting results to see which options are most popular.
+## Technologies
 
-Technologies
+- **Angular** – Frontend framework
+- **TypeScript** – Application logic
+- **SCSS** – Styling and layout
+- **Supabase** – Database and data storage
 
-Angular – Frontend framework
+---
 
-TypeScript – Application logic
-
-SCSS – Styling and layout
-
-Supabase – Database and data storage
-
-Purpose
+## Purpose
 
 PollApp makes it easy to create surveys, share opinions, and collect feedback in one place.
+
+
