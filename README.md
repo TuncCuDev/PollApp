@@ -30,6 +30,38 @@ Check the voting results to see which options are most popular.
 
 ---
 
+## Installation and Setup
+
+**Prerequisites**
+
+**Make sure you have installed:**
+Node.js
+npm (included with Node.js)
+Angular CLI
+
+**Run the Application Locally**
+
+**1. Clone the repository**
+git clone https://github.com/TuncCuDev/PollApp.git
+
+**2. Navigate to the project directory**
+cd PollApp
+
+**3. Install dependencies**
+npm install
+
+**4. Start the Angular development server**
+ng serve
+
+**5. Open the application**
+Visit http://localhost:4200 in your browser.
+
+**Supabase Configuration**
+PollApp uses Supabase to store poll data. Configure your Supabase project credentials according to the project's existing configuration before running the application.
+
+---
+
+
 ## Technologies
 
 - **Angular** – Frontend framework
