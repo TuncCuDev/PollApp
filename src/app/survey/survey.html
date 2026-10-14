@@ -23,7 +23,7 @@
                         <div class="create_survey_left">
                             <div class="create_survey_field">
                                 <label for="surveyName">Survey name</label>
-                                <input #inputField1 id="surveyName" type="text" [(ngModel)]="supabaseName">
+                                <input #inputField1 id="surveyName" type="text" [(ngModel)]="supabaseName" minlength="3" maxlength="100" required>
                                 <button class="delete_button" (click)="clearInput(inputField1)">
                                     <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
                                     <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
@@ -84,7 +84,7 @@
                                         <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
                                     </button>
                                 </div>
-                                <input #inputField3 id="text" class="create_survey_question_input" type="text" value="Which date would work best for you?" [(ngModel)]="surveyQuestions[question].question">
+                                <input #inputField3 id="text" class="create_survey_question_input" type="text" value="Which date would work best for you?" [(ngModel)]="surveyQuestions[question].question" minlength="5" maxlength="200" required>
                                     <div class="create_survey_answers">
                                         <div class="create_survey_answers_header">
                                             <h4>Answers</h4>
@@ -96,7 +96,7 @@
                                         @for (answer of [0, 1, 2, 3, 4].slice(0, surveyQuestions[question].answerCount); track answer) {
                                             <div class="create_survey_answer">
                                                 <span class="create_survey_answer_letter"> {{ ['A', 'B', 'C', 'D', 'E'][answer] }}. </span>
-                                                <input #inputField4 type="text" [(ngModel)]="surveyQuestions[question].answers[answer]">
+                                                <input #inputField4 type="text" [(ngModel)]="surveyQuestions[question].answers[answer]" required>
                                                 <button class="delete_button" (click)="clearInput(inputField4)">
                                                     <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
                                                     <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">

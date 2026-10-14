@@ -226,9 +226,7 @@ export class Survey {
 
     try {await this.supabaseService.saveVotes(surveyId, this.selectedAnswers);
       this.router.navigate(['/']);
-      } catch (error) {
-      console.error('Survey konnte nicht gespeichert werden:', error);
-    }
+      } catch (error) { }
   }
 
   /**
@@ -247,6 +245,7 @@ export class Survey {
     if (totalVotes === 0) {return 0;}
     return Math.round((currentAnswerCount / totalVotes) * 100);
   }
+  
   
   /**
    * Adds a new question, up to a maximum of four questions.
@@ -288,12 +287,11 @@ export class Survey {
    * @returns 
    */
   async saveSurvey() {
-    const survey = await this.supabaseService.createSurvey(
-      this.supabaseName,
-      this.supabaseCategory,
-      this.supabaseDescription,
-      this.supabaseEndDate
-    );
+    const errors = this.validateSurvey();
+    if (errors.length > 0) {alert(errors.join('\n'));
+      return;
+    }
+    const survey = await this.supabaseService.createSurvey(this.supabaseName, this.supabaseCategory, this.supabaseDescription, this.supabaseEndDate);
     if (!survey) return;
     const questionsToSave = this.buildQuestionsToSave(survey.id);
     const saved = await this.saveQuestions(questionsToSave);
@@ -393,6 +391,26 @@ export class Survey {
       }
     }
     return true;
+  }
+
+  /**
+   * Checks if survey is valid.
+   * @returns 
+   */
+  validateSurvey(): string[] {
+    const errors: string[] = [];
+    if (this.supabaseName.trim().length < 3) {errors.push('Der Survey-Name muss mindestens 3 Zeichen haben.');}
+    if (!this.newSurveyCategory) {errors.push('Bitte wähle eine Kategorie aus.');}
+    if (this.supabaseDescription.length > 500) {errors.push('Die Beschreibung darf maximal 500 Zeichen haben.');}
+    for (let i = 0; i < this.questionCount; i++) {
+      const question = this.surveyQuestions[i];
+      if (!question.question.trim() || question.question.trim().length < 5) {errors.push(`Frage ${i + 1}: Bitte mindestens 5 Zeichen eingeben.`);}
+      for (let j = 0; j < question.answerCount; j++) {
+        if (!question.answers[j]?.trim()) {errors.push(`Frage ${i + 1}: Antwort ${j + 1} fehlt.`);}
+      }
+      if (question.answerCount < 2) {errors.push(`Frage ${i + 1}: Du brauchst mindestens 2 Antworten.`);}
+    }
+    return errors;
   }
 }
 
