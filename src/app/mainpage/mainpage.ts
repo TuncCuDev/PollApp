@@ -262,14 +262,14 @@ export class Mainpage {
    * Creates a new question with empty fields, five possible answers, multiple answers disabled, and two answer fields by default.
    */
   emptyQuestion() {
-  return {
-    question: '',
-    description: '',
-    answers: ['', '', '', '', ''],
-    multiple_answers: false,
-    answerCount: 2
-  };
-}
+    return {
+      question: '',
+      description: '',
+      answers: ['', '', '', '', ''],
+      multiple_answers: false,
+      answerCount: 2
+    };
+  }
 
   /**
    * Coordinates saving the survey and its questions to Supabase.
