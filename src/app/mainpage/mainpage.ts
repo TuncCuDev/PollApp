@@ -229,9 +229,13 @@ export class Mainpage {
    * @returns 
    */
   async saveSurvey() {
+    const errors = this.validateSurvey();
+
+    if (errors.length > 0) {alert(errors.join('\n'));
+      return;
+    }
     const survey = await this.createSurveyRecord();
     if (!survey) return;
-
     const error = await this.saveSurveyQuestions(survey.id);
     if (error) return;
 
@@ -250,15 +254,6 @@ export class Mainpage {
       this.supabaseDescription,
       this.supabaseEndDate
     );
-  }
-
-  /**
-   * Checks whether the survey name, category, questions, and answers are complete.
-   * @returns 
-   */
-  isSurveyComplete(): boolean {
-    return this.hasSurveyDetails() &&
-      this.areQuestionsComplete();
   }
 
   /**
@@ -368,5 +363,25 @@ export class Mainpage {
     this.answerCount = 2;
     this.surveyQuestions = [this.emptyQuestion()];
     this.categoryDropdownOpen = false;
-}
+  }
+
+  /**
+   * Checks if survey is valid.
+   * @returns 
+   */
+  validateSurvey(): string[] {
+    const errors: string[] = [];
+    if (this.supabaseName.trim().length < 3) {errors.push('Der Survey-Name muss mindestens 3 Zeichen haben.');}
+    if (!this.newSurveyCategory) {errors.push('Bitte wähle eine Kategorie aus.');}
+    if (this.supabaseDescription.length > 500) {errors.push('Die Beschreibung darf maximal 500 Zeichen haben.');}
+    for (let i = 0; i < this.questionCount; i++) {
+      const question = this.surveyQuestions[i];
+      if (!question.question.trim() || question.question.trim().length < 5) {errors.push(`Frage ${i + 1}: Bitte mindestens 5 Zeichen eingeben.`);}
+      for (let j = 0; j < question.answerCount; j++) {
+        if (!question.answers[j]?.trim()) {errors.push(`Frage ${i + 1}: Antwort ${j + 1} fehlt.`);}
+      }
+      if (question.answerCount < 2) {errors.push(`Frage ${i + 1}: Du brauchst mindestens 2 Antworten.`);}
+    }
+    return errors;
+  }
 }
