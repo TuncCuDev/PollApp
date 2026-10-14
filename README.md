@@ -1,36 +1,39 @@
-# PollApp
+PollApp
 
-PollApp is a simple and user-friendly application for creating, managing, and participating in polls across different categories.
+PollApp is a web application that allows users to create polls, vote on existing polls, and view the results. The application provides a simple and intuitive way to collect opinions and compare preferences.
 
-## Purpose
+Features
 
-The purpose of PollApp is to make it easy to collect opinions, compare preferences, and visualize voting results in an organized way.
+Create Polls: Create polls with a title, description, category, and multiple answer options.
 
-## Categories
+Manage Polls: Organize polls by category and define an end date.
 
-Polls can be organized into different categories, for example:
+Vote: Select an answer option and submit your vote.
 
-- 🎮 Gaming
-- 🎬 Movies & TV
-- 🎵 Music
-- ⚽ Sports
-- 💻 Technology
-- 🍔 Food
-- 🌍 General
+View Results: See the results of polls and compare the votes.
 
-## Usage
+Browse Categories: Explore polls in categories such as Health & Welness, Gaming & Entertainment, Education & Learning, Technology & Innovation, Lifestyle & Reference and Team Activites.
 
-Users can:
+How It Works
 
-- Create new polls
-- Choose a category
-- Add multiple answer options
-- Vote in existing polls
-- View poll results
-- Browse polls by category
+Create a Poll: Enter the poll details, choose a category, add answer options, and set an end date.
 
-PollApp can be used for casual surveys, community discussions, feedback, and collecting opinions.
+Publish: Save the poll and its questions to the database.
 
-## Goal
+Participate: Open an existing poll and select your preferred answer.
 
-The goal of PollApp is to provide a simple platform where users can quickly create polls and share their opinions.
+View Results: Check the voting results to see which options are most popular.
+
+Technologies
+
+Angular – Frontend framework
+
+TypeScript – Application logic
+
+SCSS – Styling and layout
+
+Supabase – Database and data storage
+
+Purpose
+
+PollApp makes it easy to create surveys, share opinions, and collect feedback in one place.
