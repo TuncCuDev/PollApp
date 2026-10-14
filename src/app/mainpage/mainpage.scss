@@ -175,22 +175,25 @@ header {
 
     &_line {
         gap: 25px;
-        width: 100;
+        width: 100%;
         max-width: 1042px;
         margin-inline: auto;
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(3, 320px);
     }
 
     &_box {
         background-color: white;
         border-top-right-radius: 30%;
-        flex: 0 0 320px;
+        width: 320px;
+        min-width: 320px;
+        max-width: 320px;
         height: 310px;
-        min-width: 0;
-        width: 100%;
+        flex: 0 0 320px;
+        box-sizing: border-box;
 
         &-inside {
+            width: 100%;
             height: 100%;
             box-sizing: border-box;
             padding: 50px 45px;
@@ -309,7 +312,7 @@ header {
         }
     }
 
-    
+
     &_categories,
     &_category {
         font-family: 'Mulish';
@@ -499,6 +502,40 @@ header {
     }
 }
 
+@media (max-width: 1230px) {
+    .survey_line {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: stretch;
+        margin-inline: 0;
+        box-sizing: border-box;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+            
+        > .survey_box {
+            flex: 0 0 250px;
+            width: 250px;
+            min-width: 250px;
+            max-width: 250px;
+            height: 230px;
+            box-sizing: border-box;
+        }
+
+        &::-webkit-scrollbar {
+            height: 5px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: rgba(53, 39, 58, 0.4);
+            border-radius: 10px;
+        }
+    }
+}
+
 @media (max-width: 1050px) {
     .hero {
 
@@ -525,13 +562,16 @@ header {
         padding-top: 40px;
 
         &_box {
-            height: 220px;
-            width: 250px;
-            flex: 0 0 250px;
+            background-color: white;
+            border-top-right-radius: 30%;
+            flex: 0 0 320px;
+            width: 320px;
+            min-width: 320px;
+            height: 310px;
             box-sizing: border-box;
-            padding: 0px 0px;
 
             &-inside {
+                height: 100%;
                 height: 100%;
                 padding: 25px 15px;
                 box-sizing: border-box;
@@ -539,37 +579,6 @@ header {
                 & h3 {
                     font-size: 23px;
                 }
-            }
-        }
-
-        &_line {
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-start;
-            align-items: stretch;
-            margin-inline: 0;
-            box-sizing: border-box;
-            flex-wrap: nowrap;
-            overflow-x: auto;
-            overflow-y: hidden;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: thin;
-
-            > .survey_box {
-                flex: 0 0 250px;
-                width: 250px;
-                min-width: 250px;
-                height: 220px;
-                box-sizing: border-box;
-            }
-
-            &::-webkit-scrollbar {
-                height: 5px;
-            }
-
-            &::-webkit-scrollbar-thumb {
-                background: rgba(53, 39, 58, 0.4);
-                border-radius: 10px;
             }
         }
     }
