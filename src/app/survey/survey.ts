@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { ChangeDetectorRef, Component, signal } from '@angular/core';
 import { Supabase } from '../supabase';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -16,6 +16,7 @@ export class Survey {
   constructor(
     private supabaseService: Supabase,
     private route: ActivatedRoute,
+    private cdr: ChangeDetectorRef,
     private router: Router
   ) {}
 
@@ -80,8 +81,9 @@ export class Survey {
     if (!surveyId) return;
 
     this.currentSurvey = await this.supabaseService.getSurveyById(surveyId);
-      await this.supabaseService.getQuestionsBySurvey(surveyId);
+    await this.supabaseService.getQuestionsBySurvey(surveyId);
     this.votes = await this.supabaseService.getVotesBySurvey(surveyId);
+    this.cdr.detectChanges();
   }
 
   /**
