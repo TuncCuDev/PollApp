@@ -69,6 +69,53 @@ export class Mainpage {
   }
 
   /**
+   * Clears an input field or textarea
+   * @returns 
+   */
+  clearFirstQuestion(): void {
+    const question = this.surveyQuestions[0];
+    if (!question) return;
+    question.question = '';
+    question.multiple_answers = false;
+    question.answers = ['', '', '', '', ''];
+    question.answerCount = 2;
+  }
+
+  /**
+   * Clears the first question without deleting it.
+   * @param index 
+   * @returns 
+   */
+  deleteQuestion(index: number): void {
+    if (index === 0) {
+      this.clearFirstQuestion();
+      return;
+    }
+    this.surveyQuestions.splice(index, 1);
+    this.questionCount = this.surveyQuestions.length;
+  }
+
+  /**
+   * Deletes a question, keeping the first question.
+   * @param questionIndex 
+   * @param answerIndex 
+   * @returns 
+   */
+  deleteAnswer(questionIndex: number, answerIndex: number): void {
+    const question = this.surveyQuestions[questionIndex];
+
+    if (!question || question.answerCount <= 2) {
+      if (question && question.answerCount === 2) {
+        question.answers[answerIndex] = '';
+      }
+      return;
+    }
+    question.answers.splice(answerIndex, 1);
+    question.answers.push('');
+    question.answerCount--;
+  }
+
+  /**
    * Selects a category and closes the dropdown.
    * @param category 
    * @param event 

@@ -90,7 +90,7 @@
                             <div class="create_survey_question">
                                 <div class="create_survey_question_header">
                                     <h3>{{question + 1}}. Question </h3>
-                                    <button class="delete_button" (click)="clearInput(inputField3)">
+                                    <button class="delete_button" (click)="deleteQuestion(question)" [attr.aria-label]="question === 0 ? 'Frage leeren' : 'Frage löschen'">
                                         <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
                                         <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
                                     </button>
@@ -108,7 +108,7 @@
                                             <div class="create_survey_answer">
                                                 <span class="create_survey_answer_letter"> {{ ['A', 'B', 'C', 'D', 'E'][answer] }}. </span>
                                                 <input #inputField4 type="text" [(ngModel)]="surveyQuestions[question].answers[answer]" required>
-                                                <button class="delete_button" (click)="clearInput(inputField4)">
+                                                <button class="delete_button" (click)="deleteAnswer(question, answer)">
                                                     <img class="delete_default" src="./assets/img/delete.svg" alt="Delete-Button">
                                                     <img class="delete_hover" src="./assets/img/deletebutton hover.svg" alt="Delete-Button">
                                                 </button>
