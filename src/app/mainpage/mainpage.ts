@@ -167,13 +167,6 @@ export class Mainpage {
     });
   }
 
-   /**
-   * Navigates back to the home page.
-   */
-  goToHome() {
-    this.router.navigate(['/'])
-  }
-
   /**
    * Returns all unique categories from the surveys.
    */
