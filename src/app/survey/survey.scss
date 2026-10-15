@@ -17,13 +17,17 @@ main {
     }
 
     &_card {
-        margin: 50px;
         position: relative;
         display: flex;
         flex-direction: column;
         flex: 1;
-        min-height: 600px;
         box-sizing: border-box;
+        background-color: colors.$violet;
+        height: auto;
+        min-height: 600px;
+        width: min(100%, 850px);
+        border-top-right-radius: 100px;
+        padding: 40px 40px;
 
         &_button {
             margin-top: auto;
@@ -148,14 +152,8 @@ main {
     }
 
     &_left {
-        background-color: colors.$violet;
-        height: auto;
         min-height: 700px;
-        width: min(100%, 850px);
-        border-top-right-radius: 100px;
-        display: flex;
-        flex-direction: column;
-        box-sizing: border-box;
+        
         
     }
 
@@ -231,7 +229,7 @@ main {
         }
     }
 
-    &_right {
+   &_right {
         width: 50%;
     }
 
@@ -315,7 +313,7 @@ main {
 
     &_result_answer {
         display: grid;
-        grid-template-columns: 25px 200px 1fr 10px;
+        grid-template-columns: 28px minmax(0, 1fr) 40px;
         align-items: center;
     }
 
@@ -374,13 +372,15 @@ main {
     &_results {
         background-color: white;
         height: 100%;
+        max-width: 100%;
+        width: 325px;
+        min-height: 575px;
         box-sizing: border-box;
         flex-direction: column;
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        width: 325px;
-        height: 575px;
+        
         padding: 25px 25px;
 
         &_top {
@@ -503,48 +503,68 @@ input[type="checkbox"]:checked::after {
 @media (max-width: 1100px ) {
     .survey_content {
         flex-direction: column;
+        width: 100%;
+        min-width: 0;
+    }
+
+    .survey-left {
+        padding: 0 10px;
     }
 
     .survey_results {
         width: 100%;
-        max-width: 325px;
+        max-width: 100%;
         min-width: 0;
         height: auto;
+        box-sizing: border-box;
+        padding: 25px 14px;
     }
 
     .survey_results.is_closed {
         height: auto;
         padding: 10px 25px;
+        width: 100%;
     }
-}
 
-@media (max-width: 1100px ) {
- .survey_questions {
+    .survey {
         grid-template-columns: 1fr;
     }
 
     .survey_card {
-        margin: 50px 10px;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+        padding: 30px 10px;
+    }
+
+    .survey_left {
+        padding: 0 10px;
     }
 
     .survey_content {
-        padding: 0px 10px;
+        padding: 0px 0px;
     }
 
     .survey_header {
-        padding: 50px 0px;
+        padding: 50px 10px;
     }
 
     .survey_results {
         display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 325px;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        width: 100%;
         max-width: 100%;
-    }
+        min-width: 0;
+        box-sizing: border-box;
+        }
 
     .survey_question_answers {
         line-height: 1.4;
+         grid-template-columns: 28px minmax(0, 1fr) 40px;
+        gap: 10px;
     }
 
     .survey_result_percent {
@@ -555,7 +575,16 @@ input[type="checkbox"]:checked::after {
     .survey_results_toggle {
         display: flex;
     }
+
+    .survey_right {
+        display: flex;
+        justify-content: center;
+        width: clamp(270px, 100vw, 700px);
+        max-width: 100%;
+        min-width: 0;
+    }
 }
+
 @media (max-width: 800px) {
     .survey_questions {
         grid-template-columns: 1fr;
@@ -563,6 +592,10 @@ input[type="checkbox"]:checked::after {
 }
 
 @media (max-width: 525px) {
+    .survey_status {
+        margin-right: 25px;
+    }
+
     .button_close {
         display: block;
     }

@@ -7,18 +7,18 @@
 main {
     width: 100%;
     max-width: 1440px;
+    max-width: 100%;
+    min-height: 100vh;
     background-color: colors.$purple;
     margin: 0 auto;
     padding: 0;
-    width: 100%;
-    max-width: 100%;
-    min-height: 100vh;
-    height: auto;
     box-sizing: border-box;
 }
 
 .mainpage {
     padding: 75px 100px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 header {
