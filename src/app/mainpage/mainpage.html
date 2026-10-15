@@ -1,6 +1,6 @@
 <main>
     <section class="mainpage">
-        <header>
+        <header class="mainpage-header">
             <img src="./assets/img/logo-header.svg" alt="Logo-img">
         </header>
         <section class="hero">
@@ -182,14 +182,9 @@
                             </div>
                         }
                         <div>
-                            @if (selectedCategory == '') {
-                            <span class="surveylist_categories_selected"> {{ selectedCategory }}</span>
-                        }
-                        </div>
-                        <div>
-                        @if (selectedCategory !== 'All') {
-                            <span class="surveylist_categories_selected"> {{ selectedCategory }}</span>
-                        }
+                            @if (selectedCategory !== 'All' && selectedCategory !== '') {
+                                <span class="surveylist_categories_selected">{{ selectedCategory }}</span>
+                            }
                         </div>
                     </div>
                 </header>

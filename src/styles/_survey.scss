@@ -151,14 +151,6 @@
         position: absolute;
     }
 
-    &_category_dropdown span {
-        padding: 1px 5px;
-
-        &:hover {
-            color: red;
-        }
-    }
-
     &_field {
         display: grid;
         grid-template-columns: minmax(0, 1fr) auto;
@@ -294,6 +286,14 @@
         z-index: 10000;
         pointer-events: auto;
         cursor: pointer;
+        padding: 1px 5px;
+        font-family: 'Mulish';
+        font-weight: 400;
+        font-size: 14px;
+
+        &:hover {
+            background-color: rgba(244, 233, 251, 1);
+        }
     }
 
     &_category_selected {

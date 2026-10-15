@@ -21,12 +21,21 @@ main {
     box-sizing: border-box;
 }
 
+.mainpage-header {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+}
+
 header {
     @include mx.flex-left();
 }
 
 .hero {
-    @include mx.flex-space();
+    @include mx.flex-center();
 
     &_content {
         width: 100%;
@@ -534,6 +543,12 @@ header {
             border-radius: 10px;
         }
     }
+
+    .survey {
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 40px;
+    }
 }
 
 @media (max-width: 1050px) {
@@ -557,9 +572,6 @@ header {
     }
 
     .survey {
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-top: 40px;
 
         &_box {
             background-color: white;
