@@ -153,8 +153,6 @@ main {
 
     &_left {
         min-height: 700px;
-        
-        
     }
 
     &_status {
@@ -589,12 +587,6 @@ input[type="checkbox"]:checked::after {
     .survey_questions {
         grid-template-columns: 1fr;
     }
-}
-
-@media (max-width: 525px) {
-    .survey_status {
-        margin-right: 25px;
-    }
 
     .button_close {
         display: block;
@@ -602,6 +594,12 @@ input[type="checkbox"]:checked::after {
 
     .survey_button {
         display: none;
+    }
+}
+
+@media (max-width: 525px) {
+    .survey_status {
+        margin-right: 25px;
     }
 
     .survey_title {

@@ -18,7 +18,7 @@
 
 .create_survey {
     width: min(1200px, 95vw);
-    max-height: 95vh;
+    max-height: 90vh;
     background-color: rgba(53, 39, 58, 1);  
     border-radius: 0px 75px 0px 0px;
     box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5);
@@ -130,7 +130,7 @@
     }
 
     &_left {
-        max-width: 450px;
+        max-width: 470px;
         width: 100%;
         min-width: 0;
         box-sizing: border-box;
@@ -163,8 +163,8 @@
         display: grid;
         grid-template-columns: minmax(0, 1fr) auto;
         column-gap: 10px;
-        width: clamp(220px, 100%, 427px);
-        max-width: 427px;
+        width: clamp(220px, 100%, 470px);
+        max-width: 470px;
         min-width: 0;
         box-sizing: border-box;
     }
@@ -673,14 +673,13 @@
 }
 
 .create_survey_description_field label {
-    grid-column: 1;
+    grid-column: 1/ -1;
     grid-row: 1;
 }
 
 .create_survey_description_field .delete_button {
-    grid-column: 2;
-    grid-row: 1;
-    justify-self: end;
+    grid-row: 2;
+    align-self: start;
 }
 
 .create_survey_description_field .create_survey_description {
@@ -733,6 +732,29 @@
     grid-row: 2;
 }
 
+
+.create_survey_field:not(.create_survey_description_field) {
+    grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.create_survey_field:not(.create_survey_description_field) label {
+    grid-column: 1;
+    grid-row: 1;
+    margin-bottom: 8px;
+}
+
+.create_survey_field:not(.create_survey_description_field) .delete_button {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+}
+
+.create_survey_field:not(.create_survey_description_field) > input {
+    grid-column: 1 / -1;
+    grid-row: 2;
+}
+
+
 @keyframes successSlide {
     0% {
         transform: translateX(120%);
@@ -759,27 +781,27 @@
     .create_survey_content {
         grid-template-columns: minmax(0, 1fr);
         row-gap: 25px;
-        padding: 25px 10px;
+        padding: 30px 10px;
     }
-}
 
-@media (max-width: 775px) {
-    .create_survey {
-        padding: 25px 10px;
-    }
-}
-
-@media (max-width: 525px) {
     .create_survey_bottom {
         display: flex;
         flex-direction: column;
         gap: 25px;
     }
 
-    .create_survey_cancel,
-    .create_survey_close,
-    .create_survey_header_right {
-        display: none;
+    .create_survey_bottom {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .create_survey_bottom .create_survey_category {
+        order: 1;
+        padding-bottom: 10px;
+    }
+
+    .create_survey_bottom .create_survey_field {
+        order: 2;
     }
 
     .create_survey_answer {
@@ -816,10 +838,29 @@
         box-sizing: border-box;
     }
 
-     .create_survey_description_field {
-        width: 100%;
-        max-width: 100%;
+    .create_survey_description_field {
+        display: grid;
         grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-rows: auto auto;
+        column-gap: 10px;
+        row-gap: 5px;
+    }
+
+    .create_survey_description_field .create_survey_description {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        min-width: 0;
+    }
+
+    .create_survey_description_field label {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .create_survey_description_field .delete_button {
+        grid-column: 2;
+        grid-row: 1;
+        align-self: start;
     }
 
     .create_survey_content {
@@ -828,6 +869,7 @@
 
     .create_survey_question {
         margin-top: 0px;
+        max-width: 850px;
     }
 
     .create_survey_next_question {
@@ -837,10 +879,39 @@
     .create_survey_footer {
         justify-content: center;
     }
-    
-    .create_survey_add_answer {
-        margin-inline: auto;
+
+    .create_survey_left {
+        max-width: 1000px;
+        width: 100%;
+    }
+
+    .create_survey_field {
+        width: clamp(220px, 100%, 850px);
+        max-width: 850%;
+    }
+
+    .create_survey_question[_ngcontent-ng-c471221838] {
+        max-width: 850px;
     }
 }
+
+@media (max-width: 800px) {
+    .overlay {
+        padding: 10px 0px;
+    }
+
+    .create_survey {
+        padding: 25px 10px;
+    }
+
+    .create_survey_cancel,
+    .create_survey_close,
+    .create_survey_header_right {
+        display: none;
+    }
+
+}
+
+
 
 
